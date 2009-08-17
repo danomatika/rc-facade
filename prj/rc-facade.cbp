@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rc-facade" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../bin/rc-facadeD" prefix_auto="0" extension_auto="0" />
+				<Option object_output="../obj/rc-facade/Debug" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DLINUX" />
+					<Add option="-DDEBUG" />
+					<Add option="-D_DEBUG" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-ggdb" />
+					<Add directory="../src" />
+					<Add directory="/usr/include" />
+					<Add directory="../externals/visualframework/src" />
+					<Add directory="../externals/visualframework/externals" />
+					<Add directory="../externals/visualframework/externals/include" />
+				</Compiler>
+				<Linker>
+					<Add directory="../bin" />
+					<Add directory="../lib" />
+					<Add directory="../externals/visualframework/lib" />
+					<Add directory="../externals/visualframework/externals/lib" />
+					<Add directory="/usr/lib" />
+					<Add library="SDL" />
+					<Add library="SDL_gfx" />
+					<Add library="visualframeworkD" />
+					<Add library="visualClassesD" />
+					<Add library="tinyxmlD" />
+					<Add library="oscpackD" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../bin/rc-facade" prefix_auto="0" extension_auto="0" />
+				<Option object_output="../obj/rc-facade/Release" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-O" />
+					<Add option="-DLINUX" />
+					<Add option="-DNDEBUG" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add directory="../src" />
+					<Add directory="/usr/include" />
+					<Add directory="../externals/visualframework/src" />
+					<Add directory="../externals/visualframework/externals" />
+					<Add directory="../externals/visualframework/externals/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add directory="../bin" />
+					<Add directory="../lib" />
+					<Add directory="../externals/visualframework/lib" />
+					<Add directory="../externals/visualframework/externals/lib" />
+					<Add directory="/usr/lib" />
+					<Add library="SDL" />
+					<Add library="SDL_gfx" />
+					<Add library="visualframework" />
+					<Add library="visualClassesD" />
+					<Add library="tinyxml" />
+					<Add library="oscpack" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../src/Pressure.h">
+			<Option compilerVar="CPP" />
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../src/Visual.h">
+			<Option compilerVar="CPP" />
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../src/Pressure.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../src/Visual.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../src/main.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
