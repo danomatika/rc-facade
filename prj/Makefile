@@ -13,7 +13,7 @@ export CONFIG
 
 all: externals rc-facade
 
-externals.make rc-facade.make: premake.lua
+Makefile: premake.lua
 	@echo ==== Regenerating Makefiles ====
 	@premake --file $^ --cc gcc --target gnu
 

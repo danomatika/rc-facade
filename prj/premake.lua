@@ -31,7 +31,10 @@ package.kind 		= "exe"
 package.language 	= "c++"
 
 package.files = { 
-    matchfiles( "../src/*.h", "../src/*.cpp" ),
+    matchfiles( "../src/*.h",
+    			"../src/*.cpp",
+    			"../src/facade/*.h",
+    			"../src/facade/*.cpp")
 }
 
 package.includepaths = {
@@ -63,7 +66,7 @@ package.buildflags                   = { "extra-warnings" }
 package.buildoptions                 = { "-Wno-unknown-pragmas" }
 package.config["Debug"].buildoptions = { "-ggdb" }
 
-package.links = { "SDL", "SDL_gfx" }
-package.config["Debug"].links = { "visualframeworkD", "visualClassesD", "tinyxmlD", "oscpackD" }
-package.config["Release"].links = { "visualframework", "visualClassesD", "tinyxml", "oscpack" }
+package.links = { "SDL", "SDL_gfx", "SDL_net" }
+package.config["Debug"].links = { "visualframeworkD", "tinyxmlD", "oscpackD" }
+package.config["Release"].links = { "visualframework", "tinyxml", "oscpack" }
 

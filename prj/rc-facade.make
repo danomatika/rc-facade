@@ -16,7 +16,7 @@ ifeq ($(CONFIG),Debug)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX" -D "DEBUG" -D "_DEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -Wall -Wno-unknown-pragmas -ggdb
   CXXFLAGS += $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lvisualframeworkD -lvisualClassesD -ltinyxmlD -loscpackD
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lvisualframeworkD -ltinyxmlD -loscpackD
   LDDEPS :=
   RESFLAGS := -D "LINUX" -D "DEBUG" -D "_DEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   TARGET := rc-facadeD
@@ -31,7 +31,7 @@ ifeq ($(CONFIG),Release)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX" -D "NDEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O2 -Wall -Wno-unknown-pragmas
   CXXFLAGS += $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lvisualframework -lvisualClassesD -ltinyxml -loscpack
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lvisualframework -ltinyxml -loscpack
   LDDEPS :=
   RESFLAGS := -D "LINUX" -D "NDEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   TARGET := rc-facade
@@ -39,9 +39,11 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/Pressure.o \
-	$(OBJDIR)/Visual.o \
 	$(OBJDIR)/main.o \
+	$(OBJDIR)/FacadeApp.o \
+	$(OBJDIR)/FacadeSample.o \
+	$(OBJDIR)/Facade.o \
+	$(OBJDIR)/Side.o \
 
 MKDIR_TYPE := msdos
 CMD := $(subst \,\\,$(ComSpec)$(COMSPEC))
@@ -83,17 +85,27 @@ else
 	-@if exist $(subst /,\,$(OBJDIR)) rmdir /s /q $(subst /,\,$(OBJDIR))
 endif
 
-$(OBJDIR)/Pressure.o: ../src/Pressure.cpp
-	-@$(CMD_MKOBJDIR)
-	@echo $(notdir $<)
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/Visual.o: ../src/Visual.cpp
-	-@$(CMD_MKOBJDIR)
-	@echo $(notdir $<)
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
 $(OBJDIR)/main.o: ../src/main.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/FacadeApp.o: ../src/FacadeApp.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/FacadeSample.o: ../src/facade/FacadeSample.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/Facade.o: ../src/facade/Facade.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/Side.o: ../src/facade/Side.cpp
 	-@$(CMD_MKOBJDIR)
 	@echo $(notdir $<)
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
