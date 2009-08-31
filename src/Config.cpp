@@ -1,14 +1,7 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef COMMON_H
-#define COMMON_H
+#include "Config.h"
 
-// Common, system wide includes
-
-#include <visualframework.h>
-
-using namespace visual;
-using namespace std;
-
-#endif // COMMON_H
+Facade      Config::_facade;
+OscListener Config::_oscListener;

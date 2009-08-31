@@ -1,3 +1,6 @@
+/*==============================================================================
+    2009 Dan Wilcox <danomatika@gmail.com>
+==============================================================================*/
 #ifndef SIDE_FL_EAST_APP_H
 #define SIDE_FL_EAST_APP_H
 
@@ -16,11 +19,7 @@ class SideFuturelabEast : public Side
             nrRows = 9;
             nrCols = 5;
 
-            startRow = 17;
-            endRow = 26;
-
-            startCol = 43;
-            endCol = 47;
+            setPos(17, 43);
 
             int temp[] =
             {

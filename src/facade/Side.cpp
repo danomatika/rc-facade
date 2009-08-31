@@ -1,18 +1,46 @@
+/*==============================================================================
+    2009 Dan Wilcox <danomatika@gmail.com>
+==============================================================================*/
 #include "Side.h"
+
+using namespace visual;
 
 unsigned int Side::_windowSize = 5;
 bool Side::_bDrawOutlines = true;
-Color Side::_outlineColor(0x999999);
+Color Side::_outlineColor(0x666666);
+
+Side::~Side()
+{
+    if(windowAddrs != NULL)
+        delete windowAddrs;
+}
+
+void Side::setPos(int row, int column)
+{
+    startRow = row;
+    endRow = row+nrRows-1;
+
+    startCol = column;
+    endCol = column+nrCols-1;
+}
 
 int Side::getAddress(int row, int col, bool global)
 {
-    if(global)  // grab address in relation to buildings overall grid
+    if(!bEnabled)
+        return -1;
+
+    if(global)  // grab address in relation to building's overall grid
     {
         if(row >= startRow && row <= endRow)
         {
             if(col >= startCol && col <= endCol)
             {
-                return windowAddrs[((row-startRow)*nrCols) + (col-startCol)];
+                int r = row-startRow, c = col-startCol;
+                if(bFlipY)
+                    r = endRow-row;
+                if(bFlipX)
+                    c = endCol-col;
+                return windowAddrs[(r*nrCols) + c];
             }
         }
     }
@@ -22,7 +50,12 @@ int Side::getAddress(int row, int col, bool global)
         {
             if(col >= 0 && col < nrCols)
             {
-                return windowAddrs[((row)*nrCols) + col];
+                int r = row, c = col;
+                if(bFlipY)
+                    r = nrRows-row-1;
+                if(bFlipX)
+                    c = nrCols-col-1;
+                return windowAddrs[(r*nrCols) + c];
             }
         }
     }
@@ -30,22 +63,22 @@ int Side::getAddress(int row, int col, bool global)
     return -1;
 }
 
-/**
- * set side to a particular color
- */
 void Side::setColor(FrameBuffer& frame, Color color)
 {
+    if(!bEnabled)
+        return;
+
     for(int address = getStartAddress(); address <= getEndAddress(); ++address)
     {
         frame.setColor(address, color);
     }
 }
 
-/**
- * set row of side to a particular color
- */
 void Side::setRowColor(FrameBuffer& frame, int row, Color color, bool global)
 {
+    if(!bEnabled)
+        return;
+
     if(row >= getStartRow() && row <= getEndRow())
     {
         for(int column = 0; column <= getEndCol(); ++column)
@@ -55,11 +88,11 @@ void Side::setRowColor(FrameBuffer& frame, int row, Color color, bool global)
     }
 }
 
-/**
- * set column of side to a particular color
- */
-void Side::setColumnColor(FrameBuffer& frame, int column, Color color, bool global)
+void Side::setColColor(FrameBuffer& frame, int column, Color color, bool global)
 {
+    if(!bEnabled)
+        return;
+
     if(column >= 0 && column < getNrCols())
     {
         for(int row = getStartRow(); row <= getEndRow(); ++row)
@@ -69,16 +102,14 @@ void Side::setColumnColor(FrameBuffer& frame, int column, Color color, bool glob
     }
 }
 
-/**
- * set window at row/column to particular color.
- * do nothing, if there is no window at that position.
- */
 void Side::setWindowColor(FrameBuffer& frame, int row, int column, Color color, bool global)
 {
+    if(!bEnabled)
+        return;
+
     frame.setColor(getAddress(row, column, global), color);
 }
 
-/// print the side addresses graphically to LOG
 void Side::print()
 {
     for(int r = 0; r < nrRows; ++r)
@@ -105,11 +136,14 @@ void Side::print()
 
 void Side::draw(FrameBuffer& frame, int x, int y, bool global)
 {
+    if(!bEnabled)
+        return;
+
     int xStart, xPos = x, yPos = y;
 
     if(global)
     {
-        xPos = x + (startCol*_windowSize*3);
+        xPos = x + (startCol*_windowSize*FACADE_WIN_ASPECT_WIDTH);
         yPos = y + (startRow*_windowSize);
     }
     xStart = xPos;
@@ -131,10 +165,10 @@ void Side::draw(FrameBuffer& frame, int x, int y, bool global)
                 {
                     Graphics::stroke(_outlineColor);
                 }
-                Graphics::rectangle(xPos, yPos, _windowSize*3, _windowSize, Graphics::CORNER);
+                Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize, Graphics::CORNER);
             }
 
-            xPos += _windowSize*3;
+            xPos += _windowSize*FACADE_WIN_ASPECT_WIDTH;
         }
         xPos = xStart;
         yPos += _windowSize;

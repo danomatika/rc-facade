@@ -11,39 +11,36 @@ DEPFLAGS := $(if $(word 2, $(TARGET_ARCH)), , -MMD)
 ifeq ($(CONFIG),Debug)
   BINDIR := ../bin
   LIBDIR := ../lib
-  OBJDIR := ../obj/rc-facade/Debug
-  OUTDIR := ../bin
+  OBJDIR := ../obj/facade/Debug
+  OUTDIR := ../lib
   CPPFLAGS := $(DEPFLAGS) -D "LINUX" -D "DEBUG" -D "_DEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -Wall -Wno-unknown-pragmas -ggdb
   CXXFLAGS += $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lfacadeD -lvisualframeworkD -ltinyxmlD -loscpackD
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lvisualframeworkD -ltinyxmlD -loscpackD
   LDDEPS :=
   RESFLAGS := -D "LINUX" -D "DEBUG" -D "_DEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
-  TARGET := rc-facadeD
- BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
+  TARGET := libfacadeD.a
+ BLDCMD = ar -rcs $(OUTDIR)/$(TARGET) $(OBJECTS) $(TARGET_ARCH)
 endif
 
 ifeq ($(CONFIG),Release)
   BINDIR := ../bin
   LIBDIR := ../lib
-  OBJDIR := ../obj/rc-facade/Release
-  OUTDIR := ../bin
+  OBJDIR := ../obj/facade/Release
+  OUTDIR := ../lib
   CPPFLAGS := $(DEPFLAGS) -D "LINUX" -D "NDEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O2 -Wall -Wno-unknown-pragmas
   CXXFLAGS += $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lfacade -lvisualframework -ltinyxml -loscpack
-  LDDEPS := ../lib/libfacade.a
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lvisualframework -ltinyxml -loscpack
+  LDDEPS :=
   RESFLAGS := -D "LINUX" -D "NDEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
-  TARGET := rc-facade
- BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
+  TARGET := libfacade.a
+ BLDCMD = ar -rcs $(OUTDIR)/$(TARGET) $(OBJECTS) $(TARGET_ARCH)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/Scene.o \
-	$(OBJDIR)/main.o \
-	$(OBJDIR)/FacadeApp.o \
-	$(OBJDIR)/SceneManager.o \
-	$(OBJDIR)/Config.o \
+	$(OBJDIR)/Facade.o \
+	$(OBJDIR)/Side.o \
 
 MKDIR_TYPE := msdos
 CMD := $(subst \,\\,$(ComSpec)$(COMSPEC))
@@ -68,14 +65,14 @@ endif
 .PHONY: clean
 
 $(OUTDIR)/$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES)
-	@echo Linking rc-facade
+	@echo Linking facade
 	-@$(CMD_MKBINDIR)
 	-@$(CMD_MKLIBDIR)
 	-@$(CMD_MKOUTDIR)
 	@$(BLDCMD)
 
 clean:
-	@echo Cleaning rc-facade
+	@echo Cleaning facade
 ifeq ($(MKDIR_TYPE),posix)
 	-@rm -f $(OUTDIR)/$(TARGET)
 	-@rm -rf $(OBJDIR)
@@ -85,27 +82,12 @@ else
 	-@if exist $(subst /,\,$(OBJDIR)) rmdir /s /q $(subst /,\,$(OBJDIR))
 endif
 
-$(OBJDIR)/Scene.o: ../src/Scene.cpp
+$(OBJDIR)/Facade.o: ../src/facade/Facade.cpp
 	-@$(CMD_MKOBJDIR)
 	@echo $(notdir $<)
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/main.o: ../src/main.cpp
-	-@$(CMD_MKOBJDIR)
-	@echo $(notdir $<)
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/FacadeApp.o: ../src/FacadeApp.cpp
-	-@$(CMD_MKOBJDIR)
-	@echo $(notdir $<)
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/SceneManager.o: ../src/SceneManager.cpp
-	-@$(CMD_MKOBJDIR)
-	@echo $(notdir $<)
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/Config.o: ../src/Config.cpp
+$(OBJDIR)/Side.o: ../src/facade/Side.cpp
 	-@$(CMD_MKOBJDIR)
 	@echo $(notdir $<)
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"

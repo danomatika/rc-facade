@@ -3,8 +3,10 @@
 	<Workspace title="rc-facade">
 		<Project filename="externals.cbp" />
 		<Project filename="../externals/visualframework/prj/visualframework.cbp" />
+		<Project filename="facade.cbp" />
 		<Project filename="rc-facade.cbp" active="1">
 			<Depends filename="../externals/visualframework/prj/visualframework.cbp" />
+			<Depends filename="facade.cbp" />
 		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

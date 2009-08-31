@@ -1,24 +1,54 @@
+/*==============================================================================
+    2009 Dan Wilcox <danomatika@gmail.com>
+==============================================================================*/
 #include "Facade.h"
 
-Facade::Facade(std::string ip, unsigned int port) :
-    _frame(ip, port), _currentRow(0), _currentCol(0)
+#include "Building.h"
+
+using namespace visual;
+
+// local class variables
+FrameBuffer _frame;     /// facade framebuffer
+Building _building;     /// building address mapping
+
+Facade::Facade() : _clearColor(0, 0, 0), _drawColor(1, 1, 1),
+    _bWrapX(true), _bWrapY(true), _bShowSides(false)
 {}
+
+Facade::Facade(std::string ip, unsigned int port) :
+    _clearColor(0, 0, 0), _drawColor(1, 1, 1),
+    _bWrapX(true), _bWrapY(false)
+{
+    setup(ip, port);
+}
 
 Facade::~Facade()
 {
     //dtor
 }
 
+void Facade::setup(std::string ip, unsigned int port)
+{
+    _frame.setup(ip, port);
+}
+
 void Facade::clear()
 {
-    _frame.setColor(_background);
+    if(_bShowSides)
+    {
+        _building.main_N.setColor(_frame, Color(0xFF0000));
+        _building.main_E.setColor(_frame, Color(0xFF00FF));
+        _building.main_S.setColor(_frame, Color(0x00FF00));
+        _building.main_S_street.setColor(_frame, Color(0x00FFFF));
+        _building.main_W.setColor(_frame, Color(0xFFFF00));
 
-    _building.main_W.setColor(_frame, Color(0x000000));
-    _building.main_S.setColor(_frame, Color(0x666666));
-    _building.main_E.setColor(_frame, Color(0x222222));
-    _building.main_N.setColor(_frame, Color(0x888888));
-    _building.lab_S.setColor(_frame, Color(0x444444));
-    _building.main_S_street.setColor(_frame, Color(0xAAAAAA));
+        _building.lab_N.setColor(_frame, Color(0x0000FF));
+        _building.lab_E.setColor(_frame, Color(0x333333));
+        _building.lab_S.setColor(_frame, Color(0xAAAAAA));
+
+    }
+    else
+        _frame.setColor(_clearColor);
 }
 
 void Facade::send()
@@ -26,90 +56,201 @@ void Facade::send()
     _frame.flush();
 }
 
-void Facade::pixel(unsigned int x, unsigned int y, Color color)
+/* ***** SIDE SETTINGS ***** */
+
+void Facade::setSidePos(FacadeSide side, int x, int y)
 {
+    _building.getSides().at((int) side)->setPos(y, x);
+}
+
+void Facade::enableSide(FacadeSide side, bool enabled)
+{
+    _building.getSides().at((int) side)->enable(enabled);
+}
+
+void Facade::flipSide(FacadeSide side, bool flipX, bool flipY)
+{
+    _building.getSides().at((int) side)->flipX(flipX);
+    _building.getSides().at((int) side)->flipY(flipY);
+}
+
+void Facade::recomputeSize()
+{
+    _building.computeSize();
+}
+
+/* ***** SIDE GRAPHICS ***** */
+
+void Facade::sideColor(FacadeSide side)
+{
+    _building.getSides().at((int) side)->setColor(_frame, _drawColor);
+}
+
+void Facade::sideRow(FacadeSide side, int row)
+{
+    _building.getSides().at((int) side)->setRowColor(_frame, row, _drawColor);
+}
+
+void Facade::sideCol(FacadeSide side, int col)
+{
+    _building.getSides().at((int) side)->setColColor(_frame, col, _drawColor);
+}
+
+void Facade::sidePixel(FacadeSide side, int x, int y)
+{
+    _building.getSides().at((int) side)->setWindowColor(_frame, y, x, _drawColor);
+}
+
+/* ***** BUILDING GRAPHICS ***** */
+
+void Facade::pixel(int x, int y)
+{
+    int xPos = x, yPos = y;
+
+    if(_bWrapX)
+    {
+        if(x >= _building.getNrCols())
+            x = x - _building.getNrCols();
+        else if(x < 0)
+            xPos = _building.getNrCols() - x;
+    }
+    if(_bWrapY)
+    {
+        if(y >= _building.getNrRows())
+            y = y - _building.getNrRows();
+        else if(y < 0)
+            yPos = _building.getNrRows() - y;
+    }
+
     std::vector<Side*>& sides = _building.getSides();
     for(unsigned int i = 0; i < sides.size(); ++i)
     {
-        sides[i]->setWindowColor(_frame, y, x, color, true);
+        sides[i]->setWindowColor(_frame, y, x, _drawColor, true);
     }
 }
 
-void Facade::pixel(unsigned int x, unsigned int y, unsigned int color)
+/* an improved Bresenham line drawing alogrithm
+   from http://www.cs.unc.edu/~mcmillan/comp136/Lecture6/Lines.html */
+void Facade::line(int x1, int y1, int x2, int y2)
 {
-    pixel(x, y, Color(color));
-}
+    int dy = y2 - y1;
+    int dx = x2 - x1;
+    int stepx, stepy;
 
-void Facade::walkRow(Color color)
-{
-    std::vector<Side*>& sides = _building.getSides();
-    for(unsigned int i = 0; i < sides.size(); ++i)
+    if(dy < 0) {dy = -dy;  stepy = -1;} else {stepy = 1;}
+    if(dx < 0) {dx = -dx;  stepx = -1;} else {stepx = 1;}
+    dy <<= 1;                                                  // dy is now 2*dy
+    dx <<= 1;                                                  // dx is now 2*dx
+
+    pixel(x1, y1);
+    if(dx > dy)
     {
-        sides[i]->setRowColor(_frame, _currentRow, color, true);
-    }
-
-    _currentRow++;
-    if(_currentRow > _building.getNrRows())
-    {
-        _currentRow = 0;
-    }
-}
-
-void Facade::walkCol(Color color)
-{
-    std::vector<Side*>& sides = _building.getSides();
-    for(unsigned int i = 0; i < sides.size(); ++i)
-    {
-        sides[i]->setColumnColor(_frame, _currentCol, color);
-    }
-
-    _currentCol++;
-    if(_currentCol > _building.getNrCols())
-    {
-        _currentCol = 0;
-    }
-}
-
-void Facade::walkWindows(Color color)
-{
-    std::vector<Side*>& sides = _building.getSides();
-    for(unsigned int i = 0; i < sides.size(); ++i)
-    {
-        sides[i]->setWindowColor(_frame,  _currentRow, _currentCol, color, true);
-    }
-
-    _currentCol++;
-    if(_currentCol > _building.getNrCols())
-    {
-        _currentCol = 0;
-
-        _currentRow++;
-        if(_currentRow > _building.getNrRows())
+        int fraction = dy - (dx >> 1);                         // same as 2*dy - dx
+        while(x1 != x2)
         {
-            _currentRow = 0;
+            if(fraction >= 0)
+            {
+                y1 += stepy;
+                fraction -= dx;                                // same as fraction -= 2*dx
+            }
+            x1 += stepx;
+            fraction += dy;                                    // same as fraction -= 2*dy
+            pixel(x1, y1);
+        }
+    }
+    else
+    {
+        int fraction = dx - (dy >> 1);
+        while(y1 != y2)
+        {
+            if(fraction >= 0)
+            {
+                x1 += stepx;
+                fraction -= dy;
+            }
+            y1 += stepy;
+            fraction += dx;
+            pixel(x1, y1);
         }
     }
 }
 
+void Facade::rect(int x, int y, int w, int h, bool drawFromCenter)
+{
+    if(drawFromCenter)
+    {
+        line(x-w/2, y-h/2, x+w/2, y-h/2);
+        line(x-w/2, y-h/2, x-w/2, y+h/2);
+        line(x+w/2, y+h/2, x-w/2, y+h/2);
+        line(x+w/2, y+h/2, x+w/2, y-h/2);
+    }
+    else
+    {
+        line(x, y, x+w, y);
+        line(x, y, x, y+h);
+        line(x+w, y, x+w, y+h);
+        line(x, y+h, x+w, y+h);
+    }
+}
+
+void Facade::box(int x, int y, int w, int h, bool drawFromCenter)
+{
+    if(drawFromCenter)
+    {
+        for(int _y = y-h/2; _y < y+h/2; ++_y)
+            line(x-w/2, _y, x+w/2, _y);
+    }
+    else
+    {
+        for(int _y = y; _y < y + h; _y++)
+            line(x, _y, x + (w-1), _y);
+    }
+}
+
+/*
+void Facade::circle(int x, int y, int r, Color color)
+{
+    int f = 1 - r;
+    int ddF_x = 0;
+    int ddF_y = -2 * r;
+    int _x = 0;
+    int _y = r;
+
+    pixel(x, y + r, color);
+    pixel(x, y - r, color);
+    pixel(x + r, y, color);
+    pixel(x - r, y, color);
+
+    while(_x < _y)
+    {
+        if(f >= 0)
+        {
+            _y--;
+            ddF_y += 2;
+            f += ddF_y;
+        }
+        _x++;
+        ddF_x += 2;
+        f += ddF_x + 1;
+        pixel(x + _x, y + _y, color);
+        pixel(x - _x, y + _y, color);
+        pixel(x + _x, y - _y, color);
+        pixel(x - _x, y - _y, color);
+        pixel(x + _y, y + _x, color);
+        pixel(x - _y, y + _x, color);
+        pixel(x + _y, y - _x, color);
+        pixel(x - _y, y - _x, color);
+    }
+}
+*/
+
 void Facade::draw(int x, int y)
 {
-    /*
-    _building.main_W.draw(_frame, x, y);
-    _building.main_S.draw(_frame, x+150, y+5);
-    _building.main_E.draw(_frame, x+150*2, y+5);
-    _building.main_N.draw(_frame, x+150*3, y);
-    _building.lab_S.draw(_frame, x+150, y+80+5);
-    _building.main_S_street.draw(_frame, x+150, y+110+5);
-*/
     std::vector<Side*>& sides = _building.getSides();
     for(unsigned int i = 0; i < sides.size(); ++i)
     {
         sides[i]->draw(_frame, x, y, true);
     }
-
-    //_building.main_S.draw(_frame, x+150, y+5+200);
-    //_building.main_S_street.draw(_frame, x+150, y+110+5+200);
-    //_building.lab_S.draw(_frame, x+150*2, y+80+5+200);
 }
 
 void Facade::drawGrid(int x, int y)
@@ -125,16 +266,33 @@ void Facade::drawGrid(int x, int y)
           //  else
                 Graphics::noFill();
             Graphics::stroke(Side::getOutlineColor());
-            Graphics::rectangle(xPos, yPos, Side::getWindowSize()*3, Side::getWindowSize(), Graphics::CORNER);
+            Graphics::rectangle(xPos, yPos, Side::getWindowSize()*FACADE_WIN_ASPECT_WIDTH, Side::getWindowSize(), Graphics::CORNER);
 
-            xPos += Side::getWindowSize()*3;
+            xPos += Side::getWindowSize()*FACADE_WIN_ASPECT_WIDTH;
         }
         xPos = x;
         yPos += Side::getWindowSize();
     }
 }
 
-void Facade::setBackground(unsigned int color)
+void Facade::setClearColor(unsigned int color)
 {
-    _background.set(color);
+    _clearColor.set(color);
 }
+
+void Facade::print()    {_building.print();}
+
+int Facade::getWidth()  {return _building.getNrCols();}
+int Facade::getHeight() {return _building.getNrRows();}
+
+void Facade::setWindowSize(unsigned int size)   {Side::setWindowSize(size);}
+void Facade::drawOutlines(bool yesno)           {Side::drawOutlines(yesno);}
+void Facade::drawOutlines()                     {Side::drawOutlines();}
+void Facade::setOutlineColor(Color color)       {Side::setOutlineColor(color);}
+void Facade::setOutlineColor(unsigned int color) {Side::setOutlineColor(color);}
+
+int Facade::getSideWidth(FacadeSide side) {return _building.getSides().at((int) side)->getNrCols();}
+int Facade::getSideHeight(FacadeSide side) {return _building.getSides().at((int) side)->getNrRows();}
+
+int Facade::getSidePosX(FacadeSide side) {return _building.getSides().at((int) side)->getStartCol();}
+int Facade::getSidePosY(FacadeSide side) {return _building.getSides().at((int) side)->getStartRow();}

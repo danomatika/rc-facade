@@ -1,3 +1,6 @@
+/*==============================================================================
+    2009 Dan Wilcox <danomatika@gmail.com>
+==============================================================================*/
 #ifndef SIDE_MAIN_WEST_APP_H
 #define SIDE_MAIN_WEST_APP_H
 
@@ -15,11 +18,7 @@ class SideMainBuildingWest : public Side
             nrRows = 22;
             nrCols = 10;
 
-            startRow = 0;
-            endRow = 21;
-
-            startCol = 0;
-            endCol = 9;
+            setPos(0, 0);
 
             int temp[] =
             {

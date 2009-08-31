@@ -2,24 +2,24 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="rc-facade" />
+		<Option title="facade" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/rc-facadeD" prefix_auto="0" extension_auto="0" />
-				<Option object_output="../obj/rc-facade/Debug" />
-				<Option external_deps="../externals/visualframework/lib/libvisualframeworkD.a;../lib/libfacadeD.a;" />
-				<Option type="1" />
+				<Option output="../lib/libfacadeD.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="../obj/facade/Debug" />
+				<Option type="2" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add option="-Wno-unknown-pragmas" />
-					<Add option="-ggdb" />
 					<Add option="-DLINUX" />
 					<Add option="-DDEBUG" />
 					<Add option="-D_DEBUG" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-ggdb" />
 					<Add directory="../src" />
 					<Add directory="/usr/include" />
 					<Add directory="../externals/visualframework/src" />
@@ -30,7 +30,6 @@
 					<Add library="SDL" />
 					<Add library="SDL_gfx" />
 					<Add library="SDL_net" />
-					<Add library="facadeD" />
 					<Add library="visualframeworkD" />
 					<Add library="tinyxmlD" />
 					<Add library="oscpackD" />
@@ -42,16 +41,17 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="../bin/rc-facade" prefix_auto="0" extension_auto="0" />
-				<Option object_output="../obj/rc-facade/Release" />
-				<Option type="1" />
+				<Option output="../lib/libfacade.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="../obj/facade/Release" />
+				<Option type="2" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O" />
 					<Add option="-Wall" />
-					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-O" />
 					<Add option="-DLINUX" />
 					<Add option="-DNDEBUG" />
+					<Add option="-Wno-unknown-pragmas" />
 					<Add directory="../src" />
 					<Add directory="/usr/include" />
 					<Add directory="../externals/visualframework/src" />
@@ -62,7 +62,7 @@
 					<Add option="-s" />
 					<Add library="SDL" />
 					<Add library="SDL_gfx" />
-					<Add library="facade" />
+					<Add library="SDL_net" />
 					<Add library="visualframework" />
 					<Add library="tinyxml" />
 					<Add library="oscpack" />
@@ -74,20 +74,20 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="../src/Common.h" />
-		<Unit filename="../src/Config.cpp" />
-		<Unit filename="../src/Config.h" />
-		<Unit filename="../src/DrawableObject.h" />
-		<Unit filename="../src/FacadeApp.cpp" />
-		<Unit filename="../src/FacadeApp.h" />
-		<Unit filename="../src/Line.h" />
-		<Unit filename="../src/Pixel.h" />
-		<Unit filename="../src/Rect.h" />
-		<Unit filename="../src/Scene.cpp" />
-		<Unit filename="../src/Scene.h" />
-		<Unit filename="../src/SceneManager.cpp" />
-		<Unit filename="../src/SceneManager.h" />
-		<Unit filename="../src/main.cpp" />
+		<Unit filename="../src/facade/Building.h" />
+		<Unit filename="../src/facade/Facade.cpp" />
+		<Unit filename="../src/facade/Facade.h" />
+		<Unit filename="../src/facade/FrameBuffer.h" />
+		<Unit filename="../src/facade/Side.cpp" />
+		<Unit filename="../src/facade/Side.h" />
+		<Unit filename="../src/facade/SideFuturelabEast.h" />
+		<Unit filename="../src/facade/SideFuturelabNorth.h" />
+		<Unit filename="../src/facade/SideFuturelabSouth.h" />
+		<Unit filename="../src/facade/SideMainBuildingEast.h" />
+		<Unit filename="../src/facade/SideMainBuildingNorth.h" />
+		<Unit filename="../src/facade/SideMainBuildingSouth.h" />
+		<Unit filename="../src/facade/SideMainBuildingSouthStreetLevel.h" />
+		<Unit filename="../src/facade/SideMainBuildingWest.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

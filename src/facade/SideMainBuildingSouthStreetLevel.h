@@ -1,3 +1,6 @@
+/*==============================================================================
+    2009 Dan Wilcox <danomatika@gmail.com>
+==============================================================================*/
 #ifndef SIDE_MAIN_SOUTH_STREET_APP_H
 #define SIDE_MAIN_SOUTH_STREET_APP_H
 
@@ -15,11 +18,7 @@ class SideMainBuildingSouthStreetLevel : public Side
             nrRows = 5;
             nrCols = 27;
 
-            startRow = 23;
-            endRow = 27;
-
-            startCol = 10;
-            endCol = 36;
+            setPos(23, 9);
 
             int temp[] =
             {

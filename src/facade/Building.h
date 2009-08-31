@@ -1,7 +1,10 @@
+/*==============================================================================
+    2009 Dan Wilcox <danomatika@gmail.com>
+==============================================================================*/
 #ifndef BUILDING_APP_H
 #define BUILDING_APP_H
 
-#include "../Common.h"
+#include <visualframework.h>
 
 #include <vector>
 #include "Side.h"
@@ -14,9 +17,7 @@
 #include "SideMainBuildingSouthStreetLevel.h"
 #include "SideMainBuildingWest.h"
 
-/**
- * represents the building as a list of bulding sides
- */
+/// represents the building as a list of bulding sides
 class Building
 {
     public:
@@ -42,6 +43,15 @@ class Building
             sides.push_back(&lab_E);
             sides.push_back(&lab_S);
 
+            computeSize();
+        }
+
+        /// compute the size of the building's grid based on enabled sides
+        /// call this after enabling/disabling a side to resize the grid
+        void computeSize()
+        {
+            nrRows = 0; nrCols = 0;
+
             for(unsigned int i = 0; i < sides.size(); ++i)
             {
                 Side* side = sides.at(i);
@@ -56,8 +66,6 @@ class Building
                     nrCols = side->getEndCol()+1;
                 }
             }
-
-            LOG << "Building: " << nrRows << "x" << nrCols << std::endl;
         }
 
         inline int getNrRows()  {return nrRows;}
@@ -66,13 +74,15 @@ class Building
 
         void print()
         {
+            LOG << "Building: " << nrRows << "x" << nrCols << std::endl << std::endl;
+
             for(unsigned int i = 0; i < sides.size(); ++i)
             {
                 Side* side = sides.at(i);
                 LOG << "Side: " << side->getName() << " "
                     <<side->getNrCols() << "x" << side->getNrRows()
-                    << " at " << side->getStartCol() << "x" << side->getStartRow()
-                    << std::endl;
+                    << " at (" << side->getStartCol() << ", " << side->getStartRow()
+                    << ")" << std::endl;
                 side->print();
                 LOG << std::endl;
             }
@@ -81,8 +91,8 @@ class Building
 	private:
 
         std::vector<Side*> sides;   /// pointer vector to all sides
-        int nrRows;		///< the overall number of rows of the building
-        int nrCols;     ///< the maximum number of columns of a side
+        int nrRows;		/// the overall number of rows of the building
+        int nrCols;     /// the maximum number of columns of a side
 };
 
 #endif // BUILDING_APP_H
