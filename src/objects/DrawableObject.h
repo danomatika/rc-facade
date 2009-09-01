@@ -40,6 +40,8 @@ class DrawableObject : public XmlObject, public OscObject
             this->name = name;
         }
 
+        string getName() {return name;}
+
     protected:
 
         /// process one osc message, derived objects should call this

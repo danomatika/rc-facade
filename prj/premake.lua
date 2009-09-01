@@ -78,7 +78,9 @@ package.language 	= "c++"
 
 package.files = { 
     matchfiles( "../src/*.h",
-    			"../src/*.cpp")
+    			"../src/*.cpp",
+    			"../src/objects/*.h",
+    			"../src/objects/*.cpp")
 }
 
 package.includepaths = {

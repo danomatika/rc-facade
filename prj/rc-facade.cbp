@@ -74,6 +74,8 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="../src/Bitmap.cpp" />
+		<Unit filename="../src/Bitmap.h" />
 		<Unit filename="../src/Common.h" />
 		<Unit filename="../src/Config.cpp" />
 		<Unit filename="../src/Config.h" />
@@ -87,6 +89,8 @@
 		<Unit filename="../src/Scene.h" />
 		<Unit filename="../src/SceneManager.cpp" />
 		<Unit filename="../src/SceneManager.h" />
+		<Unit filename="../src/Sprite.cpp" />
+		<Unit filename="../src/Sprite.h" />
 		<Unit filename="../src/main.cpp" />
 		<Extensions>
 			<envvars />

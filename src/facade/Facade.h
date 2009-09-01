@@ -45,6 +45,7 @@ class Facade
         void drawGrid(int x, int y);
 
         /// set the framebuffer clear color
+        void setClearColor(visual::Color color);
         void setClearColor(unsigned int color);
 
         /* ***** SETTINGS ***** */

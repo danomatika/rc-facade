@@ -3,7 +3,7 @@
 
 #include "Common.h"
 
-#include "DrawableObject.h"
+#include "objects/DrawableObject.h"
 
 class Scene : public XmlObject, public OscObject
 {

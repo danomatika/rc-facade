@@ -48,7 +48,7 @@ void Facade::clear()
 
     }
     else
-        _frame.setColor(_clearColor);
+        _frame.clear(_clearColor);
 }
 
 void Facade::send()
@@ -202,8 +202,8 @@ void Facade::box(int x, int y, int w, int h, bool drawFromCenter)
     }
     else
     {
-        for(int _y = y; _y < y + h; _y++)
-            line(x, _y, x + (w-1), _y);
+        for(int _y = y; _y < y+h+1; _y++)
+            line(x, _y, x+w, _y);
     }
 }
 
@@ -273,6 +273,10 @@ void Facade::drawGrid(int x, int y)
         xPos = x;
         yPos += Side::getWindowSize();
     }
+}
+void Facade::setClearColor(visual::Color color)
+{
+    _clearColor = color;
 }
 
 void Facade::setClearColor(unsigned int color)

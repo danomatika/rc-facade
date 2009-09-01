@@ -39,6 +39,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+	$(OBJDIR)/FrameBuffer.o \
 	$(OBJDIR)/Facade.o \
 	$(OBJDIR)/Side.o \
 
@@ -81,6 +82,11 @@ else
 	-@if exist $(subst /,\,$(OBJDIR)) del /q $(subst /,\,$(OBJDIR))
 	-@if exist $(subst /,\,$(OBJDIR)) rmdir /s /q $(subst /,\,$(OBJDIR))
 endif
+
+$(OBJDIR)/FrameBuffer.o: ../src/facade/FrameBuffer.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/Facade.o: ../src/facade/Facade.cpp
 	-@$(CMD_MKOBJDIR)

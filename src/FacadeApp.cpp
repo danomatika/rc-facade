@@ -6,13 +6,16 @@
 #include "facade/Facade.h"
 
 FacadeApp::FacadeApp() : bRunning(true),
-    facade(Config::getFacade()), listener(Config::getListener())
+    facade(Config::getFacade()), listener(Config::getListener()),
+    reloadTimestamp(0)
 {
     // set osc addresses
     listener.setOscRootAddress("/visual/facade");
     sceneManager.setOscRootAddress("/visual/facade");
 
     listener.addObject(&sceneManager);
+
+    reloadTimestamp = Graphics::getMillis();
 }
 
 FacadeApp::~FacadeApp()
@@ -29,7 +32,7 @@ void FacadeApp::init()
     // setup the facade
     LOG << endl;
     facade.setup("192.168.5.59", 8080);
-    facade.setClearColor(0x000000);
+    facade.setClearColor(Color(40, 40, 40, 127));
     facade.setWindowSize(7);
     facade.drawOutlines(false);
 
@@ -92,6 +95,16 @@ void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
 
         case 's':
             sceneManager.saveXmlFile("../data/testout.xml");
+            break;
+
+        case 'r':
+            if(Graphics::getMillis() - reloadTimestamp > 5000)
+            {
+                LOG << "Reloading xml file" << endl;
+                sceneManager.closeXmlFile();
+                sceneManager.clear();
+                sceneManager.loadXmlFile("../data/testScene.xml");
+            }
             break;
 
         default:

@@ -1,8 +1,6 @@
 #include "Scene.h"
 
-#include "Pixel.h"
-#include "Line.h"
-#include "Rect.h"
+#include "objects/Objects.h"
 
 Scene::Scene(string name) : XmlObject("scene"), OscObject(""), _name(name)
 {}
@@ -132,6 +130,40 @@ bool Scene::readXml(TiXmlElement* e)
             else
             {
                 LOG_WARN << "Scene \"" << _name << "\": cannot load rect without name, line "
+                         << child->Row() << endl;
+            }
+        }
+
+        else if(child->ValueStr() == "bitmap")
+        {
+            if(Xml::getAttrString(child, "name", &objName))
+            {
+                LOG_DEBUG << "Scene \"" << _name << "\": Loading bitmap \"" << objName << "\"" << std::endl;
+
+                Bitmap* b = new Bitmap(objName);
+                b->loadXml(child);
+                addObject(b);
+            }
+            else
+            {
+                LOG_WARN << "Scene \"" << _name << "\": cannot load bitmap without name, line "
+                         << child->Row() << endl;
+            }
+        }
+
+        else if(child->ValueStr() == "sprite")
+        {
+            if(Xml::getAttrString(child, "name", &objName))
+            {
+                LOG_DEBUG << "Scene \"" << _name << "\": Loading sprite \"" << objName << "\"" << std::endl;
+
+                Sprite* s = new Sprite(objName);
+                s->loadXml(child);
+                addObject(s);
+            }
+            else
+            {
+                LOG_WARN << "Scene \"" << _name << "\": cannot load sprite without name, line "
                          << child->Row() << endl;
             }
         }

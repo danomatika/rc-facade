@@ -44,6 +44,8 @@ OBJECTS := \
 	$(OBJDIR)/FacadeApp.o \
 	$(OBJDIR)/SceneManager.o \
 	$(OBJDIR)/Config.o \
+	$(OBJDIR)/Sprite.o \
+	$(OBJDIR)/Bitmap.o \
 
 MKDIR_TYPE := msdos
 CMD := $(subst \,\\,$(ComSpec)$(COMSPEC))
@@ -106,6 +108,16 @@ $(OBJDIR)/SceneManager.o: ../src/SceneManager.cpp
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/Config.o: ../src/Config.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/Sprite.o: ../src/objects/Sprite.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/Bitmap.o: ../src/objects/Bitmap.cpp
 	-@$(CMD_MKOBJDIR)
 	@echo $(notdir $<)
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"

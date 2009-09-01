@@ -9,10 +9,6 @@
 #include "Config.h"
 #include "SceneManager.h"
 
-#include "Pixel.h"
-#include "Line.h"
-#include "Rect.h"
-
 using namespace std;
 using namespace visual;
 
@@ -45,6 +41,8 @@ class FacadeApp : public Application
         Facade& facade;
         OscListener& listener;
         SceneManager sceneManager;
+
+        unsigned int reloadTimestamp;
 };
 
 #endif // FACADE_APP_H

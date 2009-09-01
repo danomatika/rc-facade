@@ -34,6 +34,7 @@ void SceneManager::removeObject(Scene* object)
     iter = find(_objectList.begin(), _objectList.end(), object);
     if(iter != _objectList.end())
     {
+        removeXmlObject((*iter));
         _objectList.erase(iter);
     }
 }
@@ -44,6 +45,7 @@ void SceneManager::clear()
     for(unsigned int i = 0; i < _objectList.size(); ++i)
     {
         Scene* o = _objectList.at(i);
+        removeXmlObject(o);
         delete o;
     }
     _objectList.clear();
