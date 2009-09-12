@@ -2,8 +2,16 @@
 
 #include "objects/Objects.h"
 
-Scene::Scene(string name) : XmlObject("scene"), OscObject(""), _name(name)
-{}
+Scene::Scene(string name) : XmlObject("scene"), OscObject(""), _name(name), _background(127, 127, 127, 255)
+{
+    // attach variables to Xml
+    addXmlAttribute("R", "background", XML_TYPE_BYTE, &_background.R);
+    addXmlAttribute("G", "background", XML_TYPE_BYTE, &_background.G);
+    addXmlAttribute("B", "background", XML_TYPE_BYTE, &_background.B);
+    addXmlAttribute("A", "background", XML_TYPE_BYTE, &_background.A);
+
+    addXmlAttribute("name", "scene", XML_TYPE_STRING, &_name);
+}
 
 Scene::~Scene()
 {

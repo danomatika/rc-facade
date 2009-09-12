@@ -15,10 +15,8 @@ class Rect : public DrawableObject
             // add variables to Xml
             addXmlAttribute("x", "position", XML_TYPE_INT, &pos.x);
             addXmlAttribute("y", "position", XML_TYPE_INT, &pos.y);
-
             addXmlAttribute("width", "size", XML_TYPE_UINT, &width);
             addXmlAttribute("height", "size", XML_TYPE_UINT, &height);
-
             addXmlAttribute("yesno", "filled", XML_TYPE_BOOL, &bFilled);
 
             setName(name);

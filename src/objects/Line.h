@@ -14,7 +14,6 @@ class Line : public DrawableObject
             // add variables to Xml
             addXmlAttribute("x", "position1", XML_TYPE_INT, &pos1.x);
             addXmlAttribute("y", "position1", XML_TYPE_INT, &pos1.y);
-
             addXmlAttribute("x", "position2", XML_TYPE_INT, &pos2.x);
             addXmlAttribute("y", "position2", XML_TYPE_INT, &pos2.y);
 

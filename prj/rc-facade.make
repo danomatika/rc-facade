@@ -16,7 +16,7 @@ ifeq ($(CONFIG),Debug)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX" -D "DEBUG" -D "_DEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -Wall -Wno-unknown-pragmas -ggdb
   CXXFLAGS += $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lfacadeD -lvisualframeworkD -ltinyxmlD -loscpackD
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lSDL_image -lfacadeD -lvisualframeworkD -ltinyxmlD -loscpackD
   LDDEPS :=
   RESFLAGS := -D "LINUX" -D "DEBUG" -D "_DEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   TARGET := rc-facadeD
@@ -31,7 +31,7 @@ ifeq ($(CONFIG),Release)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX" -D "NDEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O2 -Wall -Wno-unknown-pragmas
   CXXFLAGS += $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lfacade -lvisualframework -ltinyxml -loscpack
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -L"../lib" -L"../externals/visualframework/lib" -L"../externals/visualframework/externals/lib" -L"/usr/lib" -lSDL -lSDL_gfx -lSDL_net -lSDL_image -lfacade -lvisualframework -ltinyxml -loscpack
   LDDEPS := ../lib/libfacade.a
   RESFLAGS := -D "LINUX" -D "NDEBUG" -I "../src" -I "/usr/include" -I "../externals/visualframework/src" -I "../externals/visualframework/externals" -I "../externals/visualframework/externals/include"
   TARGET := rc-facade
@@ -44,6 +44,7 @@ OBJECTS := \
 	$(OBJDIR)/FacadeApp.o \
 	$(OBJDIR)/SceneManager.o \
 	$(OBJDIR)/Config.o \
+	$(OBJDIR)/Image.o \
 	$(OBJDIR)/Sprite.o \
 	$(OBJDIR)/Bitmap.o \
 
@@ -108,6 +109,11 @@ $(OBJDIR)/SceneManager.o: ../src/SceneManager.cpp
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/Config.o: ../src/Config.cpp
+	-@$(CMD_MKOBJDIR)
+	@echo $(notdir $<)
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/Image.o: ../src/objects/Image.cpp
 	-@$(CMD_MKOBJDIR)
 	@echo $(notdir $<)
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"

@@ -8,7 +8,7 @@
 
 #define ChannelBlend_Alpha(B,L,O)    ((uint8_t)(O/255 * B + (1 - O/255) * L))
 
-bool FrameBuffer::_bBlend = true;
+bool FrameBuffer::_bBlend = false;
 
 FrameBuffer::FrameBuffer() : _sender()
 {
@@ -35,15 +35,24 @@ void FrameBuffer::clear(visual::Color color)
 {
     for(int _address = 0; _address < FACADE_NUM_ADDR; _address++)
     {
-        _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED] =
-            //MIN(255, (_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED] + (char) color.R/color.A) );// * color.A/255);
-            ChannelBlend_Alpha(_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED], color.R, color.A);
-        _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN] =
-            //MIN(255, (_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN] + (char) color.G/color.A) );// * color.A/255);
-            ChannelBlend_Alpha(_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN], color.G, color.A);
-        _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE] =
-            //MIN(255, (_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE] + (char) color.B/color.A) );// * color.A/255);
-            ChannelBlend_Alpha(_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE], color.B, color.A);
+        if(!_bBlend)
+        {
+            _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED]    = (char) color.R;
+            _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN]  = (char) color.G;
+            _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE]   = (char) color.B;
+        }
+        else
+        {
+            _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED] =
+                //MIN(255, (_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED] + (char) color.R/color.A) );// * color.A/255);
+                ChannelBlend_Alpha(_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED], color.R, color.A);
+            _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN] =
+                //MIN(255, (_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN] + (char) color.G/color.A) );// * color.A/255);
+                ChannelBlend_Alpha(_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN], color.G, color.A);
+            _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE] =
+                //MIN(255, (_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE] + (char) color.B/color.A) );// * color.A/255);
+                ChannelBlend_Alpha(_frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_BLUE], color.B, color.A);
+        }
     }
 }
 
@@ -77,7 +86,7 @@ void FrameBuffer::setColor(int _address, visual::Color color)
 {
     if(_address >= 0 && _address < FACADE_NUM_ADDR)
     {
-        if(_bBlend)
+        if(!_bBlend)
         {
             _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_RED]    = (char) color.R;
             _frameBuffer[_address*FACADE_PKG_SIZE + FACADE_OFFSET_GREEN]  = (char) color.G;

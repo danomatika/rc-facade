@@ -112,7 +112,7 @@ package.buildflags                   = { "extra-warnings" }
 package.buildoptions                 = { "-Wno-unknown-pragmas" }
 package.config["Debug"].buildoptions = { "-ggdb" }
 
-package.links = { "SDL", "SDL_gfx", "SDL_net" }
+package.links = { "SDL", "SDL_gfx", "SDL_net", "SDL_image" }
 package.config["Debug"].links = { "facadeD", "visualframeworkD", "tinyxmlD", "oscpackD" }
 package.config["Release"].links = { "facade", "visualframework", "tinyxml", "oscpack" }
 

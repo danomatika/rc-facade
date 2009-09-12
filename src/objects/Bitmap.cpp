@@ -7,13 +7,10 @@ Bitmap::Bitmap(string name) : DrawableObject("bitmap"), frameTime(0),
 {
     // add variables to Xml
     addXmlAttribute("frametime", "bitmap", XML_TYPE_UINT, &frameTime);
-
     addXmlAttribute("x", "position", XML_TYPE_INT, &pos.x);
     addXmlAttribute("y", "position", XML_TYPE_INT, &pos.y);
-
     addXmlAttribute("width", "size", XML_TYPE_UINT, &width);
     addXmlAttribute("height", "size", XML_TYPE_UINT, &height);
-
     addXmlAttribute("yesno", "center", XML_TYPE_BOOL, &bDrawFromCenter);
 
     setName(name);

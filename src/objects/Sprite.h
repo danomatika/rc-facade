@@ -24,7 +24,8 @@ class Sprite : public DrawableObject
 
         void draw();
 
-        void setDrawFromCenter(bool yesno) {bDrawFromCenter = yesno;}
+        void setDrawFromCenter(bool yesno);
+        void setDrawAllLayers(bool yesno) {bDrawAllLayers = yesno;}
 
     protected:
 
@@ -39,12 +40,15 @@ class Sprite : public DrawableObject
         std::vector<Bitmap*> bitmapList;
 
         vmml::Vector2i pos;
-        unsigned int width, height;
         bool bAnimate;
+        bool bLoop;
+        bool bPingPong;
         bool bDrawFromCenter;
+        bool bDrawAllLayers;
 
         int currentFrame;
         unsigned int timestamp;
+        bool bForward;  /// advance frames?
 };
 
 #endif // SPRITE_H

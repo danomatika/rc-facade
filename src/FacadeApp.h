@@ -12,7 +12,7 @@
 using namespace std;
 using namespace visual;
 
-class FacadeApp : public Application
+class FacadeApp : public Application, public OscObject
 {
     public:
 
@@ -33,6 +33,8 @@ class FacadeApp : public Application
         void keyPressed(SDLKey key, SDLMod mod);
 
     protected:
+
+        bool processOscMessage(const osc::ReceivedMessage& m);
 
     private:
 

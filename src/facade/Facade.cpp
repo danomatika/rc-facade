@@ -203,7 +203,7 @@ void Facade::box(int x, int y, int w, int h, bool drawFromCenter)
     else
     {
         for(int _y = y; _y < y+h+1; _y++)
-            line(x, _y, x+w, _y);
+            line(x, _y, x+w-1, _y);
     }
 }
 

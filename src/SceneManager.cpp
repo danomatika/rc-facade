@@ -53,26 +53,44 @@ void SceneManager::clear()
 
 void SceneManager::nextScene()
 {
+    if(_objectList.empty())
+        return;
+
     _currentScene++;
 
     if(_currentScene >= (int) _objectList.size())
     {
         _currentScene = 0;
     }
+
+    LOG_DEBUG << "SceneManager: Changed to scene \"" << _objectList.at(_currentScene)->getName() << "\"" << std::endl;
+
+    Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
 
 void SceneManager::prevScene()
 {
+    if(_objectList.empty())
+        return;
+
     _currentScene--;
 
     if(_currentScene < 0)
     {
         _currentScene = _objectList.size()-1;
     }
+
+    LOG_DEBUG << "SceneManager: Changed to scene \"" << _objectList.at(_currentScene)->getName() << "\"" << std::endl;
+
+
+    Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
 
 void SceneManager::gotoScene(unsigned int num)
 {
+    if(_objectList.empty())
+        return;
+
     if(_currentScene >= (int) _objectList.size())
     {
         LOG_WARN << "SceneManager: Cannot goto scene num " << num
@@ -82,8 +100,10 @@ void SceneManager::gotoScene(unsigned int num)
 
     _currentScene = num;
 
-    LOG_DEBUG << "SceneManager: Changing scene to \""
+    LOG_DEBUG << "SceneManager: Changed scene to \""
               << _objectList.at(_currentScene)->getName() << endl;
+
+    Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
 
 void SceneManager::gotoScene(string name)
@@ -94,8 +114,10 @@ void SceneManager::gotoScene(string name)
         {
             _currentScene = i;
 
-            LOG_DEBUG << "SceneManager: Changing scene to \""
+            LOG_DEBUG << "SceneManager: Changed scene to \""
                       << _objectList.at(_currentScene)->getName() << "\"" << endl;
+
+            Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 
             return;
         }
@@ -139,6 +161,9 @@ bool SceneManager::readXml(TiXmlElement* e)
 
         child = child->NextSiblingElement();
     }
+
+    // try to load the first scene
+    gotoScene(0);
 
     return true;
 }

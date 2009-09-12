@@ -1,20 +1,22 @@
-#ifndef BITMAP_H
-#define BITMAP_H
+#ifndef IMAGE_H
+#define IMAGE_H
+
 
 #include "Config.h"
 
 #include "DrawableObject.h"
 
-class Bitmap : public DrawableObject
+class Image : public DrawableObject
 {
     public:
 
-        Bitmap(string name);
+        Image(string name);
+        ~Image();
 
         void draw();
         void draw(int x, int y);
 
-        void setBitmap(vector<bool> bitmap) {this->bitmap = bitmap;}
+        bool loadFile(string filename);
 
         void setDrawFromCenter(bool yesno) {bDrawFromCenter = yesno;}
 
@@ -31,12 +33,11 @@ class Bitmap : public DrawableObject
 
         bool processOscMessage(const osc::ReceivedMessage& m);
 
-        vector<bool> bitmap;   /// actual bitmap
+        SDL_Surface* image;         /// contians pixel data
 
         unsigned int frameTime;     /// how long to display in ms
         vmml::Vector2i pos;
-        unsigned int width, height;
         bool bDrawFromCenter;       /// draw from the center using pos
 };
 
-#endif // BITMAP_H
+#endif // IMAGE_H

@@ -74,24 +74,25 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="../src/Bitmap.cpp" />
-		<Unit filename="../src/Bitmap.h" />
 		<Unit filename="../src/Common.h" />
 		<Unit filename="../src/Config.cpp" />
 		<Unit filename="../src/Config.h" />
-		<Unit filename="../src/DrawableObject.h" />
 		<Unit filename="../src/FacadeApp.cpp" />
 		<Unit filename="../src/FacadeApp.h" />
-		<Unit filename="../src/Line.h" />
-		<Unit filename="../src/Pixel.h" />
-		<Unit filename="../src/Rect.h" />
 		<Unit filename="../src/Scene.cpp" />
 		<Unit filename="../src/Scene.h" />
 		<Unit filename="../src/SceneManager.cpp" />
 		<Unit filename="../src/SceneManager.h" />
-		<Unit filename="../src/Sprite.cpp" />
-		<Unit filename="../src/Sprite.h" />
 		<Unit filename="../src/main.cpp" />
+		<Unit filename="../src/objects/Bitmap.cpp" />
+		<Unit filename="../src/objects/Bitmap.h" />
+		<Unit filename="../src/objects/DrawableObject.h" />
+		<Unit filename="../src/objects/Line.h" />
+		<Unit filename="../src/objects/Objects.h" />
+		<Unit filename="../src/objects/Pixel.h" />
+		<Unit filename="../src/objects/Rect.h" />
+		<Unit filename="../src/objects/Sprite.cpp" />
+		<Unit filename="../src/objects/Sprite.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

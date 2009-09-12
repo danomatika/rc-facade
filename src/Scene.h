@@ -28,6 +28,8 @@ class Scene : public XmlObject, public OscObject
 
         string getName() {return _name;}
 
+        Color& getBackground() {return _background;}
+
     protected:
 
         /* ***** XML CALLBACKS ***** */
@@ -38,6 +40,7 @@ class Scene : public XmlObject, public OscObject
 
         string _name;
         vector<DrawableObject*> _objectList;
+        Color _background;
 };
 
 #endif // SCENE_H
