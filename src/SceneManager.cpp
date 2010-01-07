@@ -101,7 +101,7 @@ void SceneManager::gotoScene(unsigned int num)
     _currentScene = num;
 
     LOG_DEBUG << "SceneManager: Changed scene to \""
-              << _objectList.at(_currentScene)->getName() << endl;
+              << _objectList.at(_currentScene)->getName() << "\""<< endl;
 
     Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
