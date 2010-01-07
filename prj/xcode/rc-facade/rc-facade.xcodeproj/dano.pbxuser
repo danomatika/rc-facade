@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 302FD0EF10F51684005F86A7 /* rc-facade */;
+		activeTarget = 302FD08810F51146005F86A7 /* all */;
+		addToTargets = (
+			302FD08810F51146005F86A7 /* all */,
+		);
+		codeSenseManager = 30B3CCE710E6B7F800B662FC /* Code sense */;
+		executables = (
+			302FD0EF10F51684005F86A7 /* rc-facade */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					496,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					608,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					568,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 284520357;
+			PBXWorkspaceStateSaveDate = 284520357;
+		};
+		perUserProjectItems = {
+			305660E710F550D4007A4B62 = 305660E710F550D4007A4B62 /* PBXTextBookmark */;
+			305660E810F550D4007A4B62 = 305660E810F550D4007A4B62 /* PBXTextBookmark */;
+			305660E910F550D4007A4B62 = 305660E910F550D4007A4B62 /* PBXTextBookmark */;
+			305660EA10F550D4007A4B62 = 305660EA10F550D4007A4B62 /* PBXTextBookmark */;
+			30F3654F10F5780A007680F1 /* PBXTextBookmark */ = 30F3654F10F5780A007680F1 /* PBXTextBookmark */;
+			30F3655110F5780A007680F1 /* PBXTextBookmark */ = 30F3655110F5780A007680F1 /* PBXTextBookmark */;
+			30F3655310F5780A007680F1 /* PBXTextBookmark */ = 30F3655310F5780A007680F1 /* PBXTextBookmark */;
+			30F3655410F5780A007680F1 /* PBXTargetBookmark */ = 30F3655410F5780A007680F1 /* PBXTargetBookmark */;
+			30F3655510F5780A007680F1 /* PBXTargetBookmark */ = 30F3655510F5780A007680F1 /* PBXTargetBookmark */;
+			30F3655610F5780A007680F1 /* PBXTargetBookmark */ = 30F3655610F5780A007680F1 /* PBXTargetBookmark */;
+			30F3656110F578D9007680F1 /* PBXTargetBookmark */ = 30F3656110F578D9007680F1 /* PBXTargetBookmark */;
+		};
+		sourceControlManager = 30B3CCE610E6B7F800B662FC /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	302FD08810F51146005F86A7 /* all */ = {
+		activeExec = 0;
+	};
+	302FD0EF10F51684005F86A7 /* rc-facade */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+			"PBXLSLaunchAction-0" = {
+				PBXLSLaunchAction = 0;
+				PBXLSLaunchStartAction = 1;
+				PBXLSLaunchStdioStyle = 2;
+				PBXLSLaunchStyle = 0;
+				class = PBXLSRunLaunchConfig;
+				commandLineArgs = (
+				);
+				displayName = "Executable Runner";
+				environment = {
+				};
+				identifier = com.apple.Xcode.launch.runConfig;
+				remoteHostInfo = "";
+				startActionInfo = "";
+			};
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		launchableReference = 302FD0F010F51684005F86A7 /* rc-facade */;
+		libgmallocEnabled = 0;
+		name = "rc-facade";
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		startupPath = "<<ProjectDirectory>>";
+	};
+	302FD0F010F51684005F86A7 /* rc-facade */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = "compiled.mach-o.executable";
+		name = "rc-facade";
+		path = "../../../src/rc-facade";
+		sourceTree = "<group>";
+	};
+	305660A810F53BCD007A4B62 /* Config.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = Config.cpp;
+		path = "/Users/dano/src/rc-facade/prj/xcode/rc-facade/src/Config.cpp";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {786, 584}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 289}";
+		};
+	};
+	305660A910F53BCD007A4B62 /* Config.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = Config.h;
+		path = "/Users/dano/src/rc-facade/prj/xcode/rc-facade/src/Config.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {786, 584}}";
+			sepNavSelRange = "{316, 0}";
+			sepNavVisRange = "{0, 1019}";
+			sepNavWindowFrame = "{{61, 141}, {914, 690}}";
+		};
+	};
+	305660C310F53BCD007A4B62 /* FacadeApp.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = FacadeApp.h;
+		path = "/Users/dano/src/rc-facade/prj/xcode/rc-facade/src/FacadeApp.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {786, 663}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 882}";
+		};
+	};
+	305660E710F550D4007A4B62 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 305660C310F53BCD007A4B62 /* FacadeApp.h */;
+		name = "FacadeApp.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 882;
+		vrLoc = 0;
+	};
+	305660E810F550D4007A4B62 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 305660A810F53BCD007A4B62 /* Config.cpp */;
+		name = "Config.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 289;
+		vrLoc = 0;
+	};
+	305660E910F550D4007A4B62 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 305660A910F53BCD007A4B62 /* Config.h */;
+		name = "Config.h: 11";
+		rLen = 13;
+		rLoc = 289;
+		rType = 0;
+		vrLen = 1019;
+		vrLoc = 0;
+	};
+	305660EA10F550D4007A4B62 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 305660A910F53BCD007A4B62 /* Config.h */;
+		name = "Config.h: 14";
+		rLen = 0;
+		rLoc = 316;
+		rType = 0;
+		vrLen = 1019;
+		vrLoc = 0;
+	};
+	30B3CCE610E6B7F800B662FC /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	30B3CCE710E6B7F800B662FC /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	30F3651D10F5772C007680F1 /* Building.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {786, 1326}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 686}";
+		};
+	};
+	30F3654510F57772007680F1 /* configure */ = {
+		activeExec = 0;
+	};
+	30F3654F10F5780A007680F1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30F3655010F5780A007680F1 /* SceneManager.h */;
+		name = "SceneManager.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 457;
+		vrLoc = 0;
+	};
+	30F3655010F5780A007680F1 /* SceneManager.h */ = {
+		isa = PBXFileReference;
+		name = SceneManager.h;
+		path = "/Users/dano/src/rc-facade/src/SceneManager.h";
+		sourceTree = "<absolute>";
+	};
+	30F3655110F5780A007680F1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30F3655210F5780A007680F1 /* Scene.h */;
+		name = "Scene.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 491;
+		vrLoc = 0;
+	};
+	30F3655210F5780A007680F1 /* Scene.h */ = {
+		isa = PBXFileReference;
+		name = Scene.h;
+		path = "/Users/dano/src/rc-facade/src/Scene.h";
+		sourceTree = "<absolute>";
+	};
+	30F3655310F5780A007680F1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30F3651D10F5772C007680F1 /* Building.h */;
+		name = "Building.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 686;
+		vrLoc = 0;
+	};
+	30F3655410F5780A007680F1 /* PBXTargetBookmark */ = {
+		isa = PBXTargetBookmark;
+		trg = 30F3654510F57772007680F1 /* configure */;
+	};
+	30F3655510F5780A007680F1 /* PBXTargetBookmark */ = {
+		isa = PBXTargetBookmark;
+		trg = 30F3654510F57772007680F1 /* configure */;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {576, 234}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {230, 234}}";
+			TOCViewSelectedItems = (
+				"com.apple.target-editor-pane.settings",
+			);
+		};
+	};
+	30F3655610F5780A007680F1 /* PBXTargetBookmark */ = {
+		isa = PBXTargetBookmark;
+		trg = 30F3654510F57772007680F1 /* configure */;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {576, 234}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {230, 234}}";
+			TOCViewSelectedItems = (
+				"com.apple.target-editor-pane.settings",
+			);
+		};
+	};
+	30F3656110F578D9007680F1 /* PBXTargetBookmark */ = {
+		isa = PBXTargetBookmark;
+		trg = 30F3654510F57772007680F1 /* configure */;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {576, 257}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {230, 257}}";
+			TOCViewSelectedItems = (
+				"com.apple.target-editor-pane.settings",
+			);
+		};
+	};
+}

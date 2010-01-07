@@ -1,0 +1,36 @@
+#! /bin/sh
+
+# http://log.yeahrightkeller.com/post/270155578/run-script-while-cleaning-in-xcode
+# add Custom Build Tool Target
+# Build Tool: /bin/sh
+# Arguments: ./run_configure $(ACTION) $(DEBUG)
+#
+# Debug: add Build Settings -> Debug = debug
+
+TOPSRC_DIR=../../../
+PREFIX=--prefix=/opt/local
+
+# export the dirs for MacPorts
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export CPPFLAGS=-I/opt/local/include
+export LDFLAGS=-L/opt/local/lib
+
+echo "======== run_configure: args [$ARGS] ======== "
+
+# run the makefile
+#make -f Makefile-xcode $1
+
+# go to top project dir
+cd $TOPSRC_DIR
+
+# run configure based on $ACTION from xcode
+case $1 in
+	"")
+		./configure $PREFIX ;;
+	"debug")
+		./configure --enable-debug $PREFIX ;;
+	"clean")
+		test -f Makefile && make distclean ;;
+esac
+
+exit 0

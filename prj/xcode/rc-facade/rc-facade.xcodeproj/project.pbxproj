@@ -1,0 +1,272 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXFileReference section */
+		30F3651910F5772C007680F1 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		30F3651A10F5772C007680F1 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		30F3651B10F5772C007680F1 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		30F3651D10F5772C007680F1 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		30F3651E10F5772C007680F1 /* Facade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Facade.cpp; sourceTree = "<group>"; };
+		30F3651F10F5772C007680F1 /* Facade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facade.h; sourceTree = "<group>"; };
+		30F3652010F5772C007680F1 /* FrameBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		30F3652110F5772C007680F1 /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
+		30F3652210F5772C007680F1 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		30F3652410F5772C007680F1 /* Side.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Side.cpp; sourceTree = "<group>"; };
+		30F3652510F5772C007680F1 /* Side.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Side.h; sourceTree = "<group>"; };
+		30F3652610F5772C007680F1 /* SideFuturelabEast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideFuturelabEast.h; sourceTree = "<group>"; };
+		30F3652710F5772C007680F1 /* SideFuturelabNorth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideFuturelabNorth.h; sourceTree = "<group>"; };
+		30F3652810F5772C007680F1 /* SideFuturelabSouth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideFuturelabSouth.h; sourceTree = "<group>"; };
+		30F3652910F5772C007680F1 /* SideMainBuildingEast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMainBuildingEast.h; sourceTree = "<group>"; };
+		30F3652A10F5772C007680F1 /* SideMainBuildingNorth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMainBuildingNorth.h; sourceTree = "<group>"; };
+		30F3652B10F5772C007680F1 /* SideMainBuildingSouth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMainBuildingSouth.h; sourceTree = "<group>"; };
+		30F3652C10F5772C007680F1 /* SideMainBuildingSouthStreetLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMainBuildingSouthStreetLevel.h; sourceTree = "<group>"; };
+		30F3652D10F5772C007680F1 /* SideMainBuildingWest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMainBuildingWest.h; sourceTree = "<group>"; };
+		30F3652E10F5772C007680F1 /* FacadeApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacadeApp.cpp; sourceTree = "<group>"; };
+		30F3652F10F5772C007680F1 /* FacadeApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacadeApp.h; sourceTree = "<group>"; };
+		30F3653010F5772C007680F1 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		30F3653110F5772C007680F1 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		30F3653410F5772C007680F1 /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		30F3653510F5772C007680F1 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
+		30F3653610F5772C007680F1 /* DrawableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableObject.h; sourceTree = "<group>"; };
+		30F3653710F5772C007680F1 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		30F3653810F5772C007680F1 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		30F3653910F5772C007680F1 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		30F3653A10F5772C007680F1 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		30F3653C10F5772C007680F1 /* Objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objects.h; sourceTree = "<group>"; };
+		30F3653D10F5772C007680F1 /* Pixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pixel.h; sourceTree = "<group>"; };
+		30F3653E10F5772C007680F1 /* Rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
+		30F3653F10F5772C007680F1 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		30F3654010F5772C007680F1 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		30F3654110F5772C007680F1 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		30F3654210F5772C007680F1 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		30F3654310F5772C007680F1 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		30F3654410F5772C007680F1 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* rc-facade */ = {
+			isa = PBXGroup;
+			children = (
+				30F3651710F5772C007680F1 /* src */,
+			);
+			name = "rc-facade";
+			sourceTree = "<group>";
+		};
+		30F3651710F5772C007680F1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				30F3651910F5772C007680F1 /* Common.h */,
+				30F3651A10F5772C007680F1 /* Config.cpp */,
+				30F3651B10F5772C007680F1 /* Config.h */,
+				30F3651C10F5772C007680F1 /* facade */,
+				30F3652E10F5772C007680F1 /* FacadeApp.cpp */,
+				30F3652F10F5772C007680F1 /* FacadeApp.h */,
+				30F3653010F5772C007680F1 /* main.cpp */,
+				30F3653110F5772C007680F1 /* Makefile.am */,
+				30F3653310F5772C007680F1 /* objects */,
+				30F3654110F5772C007680F1 /* Scene.cpp */,
+				30F3654210F5772C007680F1 /* Scene.h */,
+				30F3654310F5772C007680F1 /* SceneManager.cpp */,
+				30F3654410F5772C007680F1 /* SceneManager.h */,
+			);
+			name = src;
+			path = ../../../src;
+			sourceTree = SOURCE_ROOT;
+		};
+		30F3651C10F5772C007680F1 /* facade */ = {
+			isa = PBXGroup;
+			children = (
+				30F3651D10F5772C007680F1 /* Building.h */,
+				30F3651E10F5772C007680F1 /* Facade.cpp */,
+				30F3651F10F5772C007680F1 /* Facade.h */,
+				30F3652010F5772C007680F1 /* FrameBuffer.cpp */,
+				30F3652110F5772C007680F1 /* FrameBuffer.h */,
+				30F3652210F5772C007680F1 /* Makefile.am */,
+				30F3652410F5772C007680F1 /* Side.cpp */,
+				30F3652510F5772C007680F1 /* Side.h */,
+				30F3652610F5772C007680F1 /* SideFuturelabEast.h */,
+				30F3652710F5772C007680F1 /* SideFuturelabNorth.h */,
+				30F3652810F5772C007680F1 /* SideFuturelabSouth.h */,
+				30F3652910F5772C007680F1 /* SideMainBuildingEast.h */,
+				30F3652A10F5772C007680F1 /* SideMainBuildingNorth.h */,
+				30F3652B10F5772C007680F1 /* SideMainBuildingSouth.h */,
+				30F3652C10F5772C007680F1 /* SideMainBuildingSouthStreetLevel.h */,
+				30F3652D10F5772C007680F1 /* SideMainBuildingWest.h */,
+			);
+			path = facade;
+			sourceTree = "<group>";
+		};
+		30F3653310F5772C007680F1 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				30F3653410F5772C007680F1 /* Bitmap.cpp */,
+				30F3653510F5772C007680F1 /* Bitmap.h */,
+				30F3653610F5772C007680F1 /* DrawableObject.h */,
+				30F3653710F5772C007680F1 /* Image.cpp */,
+				30F3653810F5772C007680F1 /* Image.h */,
+				30F3653910F5772C007680F1 /* Line.h */,
+				30F3653A10F5772C007680F1 /* Makefile.am */,
+				30F3653C10F5772C007680F1 /* Objects.h */,
+				30F3653D10F5772C007680F1 /* Pixel.h */,
+				30F3653E10F5772C007680F1 /* Rect.h */,
+				30F3653F10F5772C007680F1 /* Sprite.cpp */,
+				30F3654010F5772C007680F1 /* Sprite.h */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		302FD08810F51146005F86A7 /* all */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 302FD08B10F51164005F86A7 /* Build configuration list for PBXLegacyTarget "all" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = ../../../;
+			dependencies = (
+			);
+			name = all;
+			passBuildSettingsInEnvironment = 1;
+			productName = all;
+		};
+		30F3654510F57772007680F1 /* configure */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "./run_configure $(ACTION) $(DEBUG)";
+			buildConfigurationList = 30F3654A10F577AA007680F1 /* Build configuration list for PBXLegacyTarget "configure" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			buildWorkingDirectory = ./;
+			dependencies = (
+			);
+			name = configure;
+			passBuildSettingsInEnvironment = 1;
+			productName = configure;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB919308733D9F0010E9CD /* Build configuration list for PBXProject "rc-facade" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* rc-facade */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				302FD08810F51146005F86A7 /* all */,
+				30F3654510F57772007680F1 /* configure */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB919408733D9F0010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB919508733D9F0010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		302FD08910F51146005F86A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = all;
+			};
+			name = Debug;
+		};
+		302FD08A10F51146005F86A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = all;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		30F3654610F57772007680F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG = debug;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = configure;
+			};
+			name = Debug;
+		};
+		30F3654710F57772007680F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = configure;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB919308733D9F0010E9CD /* Build configuration list for PBXProject "rc-facade" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB919408733D9F0010E9CD /* Debug */,
+				1DEB919508733D9F0010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		302FD08B10F51164005F86A7 /* Build configuration list for PBXLegacyTarget "all" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				302FD08910F51146005F86A7 /* Debug */,
+				302FD08A10F51146005F86A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30F3654A10F577AA007680F1 /* Build configuration list for PBXLegacyTarget "configure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30F3654610F57772007680F1 /* Debug */,
+				30F3654710F57772007680F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
