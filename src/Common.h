@@ -6,6 +6,8 @@
 
 // Common, system wide includes
 
+#include "auto_config.h"
+
 #include <visualframework.h>
 
 using namespace visual;

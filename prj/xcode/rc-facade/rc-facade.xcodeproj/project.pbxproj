@@ -46,6 +46,7 @@
 		30F3654210F5772C007680F1 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		30F3654310F5772C007680F1 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
 		30F3654410F5772C007680F1 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+		30F3656F10F5823E007680F1 /* auto_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auto_config.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -60,6 +61,7 @@
 		30F3651710F5772C007680F1 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				30F3656F10F5823E007680F1 /* auto_config.h */,
 				30F3651910F5772C007680F1 /* Common.h */,
 				30F3651A10F5772C007680F1 /* Config.cpp */,
 				30F3651B10F5772C007680F1 /* Config.h */,
@@ -130,26 +132,12 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../;
+			buildWorkingDirectory = "/Users/dano/src/rc-facade";
 			dependencies = (
 			);
 			name = all;
 			passBuildSettingsInEnvironment = 1;
 			productName = all;
-		};
-		30F3654510F57772007680F1 /* configure */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "./run_configure $(ACTION) $(DEBUG)";
-			buildConfigurationList = 30F3654A10F577AA007680F1 /* Build configuration list for PBXLegacyTarget "configure" */;
-			buildPhases = (
-			);
-			buildToolPath = /bin/sh;
-			buildWorkingDirectory = ./;
-			dependencies = (
-			);
-			name = configure;
-			passBuildSettingsInEnvironment = 1;
-			productName = configure;
 		};
 /* End PBXLegacyTarget section */
 
@@ -164,7 +152,6 @@
 			projectRoot = "";
 			targets = (
 				302FD08810F51146005F86A7 /* all */,
-				30F3654510F57772007680F1 /* configure */,
 			);
 		};
 /* End PBXProject section */
@@ -214,28 +201,6 @@
 			};
 			name = Release;
 		};
-		30F3654610F57772007680F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUG = debug;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = configure;
-			};
-			name = Debug;
-		};
-		30F3654710F57772007680F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = configure;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -253,15 +218,6 @@
 			buildConfigurations = (
 				302FD08910F51146005F86A7 /* Debug */,
 				302FD08A10F51146005F86A7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		30F3654A10F577AA007680F1 /* Build configuration list for PBXLegacyTarget "configure" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				30F3654610F57772007680F1 /* Debug */,
-				30F3654710F57772007680F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
