@@ -86,10 +86,10 @@ fi[]dnl
 m4trace:/opt/local/share/aclocal-1.11/amversion.m4:14: -1- AC_DEFUN([AM_AUTOMAKE_VERSION], [am__api_version='1.11'
 dnl Some users find AM_AUTOMAKE_VERSION and mistake it for a way to
 dnl require some minimum version.  Point them to the right macro.
-m4_if([$1], [1.11], [],
+m4_if([$1], [1.11.1], [],
       [AC_FATAL([Do not call $0, use AM_INIT_AUTOMAKE([$1]).])])dnl
 ])
-m4trace:/opt/local/share/aclocal-1.11/amversion.m4:33: -1- AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION], [AM_AUTOMAKE_VERSION([1.11])dnl
+m4trace:/opt/local/share/aclocal-1.11/amversion.m4:33: -1- AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION], [AM_AUTOMAKE_VERSION([1.11.1])dnl
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
 _AM_AUTOCONF_VERSION(m4_defn([AC_AUTOCONF_VERSION]))])
@@ -713,8 +713,8 @@ m4trace:configure.ac:4: -1- m4_pattern_allow([^target_alias$])
 m4trace:configure.ac:7: -1- AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 m4trace:configure.ac:7: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
 m4trace:configure.ac:7: -1- AM_SET_CURRENT_AUTOMAKE_VERSION
-m4trace:configure.ac:7: -1- AM_AUTOMAKE_VERSION([1.11])
-m4trace:configure.ac:7: -1- _AM_AUTOCONF_VERSION([2.64])
+m4trace:configure.ac:7: -1- AM_AUTOMAKE_VERSION([1.11.1])
+m4trace:configure.ac:7: -1- _AM_AUTOCONF_VERSION([2.65])
 m4trace:configure.ac:7: -1- m4_pattern_allow([^INSTALL_PROGRAM$])
 m4trace:configure.ac:7: -1- m4_pattern_allow([^INSTALL_SCRIPT$])
 m4trace:configure.ac:7: -1- m4_pattern_allow([^INSTALL_DATA$])
@@ -820,7 +820,7 @@ m4trace:configure.ac:19: -1- _AM_SUBST_NOTMAKE([am__fastdepCXX_TRUE])
 m4trace:configure.ac:19: -1- _AM_SUBST_NOTMAKE([am__fastdepCXX_FALSE])
 m4trace:configure.ac:20: -1- m4_pattern_allow([^RANLIB$])
 m4trace:configure.ac:23: -1- _m4_warn([obsolete], [The macro `AC_LANG_CPLUSPLUS' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/c.m4:273: AC_LANG_CPLUSPLUS is expanded from...
+You should run autoupdate.], [../../lib/autoconf/c.m4:252: AC_LANG_CPLUSPLUS is expanded from...
 configure.ac:23: the top level])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^CXXCPP$])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^CPPFLAGS$])
@@ -828,28 +828,34 @@ m4trace:configure.ac:26: -1- m4_pattern_allow([^CXXCPP$])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^GREP$])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^EGREP$])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^STDC_HEADERS$])
-m4trace:configure.ac:34: -2- m4_pattern_allow([^SDL_GFX_LIBS$])
-m4trace:configure.ac:37: -2- m4_pattern_allow([^SDL_NET_LIBS$])
-m4trace:configure.ac:41: -1- PKG_CHECK_MODULES([SDL], [sdl >= 1.2], [], [as_fn_error "SDL library >= 1.2 not found" "$LINENO" 5])
-m4trace:configure.ac:41: -1- PKG_PROG_PKG_CONFIG
-m4trace:configure.ac:41: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
-m4trace:configure.ac:41: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
-m4trace:configure.ac:41: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:41: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:41: -1- m4_pattern_allow([^SDL_CFLAGS$])
-m4trace:configure.ac:41: -1- m4_pattern_allow([^SDL_LIBS$])
-m4trace:configure.ac:41: -1- PKG_CHECK_EXISTS([sdl >= 1.2], [pkg_cv_[]SDL_CFLAGS=`$PKG_CONFIG --[]cflags "sdl >= 1.2" 2>/dev/null`], [pkg_failed=yes])
-m4trace:configure.ac:41: -1- PKG_CHECK_EXISTS([sdl >= 1.2], [pkg_cv_[]SDL_LIBS=`$PKG_CONFIG --[]libs "sdl >= 1.2" 2>/dev/null`], [pkg_failed=yes])
-m4trace:configure.ac:41: -1- _PKG_SHORT_ERRORS_SUPPORTED
-m4trace:configure.ac:58: -1- m4_pattern_allow([^DEBUG$])
-m4trace:configure.ac:61: -1- m4_pattern_allow([^NDEBUG$])
-m4trace:configure.ac:69: -1- m4_pattern_allow([^subdirs$])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:82: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:82: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:82: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:82: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
-m4trace:configure.ac:82: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:36: -2- m4_pattern_allow([^SDL_GFX_LIBS$])
+m4trace:configure.ac:40: -2- m4_pattern_allow([^SDL_NET_LIBS$])
+m4trace:configure.ac:44: -1- PKG_CHECK_MODULES([SDL], [sdl >= 1.2], [], [as_fn_error "SDL library >= 1.2 not found" "$LINENO" 5])
+m4trace:configure.ac:44: -1- PKG_PROG_PKG_CONFIG
+m4trace:configure.ac:44: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+m4trace:configure.ac:44: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+m4trace:configure.ac:44: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:44: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:44: -1- m4_pattern_allow([^SDL_CFLAGS$])
+m4trace:configure.ac:44: -1- m4_pattern_allow([^SDL_LIBS$])
+m4trace:configure.ac:44: -1- PKG_CHECK_EXISTS([sdl >= 1.2], [pkg_cv_[]SDL_CFLAGS=`$PKG_CONFIG --[]cflags "sdl >= 1.2" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:44: -1- PKG_CHECK_EXISTS([sdl >= 1.2], [pkg_cv_[]SDL_LIBS=`$PKG_CONFIG --[]libs "sdl >= 1.2" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:44: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:47: -1- PKG_CHECK_MODULES([LO], [liblo >= 0.23], [], [as_fn_error "lo library >= 0.23 not found" "$LINENO" 5])
+m4trace:configure.ac:47: -1- m4_pattern_allow([^LO_CFLAGS$])
+m4trace:configure.ac:47: -1- m4_pattern_allow([^LO_LIBS$])
+m4trace:configure.ac:47: -1- PKG_CHECK_EXISTS([liblo >= 0.23], [pkg_cv_[]LO_CFLAGS=`$PKG_CONFIG --[]cflags "liblo >= 0.23" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:47: -1- PKG_CHECK_EXISTS([liblo >= 0.23], [pkg_cv_[]LO_LIBS=`$PKG_CONFIG --[]libs "liblo >= 0.23" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:47: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:64: -1- m4_pattern_allow([^DEBUG$])
+m4trace:configure.ac:67: -1- m4_pattern_allow([^NDEBUG$])
+m4trace:configure.ac:75: -1- m4_pattern_allow([^subdirs$])
+m4trace:configure.ac:92: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:92: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:92: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:92: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:92: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:92: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:92: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:92: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
+m4trace:configure.ac:92: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS

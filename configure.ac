@@ -2,7 +2,7 @@
 ##### Prelude #####
 
 AC_INIT([rc-facade], [0.1.0], [danomatika@gmail.com])
-AC_CONFIG_SRCDIR([src/main.cpp])
+AC_CONFIG_SRCDIR([src/rc-facade/main.cpp])
 AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
@@ -24,8 +24,10 @@ AC_LANG_CPLUSPLUS
 
 # check for headers
 AC_HEADER_STDC
+
 AC_CHECK_HEADER([SDL/SDL_gfxPrimitives.h],[],
 	AC_MSG_ERROR([SDL_gfx headers not found]))
+	
 AC_CHECK_HEADER([SDL/SDL_net.h],[],
 	AC_MSG_ERROR([SDL_net headers not found]))
 
@@ -33,6 +35,7 @@ AC_CHECK_HEADER([SDL/SDL_net.h],[],
 AC_CHECK_LIB(SDL_gfx, boxRGBA,
 	AC_SUBST(SDL_GFX_LIBS, [-lSDL_gfx]),
 	AC_MSG_ERROR([SDL_gfx library not found]))
+	
 AC_CHECK_LIB(SDL_net, SDLNet_UDP_Open,
 	AC_SUBST(SDL_NET_LIBS, [-lSDL_net]),
 	AC_MSG_ERROR([SDL_net library not found]))
@@ -40,6 +43,9 @@ AC_CHECK_LIB(SDL_net, SDLNet_UDP_Open,
 # check for headers & libs
 PKG_CHECK_MODULES(SDL, sdl >= 1.2,[],
 	AC_MSG_ERROR([SDL library >= 1.2 not found]))
+	
+PKG_CHECK_MODULES(LO, liblo >= 0.23,[],
+	AC_MSG_ERROR([lo library >= 0.23 not found]))
 
 #########################################
 ##### Options #####
@@ -66,18 +72,22 @@ fi
 ##### Externals #####
 
 # externals with configure scripts
-AC_CONFIG_SUBDIRS([externals/visualframework])
+AC_CONFIG_SUBDIRS(
+	[externals/oscframework]
+	[externals/xmlframework]
+	[externals/visualframework]
+)
 
 #########################################
 ##### Output files #####
 
-AC_CONFIG_HEADERS([src/auto_config.h])
+AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	externals/Makefile
 	src/Makefile
 	src/facade/Makefile
-	src/objects/Makefile
+	src/rc-facade/Makefile
 ])
 AC_OUTPUT
 

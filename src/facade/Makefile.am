@@ -7,7 +7,7 @@ include $(top_srcdir)/externals/externals.mk
 noinst_LIBRARIES = libfacade.a
 
 # libs sources, headers here because we dont want to install them
-libfacade_a_SOURCES = \
+dist_libfacade_a_SOURCES = \
         Building.h \
         Facade.h Facade.cpp \
         FrameBuffer.h FrameBuffer.cpp \
@@ -22,7 +22,7 @@ libfacade_a_SOURCES = \
         SideMainBuildingWest.h
 
 # include paths
-AM_CPPFLAGS =  $(CXXFLAGS) -I../ $(SDL_CFLAGS) $(EXTERNALS_CFLAGS)
+AM_CPPFLAGS =  $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS)
 
 
 # libs to link

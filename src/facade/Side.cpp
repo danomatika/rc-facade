@@ -165,7 +165,7 @@ void Side::draw(FrameBuffer& frame, int x, int y, bool global)
                 {
                     Graphics::stroke(_outlineColor);
                 }
-                Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize, Graphics::CORNER);
+                Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH-1, _windowSize-1, Graphics::CORNER);
             }
 
             xPos += _windowSize*FACADE_WIN_ASPECT_WIDTH;

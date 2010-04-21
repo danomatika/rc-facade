@@ -1,7 +1,4 @@
 #!/bin/bash
-premake --file premake.lua --cc gcc --target gnu
-premake --file premake.lua --cc gcc --target cb-gcc
+premake4 clean
+premake4 xcode3
 
-# Change Makefile to be more Subversion friendly (avoid unnecessary rebuilds)
-sed "s/Makefile:/$(echo *.make):/" <Makefile >Makefile.tmp
-mv Makefile.tmp Makefile

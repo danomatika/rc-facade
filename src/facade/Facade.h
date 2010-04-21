@@ -4,7 +4,7 @@
 #ifndef FACADE_H
 #define FACADE_H
 
-#include <visualframework.h>
+#include <visualframework/visualframework.h>
 
 class Facade
 {

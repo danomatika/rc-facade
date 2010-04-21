@@ -4,7 +4,7 @@
 #ifndef BUILDING_APP_H
 #define BUILDING_APP_H
 
-#include <visualframework.h>
+#include <visualframework/visualframework.h>
 
 #include <vector>
 #include "Side.h"

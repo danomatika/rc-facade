@@ -1,203 +1,0 @@
-Tconfigure
-v7
-r0
-t284522405.019142
-cCheck dependencies
-cExternalBuildToolExecution configure
-
-N/bin/sh
-c0000000049FF47FF0000000000148C60
-t1241466879
-s1346656
-
-N/usr/bin/make
-c000000004A11964700000000000556C0
-t1242666567
-s349888
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies284522391#284522391#0(0"0(0#1#0"7947009927035180032#0"0#
-
-CExternalBuildToolExecution configure
-s284522391.746558
-e284522405.018993
-r1
-xExternalBuildToolExecution
-xconfigure
-o======== run_configure: args [] ======== 
-ochecking for a BSD-compatible install... /usr/bin/install -c
-ochecking whether build environment is sane... yes
-ochecking for a thread-safe mkdir -p... config/install-sh -c -d
-ochecking for gawk... no
-ochecking for mawk... no
-ochecking for nawk... no
-ochecking for awk... awk
-ochecking whether make sets $(MAKE)... yes
-ochecking for g++... g++
-ochecking for C++ compiler default output file name... a.out
-ochecking whether the C++ compiler works... yes
-ochecking whether we are cross compiling... no
-ochecking for suffix of executables... 
-ochecking for suffix of object files... o
-ochecking whether we are using the GNU C++ compiler... yes
-ochecking whether g++ accepts -g... yes
-ochecking for style of include used by make... GNU
-ochecking dependency style of g++... gcc3
-ochecking for ranlib... ranlib
-ochecking how to run the C++ preprocessor... g++ -E
-ochecking for grep that handles long lines and -e... /usr/bin/grep
-ochecking for egrep... /usr/bin/grep -E
-ochecking for ANSI C header files... yes
-ochecking for sys/types.h... yes
-ochecking for sys/stat.h... yes
-ochecking for stdlib.h... yes
-ochecking for string.h... yes
-ochecking for memory.h... yes
-ochecking for strings.h... yes
-ochecking for inttypes.h... yes
-ochecking for stdint.h... yes
-ochecking for unistd.h... yes
-ochecking SDL/SDL_gfxPrimitives.h usability... yes
-ochecking SDL/SDL_gfxPrimitives.h presence... yes
-ochecking for SDL/SDL_gfxPrimitives.h... yes
-ochecking SDL/SDL_net.h usability... yes
-ochecking SDL/SDL_net.h presence... yes
-ochecking for SDL/SDL_net.h... yes
-ochecking for boxRGBA in -lSDL_gfx... yes
-ochecking for SDLNet_UDP_Open in -lSDL_net... yes
-ochecking for pkg-config... /opt/local/bin/pkg-config
-ochecking pkg-config is at least version 0.9.0... yes
-ochecking for SDL... yes
-ochecking whether to enable the debug build... no
-oconfigure: creating ./config.status
-oconfig.status: creating Makefile
-oconfig.status: creating externals/Makefile
-oconfig.status: creating src/Makefile
-oconfig.status: creating src/facade/Makefile
-oconfig.status: creating src/objects/Makefile
-oconfig.status: creating src/auto_config.h
-oconfig.status: executing depfiles commands
-o=== configuring in externals/visualframework (/Users/dano/src/rc-facade/externals/visualframework)
-oconfigure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.
-ochecking for a BSD-compatible install... /usr/bin/install -c
-ochecking whether build environment is sane... yes
-ochecking for a thread-safe mkdir -p... config/install-sh -c -d
-ochecking for gawk... no
-ochecking for mawk... no
-ochecking for nawk... no
-ochecking for awk... awk
-ochecking whether make sets $(MAKE)... yes
-ochecking for g++... g++
-ochecking for C++ compiler default output file name... a.out
-ochecking whether the C++ compiler works... yes
-ochecking whether we are cross compiling... no
-ochecking for suffix of executables... 
-ochecking for suffix of object files... o
-ochecking whether we are using the GNU C++ compiler... yes
-ochecking whether g++ accepts -g... yes
-ochecking for style of include used by make... GNU
-ochecking dependency style of g++... gcc3
-ochecking for ranlib... ranlib
-ochecking how to run the C++ preprocessor... g++ -E
-ochecking for grep that handles long lines and -e... /usr/bin/grep
-ochecking for egrep... /usr/bin/grep -E
-ochecking for ANSI C header files... yes
-ochecking for sys/types.h... yes
-ochecking for sys/stat.h... yes
-ochecking for stdlib.h... yes
-ochecking for string.h... yes
-ochecking for memory.h... yes
-ochecking for strings.h... yes
-ochecking for inttypes.h... yes
-ochecking for stdint.h... yes
-ochecking for unistd.h... yes
-ochecking SDL/SDL_gfxPrimitives.h usability... yes
-ochecking SDL/SDL_gfxPrimitives.h presence... yes
-ochecking for SDL/SDL_gfxPrimitives.h... yes
-ochecking SDL/SDL_net.h usability... yes
-ochecking SDL/SDL_net.h presence... yes
-ochecking for SDL/SDL_net.h... yes
-ochecking for boxRGBA in -lSDL_gfx... yes
-ochecking for SDLNet_UDP_Open in -lSDL_net... yes
-ochecking for pkg-config... /opt/local/bin/pkg-config
-ochecking pkg-config is at least version 0.9.0... yes
-ochecking for SDL... yes
-ochecking whether to enable the debug build... no
-oconfigure: creating ./config.status
-oconfig.status: creating Makefile
-oconfig.status: creating externals/Makefile
-oconfig.status: creating src/Makefile
-oconfig.status: creating src/visualframework/Makefile
-oconfig.status: creating src/tests/Makefile
-oconfig.status: creating src/config.h
-oconfig.status: executing depfiles commands
-o=== configuring in externals/oscpack (/Users/dano/src/rc-facade/externals/visualframework/externals/oscpack)
-oconfigure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.
-ochecking for a BSD-compatible install... /usr/bin/install -c
-ochecking whether build environment is sane... yes
-ochecking for a thread-safe mkdir -p... config/install-sh -c -d
-ochecking for gawk... no
-ochecking for mawk... no
-ochecking for nawk... no
-ochecking for awk... awk
-ochecking whether make sets $(MAKE)... yes
-ochecking for g++... g++
-ochecking for C++ compiler default output file name... a.out
-ochecking whether the C++ compiler works... yes
-ochecking whether we are cross compiling... no
-ochecking for suffix of executables... 
-ochecking for suffix of object files... o
-ochecking whether we are using the GNU C++ compiler... yes
-ochecking whether g++ accepts -g... yes
-ochecking for style of include used by make... GNU
-ochecking dependency style of g++... gcc3
-ochecking for ranlib... ranlib
-ochecking how to run the C++ preprocessor... g++ -E
-ochecking for grep that handles long lines and -e... /usr/bin/grep
-ochecking for egrep... /usr/bin/grep -E
-ochecking for ANSI C header files... yes
-ochecking whether to enable the debug build... no
-oconfigure: creating ./config.status
-oconfig.status: creating Makefile
-oconfig.status: executing depfiles commands
-o=== configuring in externals/tinyxml (/Users/dano/src/rc-facade/externals/visualframework/externals/tinyxml)
-oconfigure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.
-ochecking for a BSD-compatible install... /usr/bin/install -c
-ochecking whether build environment is sane... yes
-ochecking for a thread-safe mkdir -p... config/install-sh -c -d
-ochecking for gawk... no
-ochecking for mawk... no
-ochecking for nawk... no
-ochecking for awk... awk
-ochecking whether make sets $(MAKE)... yes
-ochecking for g++... g++
-ochecking for C++ compiler default output file name... a.out
-ochecking whether the C++ compiler works... yes
-ochecking whether we are cross compiling... no
-ochecking for suffix of executables... 
-ochecking for suffix of object files... o
-ochecking whether we are using the GNU C++ compiler... yes
-ochecking whether g++ accepts -g... yes
-ochecking for style of include used by make... GNU
-ochecking dependency style of g++... gcc3
-ochecking for ranlib... ranlib
-ochecking how to run the C++ preprocessor... g++ -E
-ochecking for grep that handles long lines and -e... /usr/bin/grep
-ochecking for egrep... /usr/bin/grep -E
-ochecking for ANSI C header files... yes
-ochecking whether to enable the debug build... no
-oconfigure: creating ./config.status
-oconfig.status: creating Makefile
-oconfig.status: creating src/Makefile
-oconfig.status: executing depfiles commands
-o
-o	rc-facade 0.1.0 is now configured
-o
-o	Source directory:     .
-o	Installation prefix:  /opt/local
-o	C++ compiler:         g++ -g -O2
-o	Debug build:          no
-o
-lSLF07#2@23"Run external build tool284522391#284522405#0(7586"======== run_configure: args [] ======== checking for a BSD-compatible install... /usr/bin/install -cchecking whether build environment is sane... yeschecking for a thread-safe mkdir -p... config/install-sh -c -dchecking for gawk... nochecking for mawk... nochecking for nawk... nochecking for awk... awkchecking whether make sets $(MAKE)... yeschecking for g++... g++checking for C++ compiler default output file name... a.outchecking whether the C++ compiler works... yeschecking whether we are cross compiling... nochecking for suffix of executables... checking for suffix of object files... ochecking whether we are using the GNU C++ compiler... yeschecking whether g++ accepts -g... yeschecking for style of include used by make... GNUchecking dependency style of g++... gcc3checking for ranlib... ranlibchecking how to run the C++ preprocessor... g++ -Echecking for grep that handles long lines and -e... /usr/bin/grepchecking for egrep... /usr/bin/grep -Echecking for ANSI C header files... yeschecking for sys/types.h... yeschecking for sys/stat.h... yeschecking for stdlib.h... yeschecking for string.h... yeschecking for memory.h... yeschecking for strings.h... yeschecking for inttypes.h... yeschecking for stdint.h... yeschecking for unistd.h... yeschecking SDL/SDL_gfxPrimitives.h usability... yeschecking SDL/SDL_gfxPrimitives.h presence... yeschecking for SDL/SDL_gfxPrimitives.h... yeschecking SDL/SDL_net.h usability... yeschecking SDL/SDL_net.h presence... yeschecking for SDL/SDL_net.h... yeschecking for boxRGBA in -lSDL_gfx... yeschecking for SDLNet_UDP_Open in -lSDL_net... yeschecking for pkg-config... /opt/local/bin/pkg-configchecking pkg-config is at least version 0.9.0... yeschecking for SDL... yeschecking whether to enable the debug build... noconfigure: creating ./config.statusconfig.status: creating Makefileconfig.status: creating externals/Makefileconfig.status: creating src/Makefileconfig.status: creating src/facade/Makefileconfig.status: creating src/objects/Makefileconfig.status: creating src/auto_config.hconfig.status: executing depfiles commands=== configuring in externals/visualframework (/Users/dano/src/rc-facade/externals/visualframework)configure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.checking for a BSD-compatible install... /usr/bin/install -cchecking whether build environment is sane... yeschecking for a thread-safe mkdir -p... config/install-sh -c -dchecking for gawk... nochecking for mawk... nochecking for nawk... nochecking for awk... awkchecking whether make sets $(MAKE)... yeschecking for g++... g++checking for C++ compiler default output file name... a.outchecking whether the C++ compiler works... yeschecking whether we are cross compiling... nochecking for suffix of executables... checking for suffix of object files... ochecking whether we are using the GNU C++ compiler... yeschecking whether g++ accepts -g... yeschecking for style of include used by make... GNUchecking dependency style of g++... gcc3checking for ranlib... ranlibchecking how to run the C++ preprocessor... g++ -Echecking for grep that handles long lines and -e... /usr/bin/grepchecking for egrep... /usr/bin/grep -Echecking for ANSI C header files... yeschecking for sys/types.h... yeschecking for sys/stat.h... yeschecking for stdlib.h... yeschecking for string.h... yeschecking for memory.h... yeschecking for strings.h... yeschecking for inttypes.h... yeschecking for stdint.h... yeschecking for unistd.h... yeschecking SDL/SDL_gfxPrimitives.h usability... yeschecking SDL/SDL_gfxPrimitives.h presence... yeschecking for SDL/SDL_gfxPrimitives.h... yeschecking SDL/SDL_net.h usability... yeschecking SDL/SDL_net.h presence... yeschecking for SDL/SDL_net.h... yeschecking for boxRGBA in -lSDL_gfx... yeschecking for SDLNet_UDP_Open in -lSDL_net... yeschecking for pkg-config... /opt/local/bin/pkg-configchecking pkg-config is at least version 0.9.0... yeschecking for SDL... yeschecking whether to enable the debug build... noconfigure: creating ./config.statusconfig.status: creating Makefileconfig.status: creating externals/Makefileconfig.status: creating src/Makefileconfig.status: creating src/visualframework/Makefileconfig.status: creating src/tests/Makefileconfig.status: creating src/config.hconfig.status: executing depfiles commands=== configuring in externals/oscpack (/Users/dano/src/rc-facade/externals/visualframework/externals/oscpack)configure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.checking for a BSD-compatible install... /usr/bin/install -cchecking whether build environment is sane... yeschecking for a thread-safe mkdir -p... config/install-sh -c -dchecking for gawk... nochecking for mawk... nochecking for nawk... nochecking for awk... awkchecking whether make sets $(MAKE)... yeschecking for g++... g++checking for C++ compiler default output file name... a.outchecking whether the C++ compiler works... yeschecking whether we are cross compiling... nochecking for suffix of executables... checking for suffix of object files... ochecking whether we are using the GNU C++ compiler... yeschecking whether g++ accepts -g... yeschecking for style of include used by make... GNUchecking dependency style of g++... gcc3checking for ranlib... ranlibchecking how to run the C++ preprocessor... g++ -Echecking for grep that handles long lines and -e... /usr/bin/grepchecking for egrep... /usr/bin/grep -Echecking for ANSI C header files... yeschecking whether to enable the debug build... noconfigure: creating ./config.statusconfig.status: creating Makefileconfig.status: executing depfiles commands=== configuring in externals/tinyxml (/Users/dano/src/rc-facade/externals/visualframework/externals/tinyxml)configure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.checking for a BSD-compatible install... /usr/bin/install -cchecking whether build environment is sane... yeschecking for a thread-safe mkdir -p... config/install-sh -c -dchecking for gawk... nochecking for mawk... nochecking for nawk... nochecking for awk... awkchecking whether make sets $(MAKE)... yeschecking for g++... g++checking for C++ compiler default output file name... a.outchecking whether the C++ compiler works... yeschecking whether we are cross compiling... nochecking for suffix of executables... checking for suffix of object files... ochecking whether we are using the GNU C++ compiler... yeschecking whether g++ accepts -g... yeschecking for style of include used by make... GNUchecking dependency style of g++... gcc3checking for ranlib... ranlibchecking how to run the C++ preprocessor... g++ -Echecking for grep that handles long lines and -e... /usr/bin/grepchecking for egrep... /usr/bin/grep -Echecking for ANSI C header files... yeschecking whether to enable the debug build... noconfigure: creating ./config.statusconfig.status: creating Makefileconfig.status: creating src/Makefileconfig.status: executing depfiles commands	rc-facade 0.1.0 is now configured	Source directory:     .	Installation prefix:  /opt/local	C++ compiler:         g++ -g -O2	Debug build:          no171(13@42"======== run_configure: args [] ======== 284522391#0#42#0(1@0"0(13@61"checking for a BSD-compatible install... /usr/bin/install -c284522391#42#61#0(1@0"0(13@50"checking whether build environment is sane... yes284522392#103#50#0(1@0"0(13@63"checking for a thread-safe mkdir -p... config/install-sh -c -d284522392#153#63#0(1@0"0(13@24"checking for gawk... no284522392#216#24#0(1@0"0(13@24"checking for mawk... no284522392#240#24#0(1@0"0(13@24"checking for nawk... no284522392#264#24#0(1@0"0(13@24"checking for awk... awk284522392#288#24#0(1@0"0(13@42"checking whether make sets $(MAKE)... yes284522392#312#42#0(1@0"0(13@24"checking for g++... g++284522393#354#24#0(1@0"0(13@60"checking for C++ compiler default output file name... a.out284522393#378#60#0(1@0"0(13@47"checking whether the C++ compiler works... yes284522393#438#47#0(1@0"0(13@46"checking whether we are cross compiling... no284522393#485#46#0(1@0"0(13@39"checking for suffix of executables... 284522393#531#39#0(1@0"0(13@41"checking for suffix of object files... o284522393#570#41#0(1@0"0(13@58"checking whether we are using the GNU C++ compiler... yes284522393#611#58#0(1@0"0(13@39"checking whether g++ accepts -g... yes284522393#669#39#0(1@0"0(13@50"checking for style of include used by make... GNU284522393#708#50#0(1@0"0(13@41"checking dependency style of g++... gcc3284522393#758#41#0(1@0"0(13@30"checking for ranlib... ranlib284522393#799#30#0(1@0"0(13@51"checking how to run the C++ preprocessor... g++ -E284522393#829#51#0(1@0"0(13@66"checking for grep that handles long lines and -e... /usr/bin/grep284522393#880#66#0(1@0"0(13@39"checking for egrep... /usr/bin/grep -E284522393#946#39#0(1@0"0(13@40"checking for ANSI C header files... yes284522394#985#40#0(1@0"0(13@32"checking for sys/types.h... yes284522394#1025#32#0(1@0"0(13@31"checking for sys/stat.h... yes284522394#1057#31#0(1@0"0(13@29"checking for stdlib.h... yes284522394#1088#29#0(1@0"0(13@29"checking for string.h... yes284522394#1117#29#0(1@0"0(13@29"checking for memory.h... yes284522394#1146#29#0(1@0"0(13@30"checking for strings.h... yes284522394#1175#30#0(1@0"0(13@31"checking for inttypes.h... yes284522394#1205#31#0(1@0"0(13@29"checking for stdint.h... yes284522394#1236#29#0(1@0"0(13@29"checking for unistd.h... yes284522394#1265#29#0(1@0"0(13@50"checking SDL/SDL_gfxPrimitives.h usability... yes284522394#1294#50#0(1@0"0(13@49"checking SDL/SDL_gfxPrimitives.h presence... yes284522394#1344#49#0(1@0"0(13@44"checking for SDL/SDL_gfxPrimitives.h... yes284522394#1393#44#0(1@0"0(13@40"checking SDL/SDL_net.h usability... yes284522395#1437#40#0(1@0"0(13@39"checking SDL/SDL_net.h presence... yes284522395#1477#39#0(1@0"0(13@34"checking for SDL/SDL_net.h... yes284522395#1516#34#0(1@0"0(13@41"checking for boxRGBA in -lSDL_gfx... yes284522395#1550#41#0(1@0"0(13@49"checking for SDLNet_UDP_Open in -lSDL_net... yes284522395#1591#49#0(1@0"0(13@53"checking for pkg-config... /opt/local/bin/pkg-config284522395#1640#53#0(1@0"0(13@53"checking pkg-config is at least version 0.9.0... yes284522395#1693#53#0(1@0"0(13@24"checking for SDL... yes284522395#1746#24#0(1@0"0(13@49"checking whether to enable the debug build... no284522395#1770#49#0(1@0"0(13@36"configure: creating ./config.status284522395#1819#36#0(1@0"0(13@33"config.status: creating Makefile284522395#1855#33#0(1@0"0(13@43"config.status: creating externals/Makefile284522395#1888#43#0(1@0"0(13@37"config.status: creating src/Makefile284522395#1931#37#0(1@0"0(13@44"config.status: creating src/facade/Makefile284522395#1968#44#0(1@0"0(13@45"config.status: creating src/objects/Makefile284522395#2012#45#0(1@0"0(13@42"config.status: creating src/auto_config.h284522395#2057#42#0(1@0"0(13@43"config.status: executing depfiles commands284522395#2099#43#0(1@0"0(13@99"=== configuring in externals/visualframework (/Users/dano/src/rc-facade/externals/visualframework)284522395#2142#99#0(1@0"0(13@181"configure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.284522395#2241#181#0(1@0"0(13@61"checking for a BSD-compatible install... /usr/bin/install -c284522396#2422#61#0(1@0"0(13@50"checking whether build environment is sane... yes284522397#2483#50#0(1@0"0(13@63"checking for a thread-safe mkdir -p... config/install-sh -c -d284522397#2533#63#0(1@0"0(13@24"checking for gawk... no284522397#2596#24#0(1@0"0(13@24"checking for mawk... no284522397#2620#24#0(1@0"0(13@24"checking for nawk... no284522397#2644#24#0(1@0"0(13@24"checking for awk... awk284522397#2668#24#0(1@0"0(13@42"checking whether make sets $(MAKE)... yes284522397#2692#42#0(1@0"0(13@24"checking for g++... g++284522397#2734#24#0(1@0"0(13@60"checking for C++ compiler default output file name... a.out284522397#2758#60#0(1@0"0(13@47"checking whether the C++ compiler works... yes284522397#2818#47#0(1@0"0(13@46"checking whether we are cross compiling... no284522397#2865#46#0(1@0"0(13@39"checking for suffix of executables... 284522397#2911#39#0(1@0"0(13@41"checking for suffix of object files... o284522397#2950#41#0(1@0"0(13@58"checking whether we are using the GNU C++ compiler... yes284522397#2991#58#0(1@0"0(13@39"checking whether g++ accepts -g... yes284522397#3049#39#0(1@0"0(13@50"checking for style of include used by make... GNU284522397#3088#50#0(1@0"0(13@41"checking dependency style of g++... gcc3284522397#3138#41#0(1@0"0(13@30"checking for ranlib... ranlib284522397#3179#30#0(1@0"0(13@51"checking how to run the C++ preprocessor... g++ -E284522397#3209#51#0(1@0"0(13@66"checking for grep that handles long lines and -e... /usr/bin/grep284522397#3260#66#0(1@0"0(13@39"checking for egrep... /usr/bin/grep -E284522397#3326#39#0(1@0"0(13@40"checking for ANSI C header files... yes284522397#3365#40#0(1@0"0(13@32"checking for sys/types.h... yes284522398#3405#32#0(1@0"0(13@31"checking for sys/stat.h... yes284522398#3437#31#0(1@0"0(13@29"checking for stdlib.h... yes284522398#3468#29#0(1@0"0(13@29"checking for string.h... yes284522398#3497#29#0(1@0"0(13@29"checking for memory.h... yes284522398#3526#29#0(1@0"0(13@30"checking for strings.h... yes284522398#3555#30#0(1@0"0(13@31"checking for inttypes.h... yes284522398#3585#31#0(1@0"0(13@29"checking for stdint.h... yes284522398#3616#29#0(1@0"0(13@29"checking for unistd.h... yes284522398#3645#29#0(1@0"0(13@50"checking SDL/SDL_gfxPrimitives.h usability... yes284522398#3674#50#0(1@0"0(13@49"checking SDL/SDL_gfxPrimitives.h presence... yes284522398#3724#49#0(1@0"0(13@44"checking for SDL/SDL_gfxPrimitives.h... yes284522398#3773#44#0(1@0"0(13@40"checking SDL/SDL_net.h usability... yes284522398#3817#40#0(1@0"0(13@39"checking SDL/SDL_net.h presence... yes284522398#3857#39#0(1@0"0(13@34"checking for SDL/SDL_net.h... yes284522398#3896#34#0(1@0"0(13@41"checking for boxRGBA in -lSDL_gfx... yes284522399#3930#41#0(1@0"0(13@49"checking for SDLNet_UDP_Open in -lSDL_net... yes284522399#3971#49#0(1@0"0(13@53"checking for pkg-config... /opt/local/bin/pkg-config284522399#4020#53#0(1@0"0(13@53"checking pkg-config is at least version 0.9.0... yes284522399#4073#53#0(1@0"0(13@24"checking for SDL... yes284522399#4126#24#0(1@0"0(13@49"checking whether to enable the debug build... no284522399#4150#49#0(1@0"0(13@36"configure: creating ./config.status284522399#4199#36#0(1@0"0(13@33"config.status: creating Makefile284522399#4235#33#0(1@0"0(13@43"config.status: creating externals/Makefile284522399#4268#43#0(1@0"0(13@37"config.status: creating src/Makefile284522399#4311#37#0(1@0"0(13@53"config.status: creating src/visualframework/Makefile284522399#4348#53#0(1@0"0(13@43"config.status: creating src/tests/Makefile284522399#4401#43#0(1@0"0(13@37"config.status: creating src/config.h284522399#4444#37#0(1@0"0(13@43"config.status: executing depfiles commands284522399#4481#43#0(1@0"0(13@109"=== configuring in externals/oscpack (/Users/dano/src/rc-facade/externals/visualframework/externals/oscpack)284522399#4524#109#0(1@0"0(13@181"configure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.284522399#4633#181#0(1@0"0(13@61"checking for a BSD-compatible install... /usr/bin/install -c284522400#4814#61#0(1@0"0(13@50"checking whether build environment is sane... yes284522401#4875#50#0(1@0"0(13@63"checking for a thread-safe mkdir -p... config/install-sh -c -d284522401#4925#63#0(1@0"0(13@24"checking for gawk... no284522401#4988#24#0(1@0"0(13@24"checking for mawk... no284522401#5012#24#0(1@0"0(13@24"checking for nawk... no284522401#5036#24#0(1@0"0(13@24"checking for awk... awk284522401#5060#24#0(1@0"0(13@42"checking whether make sets $(MAKE)... yes284522401#5084#42#0(1@0"0(13@24"checking for g++... g++284522401#5126#24#0(1@0"0(13@60"checking for C++ compiler default output file name... a.out284522401#5150#60#0(1@0"0(13@47"checking whether the C++ compiler works... yes284522401#5210#47#0(1@0"0(13@46"checking whether we are cross compiling... no284522401#5257#46#0(1@0"0(13@39"checking for suffix of executables... 284522401#5303#39#0(1@0"0(13@41"checking for suffix of object files... o284522401#5342#41#0(1@0"0(13@58"checking whether we are using the GNU C++ compiler... yes284522401#5383#58#0(1@0"0(13@39"checking whether g++ accepts -g... yes284522401#5441#39#0(1@0"0(13@50"checking for style of include used by make... GNU284522401#5480#50#0(1@0"0(13@41"checking dependency style of g++... gcc3284522401#5530#41#0(1@0"0(13@30"checking for ranlib... ranlib284522401#5571#30#0(1@0"0(13@51"checking how to run the C++ preprocessor... g++ -E284522401#5601#51#0(1@0"0(13@66"checking for grep that handles long lines and -e... /usr/bin/grep284522401#5652#66#0(1@0"0(13@39"checking for egrep... /usr/bin/grep -E284522401#5718#39#0(1@0"0(13@40"checking for ANSI C header files... yes284522401#5757#40#0(1@0"0(13@49"checking whether to enable the debug build... no284522401#5797#49#0(1@0"0(13@36"configure: creating ./config.status284522401#5846#36#0(1@0"0(13@33"config.status: creating Makefile284522402#5882#33#0(1@0"0(13@43"config.status: executing depfiles commands284522402#5915#43#0(1@0"0(13@109"=== configuring in externals/tinyxml (/Users/dano/src/rc-facade/externals/visualframework/externals/tinyxml)284522402#5958#109#0(1@0"0(13@181"configure: running /bin/sh ./configure --disable-option-checking '--prefix=/opt/local'  'LDFLAGS=-L/opt/local/lib' 'CPPFLAGS=-I/opt/local/include' --cache-file=/dev/null --srcdir=.284522402#6067#181#0(1@0"0(13@61"checking for a BSD-compatible install... /usr/bin/install -c284522402#6248#61#0(1@0"0(13@50"checking whether build environment is sane... yes284522403#6309#50#0(1@0"0(13@63"checking for a thread-safe mkdir -p... config/install-sh -c -d284522403#6359#63#0(1@0"0(13@24"checking for gawk... no284522403#6422#24#0(1@0"0(13@24"checking for mawk... no284522403#6446#24#0(1@0"0(13@24"checking for nawk... no284522403#6470#24#0(1@0"0(13@24"checking for awk... awk284522403#6494#24#0(1@0"0(13@42"checking whether make sets $(MAKE)... yes284522403#6518#42#0(1@0"0(13@24"checking for g++... g++284522403#6560#24#0(1@0"0(13@60"checking for C++ compiler default output file name... a.out284522403#6584#60#0(1@0"0(13@47"checking whether the C++ compiler works... yes284522403#6644#47#0(1@0"0(13@46"checking whether we are cross compiling... no284522403#6691#46#0(1@0"0(13@39"checking for suffix of executables... 284522403#6737#39#0(1@0"0(13@41"checking for suffix of object files... o284522403#6776#41#0(1@0"0(13@58"checking whether we are using the GNU C++ compiler... yes284522403#6817#58#0(1@0"0(13@39"checking whether g++ accepts -g... yes284522403#6875#39#0(1@0"0(13@50"checking for style of include used by make... GNU284522403#6914#50#0(1@0"0(13@41"checking dependency style of g++... gcc3284522404#6964#41#0(1@0"0(13@30"checking for ranlib... ranlib284522404#7005#30#0(1@0"0(13@51"checking how to run the C++ preprocessor... g++ -E284522404#7035#51#0(1@0"0(13@66"checking for grep that handles long lines and -e... /usr/bin/grep284522404#7086#66#0(1@0"0(13@39"checking for egrep... /usr/bin/grep -E284522404#7152#39#0(1@0"0(13@40"checking for ANSI C header files... yes284522404#7191#40#0(1@0"0(13@49"checking whether to enable the debug build... no284522404#7231#49#0(1@0"0(13@36"configure: creating ./config.status284522404#7280#36#0(1@0"0(13@33"config.status: creating Makefile284522404#7316#33#0(1@0"0(13@37"config.status: creating src/Makefile284522404#7349#37#0(1@0"0(13@43"config.status: executing depfiles commands284522404#7386#43#0(1@0"0(13@35"	rc-facade 0.1.0 is now configured284522404#7430#35#0(1@0"0(13@25"	Source directory:     .284522404#7466#25#0(1@0"0(13@34"	Installation prefix:  /opt/local284522404#7491#34#0(1@0"0(13@34"	C++ compiler:         g++ -g -O2284522404#7525#34#0(1@0"0(13@26"	Debug build:          no284522404#7559#26#0(1@0"0(0#0#0"18446744073709551615#9600"    cd /Users/dano/src/rc-facade/prj/xcode/rc-facade/.    setenv ACTION     setenv ALTERNATE_GROUP staff    setenv ALTERNATE_MODE u+w,go-w,a+rX    setenv ALTERNATE_OWNER dano    setenv ALWAYS_SEARCH_USER_PATHS YES    setenv APPLE_INTERNAL_DEVELOPER_DIR /AppleInternal/Developer    setenv APPLE_INTERNAL_DIR /AppleInternal    setenv APPLE_INTERNAL_DOCUMENTATION_DIR /AppleInternal/Documentation    setenv APPLE_INTERNAL_LIBRARY_DIR /AppleInternal/Library    setenv APPLE_INTERNAL_TOOLS /AppleInternal/Developer/Tools    setenv APPLY_RULES_IN_COPY_FILES NO    setenv ARCHS x86_64    setenv BUILD_COMPONENTS "headers build"    setenv BUILD_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build    setenv BUILD_ROOT /Users/dano/src/rc-facade/prj/xcode/rc-facade/build    setenv BUILD_STYLE Debug    setenv BUILD_VARIANTS normal    setenv BUILT_PRODUCTS_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/Debug    setenv CACHE_ROOT /var/folders/-D/-D8Ja5vwGW8tjqdtpQ2Uik+++TI/-Caches-/com.apple.Xcode.501    setenv CLASS_FILE_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/JavaClasses    setenv CLONE_HEADERS NO    setenv CONFIGURATION Debug    setenv CONFIGURATION_BUILD_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/Debug    setenv CONFIGURATION_TEMP_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug    setenv COPYING_PRESERVES_HFS_DATA NO    setenv COPY_PHASE_STRIP NO    setenv DEAD_CODE_STRIPPING NO    setenv DEBUG debug    setenv DEBUGGING_SYMBOLS YES    setenv DEPLOYMENT_LOCATION NO    setenv DEPLOYMENT_POSTPROCESSING NO    setenv DERIVED_FILES_DIR     setenv DERIVED_FILE_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/DerivedSources    setenv DERIVED_SOURCES_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/DerivedSources    setenv DEVELOPER_APPLICATIONS_DIR /Developer/Applications    setenv DEVELOPER_BIN_DIR /Developer/usr/bin    setenv DEVELOPER_DIR /Developer    setenv DEVELOPER_FRAMEWORKS_DIR /Developer/Library/Frameworks    setenv DEVELOPER_FRAMEWORKS_DIR_QUOTED "\"/Developer/Library/Frameworks\""    setenv DEVELOPER_LIBRARY_DIR /Developer/Library    setenv DEVELOPER_SDK_DIR /Developer/SDKs    setenv DEVELOPER_TOOLS_DIR /Developer/Tools    setenv DEVELOPER_USR_DIR /Developer/usr    setenv DEVELOPMENT_LANGUAGE English    setenv DO_HEADER_SCANNING_IN_JAM NO    setenv DSTROOT /tmp/rc-facade.dst    setenv DWARF_DSYM_FILE_NAME .dSYM    setenv DWARF_DSYM_FOLDER_PATH /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/Debug    setenv ENABLE_HEADER_DEPENDENCIES YES    setenv ENABLE_OPENMP_SUPPORT NO    setenv EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS ".svn CVS"    setenv EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES "*.nib *.lproj *.framework *.gch *.xcode* (*) CVS .svn"    setenv FILE_LIST /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/Objects/LinkFileList    setenv FRAMEWORK_VERSION A    setenv GCC3_VERSION 3.3    setenv GCC_DYNAMIC_NO_PIC NO    setenv GCC_OPTIMIZATION_LEVEL 0    setenv GCC_WARN_ABOUT_RETURN_TYPE YES    setenv GCC_WARN_UNUSED_VARIABLE YES    setenv GENERATE_MASTER_OBJECT_FILE NO    setenv GENERATE_PKGINFO_FILE NO    setenv GID 20    setenv GROUP staff    setenv HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT YES    setenv HEADERMAP_INCLUDES_FRAMEWORK_ENTRIES_FOR_ALL_PRODUCT_TYPES YES    setenv HEADERMAP_INCLUDES_NONPUBLIC_NONPRIVATE_HEADERS YES    setenv HEADERMAP_INCLUDES_PROJECT_HEADERS YES    setenv INFOPLIST_EXPAND_BUILD_SETTINGS YES    setenv INFOPLIST_OUTPUT_FORMAT same-as-input    setenv INFOPLIST_PREPROCESS NO    setenv INSTALL_DIR /tmp/rc-facade.dst    setenv INSTALL_GROUP staff    setenv INSTALL_MODE_FLAG u+w,go-w,a+rX    setenv INSTALL_OWNER dano    setenv INSTALL_ROOT /tmp/rc-facade.dst    setenv JAVA_APP_STUB /System/Library/Frameworks/JavaVM.framework/Resources/MacOS/JavaApplicationStub    setenv JAVA_ARCHIVE_CLASSES YES    setenv JAVA_ARCHIVE_TYPE JAR    setenv JAVA_COMPILER /usr/bin/javac    setenv JAVA_FRAMEWORK_RESOURCES_DIRS Resources    setenv JAVA_JAR_FLAGS cv    setenv JAVA_SOURCE_SUBDIR .    setenv JAVA_USE_DEPENDENCIES YES    setenv JAVA_ZIP_FLAGS -urg    setenv KEEP_PRIVATE_EXTERNS NO    setenv LD_GENERATE_MAP_FILE NO    setenv LD_MAP_FILE_PATH /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/configure-LinkMap--.txt    setenv LD_OPENMP_FLAGS -fopenmp    setenv LINKER_DISPLAYS_MANGLED_NAMES NO    setenv LINK_WITH_STANDARD_LIBRARIES YES    setenv LOCAL_ADMIN_APPS_DIR /Applications/Utilities    setenv LOCAL_APPS_DIR /Applications    setenv LOCAL_DEVELOPER_DIR /Library/Developer    setenv LOCAL_LIBRARY_DIR /Library    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv MAC_OS_X_VERSION_ACTUAL 1062    setenv MAC_OS_X_VERSION_MAJOR 1060    setenv MAC_OS_X_VERSION_MINOR 0602    setenv OBJECT_FILE_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/Objects    setenv OBJROOT /Users/dano/src/rc-facade/prj/xcode/rc-facade/build    setenv ONLY_ACTIVE_ARCH YES    setenv OPTIMIZATION_LEVEL 0    setenv OS MACOS    setenv PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES "/usr/include /usr/local/include /System/Library/Frameworks /System/Library/PrivateFrameworks /Developer/Headers /Developer/SDKs /Developer/Platforms"    setenv PLIST_FILE_OUTPUT_FORMAT same-as-input    setenv PREBINDING NO    setenv PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR YES    setenv PRECOMP_DESTINATION_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build/PrefixHeaders    setenv PRESERVE_DEAD_CODE_INITS_AND_TERMS NO    setenv PRODUCT_NAME configure    setenv PROFILING_CODE NO    setenv PROJECT rc-facade    setenv PROJECT_DERIVED_FILE_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/DerivedSources    setenv PROJECT_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade    setenv PROJECT_FILE_PATH /Users/dano/src/rc-facade/prj/xcode/rc-facade/rc-facade.xcodeproj    setenv PROJECT_NAME rc-facade    setenv PROJECT_TEMP_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build    setenv REMOVE_CVS_FROM_RESOURCES YES    setenv REMOVE_SVN_FROM_RESOURCES YES    setenv RUN_CLANG_STATIC_ANALYZER NO    setenv SCAN_ALL_SOURCE_FILES_FOR_INCLUDES NO    setenv SDKROOT /Developer/SDKs/MacOSX10.6.sdk    setenv SEPARATE_STRIP NO    setenv SEPARATE_SYMBOL_EDIT NO    setenv SHARED_DERIVED_FILE_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/Debug/DerivedSources    setenv SHARED_PRECOMPS_DIR /var/folders/-D/-D8Ja5vwGW8tjqdtpQ2Uik+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders    setenv SKIP_INSTALL NO    setenv SOURCE_ROOT /Users/dano/src/rc-facade/prj/xcode/rc-facade    setenv SRCROOT /Users/dano/src/rc-facade/prj/xcode/rc-facade    setenv STANDARD_C_PLUS_PLUS_LIBRARY_TYPE dynamic    setenv STRINGS_FILE_OUTPUT_ENCODING UTF-16    setenv STRIP_INSTALLED_PRODUCT YES    setenv STRIP_STYLE all    setenv SYMROOT /Users/dano/src/rc-facade/prj/xcode/rc-facade/build    setenv SYSTEM_ADMIN_APPS_DIR /Applications/Utilities    setenv SYSTEM_APPS_DIR /Applications    setenv SYSTEM_CORE_SERVICES_DIR /System/Library/CoreServices    setenv SYSTEM_DEMOS_DIR /Applications/Extras    setenv SYSTEM_DEVELOPER_APPS_DIR /Developer/Applications    setenv SYSTEM_DEVELOPER_BIN_DIR /Developer/usr/bin    setenv SYSTEM_DEVELOPER_DEMOS_DIR "/Developer/Applications/Utilities/Built Examples"    setenv SYSTEM_DEVELOPER_DIR /Developer    setenv SYSTEM_DEVELOPER_DOC_DIR "/Developer/ADC Reference Library"    setenv SYSTEM_DEVELOPER_GRAPHICS_TOOLS_DIR "/Developer/Applications/Graphics Tools"    setenv SYSTEM_DEVELOPER_JAVA_TOOLS_DIR "/Developer/Applications/Java Tools"    setenv SYSTEM_DEVELOPER_PERFORMANCE_TOOLS_DIR "/Developer/Applications/Performance Tools"    setenv SYSTEM_DEVELOPER_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes"    setenv SYSTEM_DEVELOPER_TOOLS /Developer/Tools    setenv SYSTEM_DEVELOPER_TOOLS_DOC_DIR "/Developer/ADC Reference Library/documentation/DeveloperTools"    setenv SYSTEM_DEVELOPER_TOOLS_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes/DeveloperTools"    setenv SYSTEM_DEVELOPER_USR_DIR /Developer/usr    setenv SYSTEM_DEVELOPER_UTILITIES_DIR /Developer/Applications/Utilities    setenv SYSTEM_DOCUMENTATION_DIR /Library/Documentation    setenv SYSTEM_LIBRARY_DIR /System/Library    setenv TARGETNAME configure    setenv TARGET_BUILD_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/Debug    setenv TARGET_NAME configure    setenv TARGET_TEMP_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build    setenv TEMP_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build    setenv TEMP_FILES_DIR     setenv TEMP_FILE_DIR /Users/dano/src/rc-facade/prj/xcode/rc-facade/build/rc-facade.build/Debug/configure.build    setenv TEMP_ROOT /Users/dano/src/rc-facade/prj/xcode/rc-facade/build    setenv UID 501    setenv USER dano    setenv USER_APPS_DIR /Users/dano/Applications    setenv USER_LIBRARY_DIR /Users/dano/Library    setenv XCODE_APP_SUPPORT_DIR /Developer/Library/Xcode    setenv XCODE_VERSION_ACTUAL 0320    setenv XCODE_VERSION_MAJOR 0300    setenv XCODE_VERSION_MINOR 0320    /bin/sh ./run_configure0#
-

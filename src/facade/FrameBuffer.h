@@ -4,7 +4,7 @@
 #ifndef FRAMEUFFER_APP_H
 #define FRAMEBUFFER_APP_H
 
-#include <visualframework.h>
+#include <visualframework/visualframework.h>
 
 #define FACADE_PKG_SIZE     5
 #define FACADE_NUM_ADDR     1085
