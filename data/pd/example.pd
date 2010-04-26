@@ -1,0 +1,157 @@
+#N canvas 506 60 746 628 10;
+#X obj 29 78 spigot;
+#X obj 16 18 r FACADE_OSC;
+#X obj 16 140 facade-sender;
+#X obj 91 118 tgl 15 0 empty empty connect 17 7 0 10 -262144 -1 -1
+1 1;
+#X obj 16 167 tgl 15 0 empty empty connected 17 7 0 10 -262144 -1 -1
+1 1;
+#X obj 62 53 tgl 15 0 empty empty debug 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 29 103 print;
+#X obj 208 208 s FACADE_OSC;
+#X obj 208 59 facade-pixel pixel;
+#X floatatom 208 20 5 0 0 0 - - -;
+#X floatatom 260 19 5 0 0 0 - - -;
+#X msg 313 31 visible \$1;
+#X obj 313 8 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 232 114 facade-color pixel;
+#X floatatom 233 85 5 0 0 0 - - -;
+#X floatatom 275 85 5 0 0 0 - - -;
+#X floatatom 314 83 5 0 0 0 - - -;
+#X obj 16 367 s FACADE_OSC;
+#X obj 16 314 facade-scene;
+#X obj 16 227 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X msg 57 227 scene1;
+#X msg 116 227 scene2;
+#X obj 446 78 facade-line line;
+#X floatatom 440 31 5 0 0 0 - - -;
+#X floatatom 478 31 5 0 0 0 - - -;
+#X floatatom 531 31 5 0 0 0 - - -;
+#X floatatom 570 31 5 0 0 0 - - -;
+#X floatatom 503 4 5 0 0 0 - - -;
+#X obj 446 202 s FACADE_OSC;
+#X obj 462 108 facade-color line;
+#X msg 613 38 visible \$1;
+#X obj 613 15 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 204 256 5 0 0 0 - - -;
+#X floatatom 242 256 5 0 0 0 - - -;
+#X obj 210 427 s FACADE_OSC;
+#X msg 377 263 visible \$1;
+#X obj 377 240 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 222 335 facade-color rect;
+#X obj 377 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 377 312 filled \$1;
+#X floatatom 470 252 5 0 0 0 - - -;
+#X floatatom 508 252 5 0 0 0 - - -;
+#X obj 476 423 s FACADE_OSC;
+#X msg 643 259 visible \$1;
+#X obj 643 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 487 329 facade-color bitmap;
+#X obj 645 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 645 312 center \$1;
+#X obj 378 338 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 378 361 center \$1;
+#X obj 210 303 facade-rect rect;
+#X floatatom 210 505 5 0 0 0 - - -;
+#X floatatom 248 505 5 0 0 0 - - -;
+#X obj 210 580 s FACADE_OSC;
+#X msg 295 494 visible \$1;
+#X obj 295 471 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 375 471 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 375 494 center \$1;
+#X obj 210 547 facade-sprite sprite;
+#X obj 456 472 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 456 495 animate \$1;
+#X msg 82 277 prev;
+#X msg 119 278 next;
+#X obj 446 530 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 446 553 overlay \$1;
+#X obj 476 299 facade-rect bitmap;
+#X floatatom 283 256 5 0 0 0 - - -;
+#X floatatom 321 256 5 0 0 0 - - -;
+#X obj 64 512 * 10;
+#X floatatom 64 537 5 0 0 0 - - -;
+#X obj 64 487 spigot;
+#X obj 97 461 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 64 436 Lfo 2000 20;
+#X connect 0 0 6 0;
+#X connect 1 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 5 0 0 1;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 1;
+#X connect 11 0 8 2;
+#X connect 12 0 11 0;
+#X connect 13 0 7 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 1;
+#X connect 16 0 13 2;
+#X connect 18 0 17 0;
+#X connect 19 0 18 0;
+#X connect 20 0 18 0;
+#X connect 21 0 18 0;
+#X connect 22 0 28 0;
+#X connect 23 0 22 0;
+#X connect 24 0 22 1;
+#X connect 25 0 22 2;
+#X connect 26 0 22 3;
+#X connect 27 0 24 0;
+#X connect 27 0 26 0;
+#X connect 29 0 28 0;
+#X connect 30 0 22 4;
+#X connect 31 0 30 0;
+#X connect 32 0 50 0;
+#X connect 33 0 50 1;
+#X connect 35 0 50 4;
+#X connect 36 0 35 0;
+#X connect 37 0 34 0;
+#X connect 38 0 39 0;
+#X connect 39 0 50 4;
+#X connect 40 0 65 0;
+#X connect 41 0 65 1;
+#X connect 43 0 65 2;
+#X connect 44 0 43 0;
+#X connect 45 0 42 0;
+#X connect 46 0 47 0;
+#X connect 47 0 65 2;
+#X connect 48 0 49 0;
+#X connect 49 0 50 4;
+#X connect 50 0 34 0;
+#X connect 51 0 58 0;
+#X connect 52 0 58 1;
+#X connect 54 0 58 2;
+#X connect 55 0 54 0;
+#X connect 56 0 57 0;
+#X connect 57 0 58 2;
+#X connect 58 0 53 0;
+#X connect 59 0 60 0;
+#X connect 60 0 58 2;
+#X connect 61 0 18 0;
+#X connect 62 0 18 0;
+#X connect 63 0 64 0;
+#X connect 64 0 58 2;
+#X connect 65 0 42 0;
+#X connect 66 0 50 2;
+#X connect 67 0 50 3;
+#X connect 68 0 69 0;
+#X connect 69 0 66 0;
+#X connect 70 0 68 0;
+#X connect 71 0 70 1;
+#X connect 72 0 70 0;

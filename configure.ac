@@ -24,7 +24,13 @@ AC_LANG_CPLUSPLUS
 
 # check for headers
 AC_HEADER_STDC
+AC_CHECK_HEADERS(sstream) # needed for tclap
 
+AC_CHECK_HEADER([SDL/SDL_net.h],[],
+	AC_MSG_ERROR([SDL_net headers not found]))
+
+AC_CHECK_HEADER([SDL/SDL_ttf.h],[],
+	AC_MSG_ERROR([SDL_ttf headers not found]))
 AC_CHECK_HEADER([SDL/SDL_gfxPrimitives.h],[],
 	AC_MSG_ERROR([SDL_gfx headers not found]))
 	
@@ -39,6 +45,10 @@ AC_CHECK_LIB(SDL_gfx, boxRGBA,
 AC_CHECK_LIB(SDL_net, SDLNet_UDP_Open,
 	AC_SUBST(SDL_NET_LIBS, [-lSDL_net]),
 	AC_MSG_ERROR([SDL_net library not found]))
+	
+AC_CHECK_LIB(SDL_ttf, TTF_OpenFont,
+	AC_SUBST(SDL_TTF_LIBS, -lSDL_ttf),
+	AC_MSG_ERROR([SDL_ttf library not found]))
 
 # check for headers & libs
 PKG_CHECK_MODULES(SDL, sdl >= 1.2,[],
@@ -85,6 +95,7 @@ AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	externals/Makefile
+	externals/tclap/Makefile
 	src/Makefile
 	src/facade/Makefile
 	src/rc-facade/Makefile

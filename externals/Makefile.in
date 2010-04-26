@@ -135,6 +135,7 @@ SDL_CFLAGS = @SDL_CFLAGS@
 SDL_GFX_LIBS = @SDL_GFX_LIBS@
 SDL_LIBS = @SDL_LIBS@
 SDL_NET_LIBS = @SDL_NET_LIBS@
+SDL_TTF_LIBS = @SDL_TTF_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -184,14 +185,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # directories to build (rel to top dir)
-EXTERNALS_DIRS = oscframework xmlframework visualframework
+EXTERNALS_DIRS = oscframework xmlframework visualframework tclap
 
 # includes
 EXTERNALS_CFLAGS = \
     -I$(top_srcdir)/externals/oscframework/src \
     -I$(top_srcdir)/externals/xmlframework/src \
     -I$(top_srcdir)/externals/visualframework/src \
-    -I$(top_srcdir)/externals/visualframework/externals
+    -I$(top_srcdir)/externals/visualframework/src/visualframework \
+    -I$(top_srcdir)/externals
 
 
 # libs to link

@@ -1,0 +1,84 @@
+<?xml version="1.0" standalone=no>
+
+<facade>
+
+	<scene name="scene1">
+		<background R="0" G="255" B="0" A="255"/>
+		<pixel name="pixel">
+			<position x="4" y="8"/>
+			<color R="255" G="255" B="255" A="255"/>
+			<visible yesno="1"/>
+		</pixel>
+		<line name="line">
+			<position1 x="2" y="4"/>
+			<position2 x="8" y="4"/>
+			<color R="255" G="0" B="0" A="255"/>
+			<visible yesno="1"/>
+		</line>
+		<rect name="rect">
+			<position x="2" y="14"/>
+			<size width="4" height="6"/>
+			<color R="0" G="0" B="255" A="255"/>
+			<visible yesno="1"/>
+		</rect>
+	</scene>
+	
+	<scene name="scene2">
+		<bitmap name="bitmap">
+			<position x="5" y="5"/>
+			<size width="5" height="5" />
+			<center yesno="1"/>
+			<color R="200" G="200" B="200" A="255"/>
+			<visible yesno="1"/>
+			<frame>
+			--*--
+			--*--
+			*****
+			--*--
+			--*--
+			</frame>
+		</bitmap>
+	
+		<sprite name="sprite">
+			<position x="5" y="14"/>
+			<animation animate="1" loop="1" pingpong="1"/>
+			<center yesno="1"/>
+			<overlay yesno="0"/>
+			<bitmap frametime="1000">
+				<size width="5" height="5" />
+				<color R="0" G="200" B="0" A="255"/>
+				<frame>
+				***--
+				***--
+				*****
+				--***
+				--***
+				</frame>
+			</bitmap>
+			<bitmap frametime="1000">
+				<size width="5" height="5" />
+				<color R="255" G="255" B="255" A="255"/>
+				<frame>
+				--*--
+				--*--
+				*****
+				--*--
+				--*--
+				</frame>
+			</bitmap>
+			<bitmap frametime="1000">
+				<size width="5" height="5" />
+				<color R="0" G="0" B="200" A="255"/>
+				<frame>
+				-----
+				--*--
+				--*--
+				--*--
+				-----
+				</frame>
+			</bitmap>
+		</sprite>
+	</scene>
+	
+
+</facade>

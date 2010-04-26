@@ -1,5 +1,7 @@
 #include "Sprite.h"
 
+using namespace visual;
+
 Sprite::Sprite(string name) : DrawableObject("sprite"),
     pos(0, 0), bAnimate(true), bLoop(true), bPingPong(true),
     bDrawFromCenter(false), bDrawAllLayers(false),
@@ -9,10 +11,10 @@ Sprite::Sprite(string name) : DrawableObject("sprite"),
     addXmlAttribute("x", "position", XML_TYPE_INT, &pos.x);
     addXmlAttribute("y", "position", XML_TYPE_INT, &pos.y);
     addXmlAttribute("animate", "animation", XML_TYPE_BOOL, &bAnimate);
-    addXmlAttribute("loop", "animation",XML_TYPE_BOOL, &bAnimate);
-    addXmlAttribute("pingpong", "animation",XML_TYPE_BOOL, &bAnimate);
-    addXmlAttribute("drawFromCenter", "drawing",XML_TYPE_BOOL, &bDrawFromCenter);
-    addXmlAttribute("drawAllLayers", "drawing", XML_TYPE_BOOL, &bDrawAllLayers);
+    addXmlAttribute("loop", "animation",XML_TYPE_BOOL, &bLoop);
+    addXmlAttribute("pingpong", "animation",XML_TYPE_BOOL, &bPingPong);
+    addXmlAttribute("yesno", "center",XML_TYPE_BOOL, &bDrawFromCenter);
+    addXmlAttribute("yesno", "overlay", XML_TYPE_BOOL, &bDrawAllLayers);
 
     // detach variables from Xml
     removeXmlAttribute("R", "color");
@@ -36,7 +38,7 @@ void Sprite::addBitmap(Bitmap* bitmap)
 {
     if(bitmap == NULL)
     {
-        LOG_ERROR << "BitmapManager: Cannot add NULL bitmap" << endl;
+        LOG_ERROR << "Sprite: Cannot add NULL bitmap" << endl;
         return;
     }
 
@@ -49,7 +51,7 @@ void Sprite::removeBitmap(Bitmap* bitmap)
 {
     if(bitmap == NULL)
     {
-        LOG_ERROR << "BitmapManager: Cannot remove NULL bitmap" << endl;
+        LOG_ERROR << "Sprite: Cannot remove NULL bitmap" << endl;
         return;
     }
 
@@ -178,6 +180,7 @@ void Sprite::draw()
 
 void Sprite::setDrawFromCenter(bool yesno)
 {
+	bDrawFromCenter = yesno;
     for(unsigned int i = 0; i < bitmapList.size(); ++i)
     {
         Bitmap* b = bitmapList.at(i);
@@ -194,21 +197,23 @@ bool Sprite::readXml(TiXmlElement* e)
     {
         if(child->ValueStr() == "bitmap")
         {
-            LOG << "fhshfjdhfd" << endl;
-            if((name = Xml::getAttrString(child, "name")) != "")
-            {
+            //if((name = Xml::getAttrString(child, "name")) != "")
+            //{
+            name = Xml::getAttrString(child, "name");
                 LOG_DEBUG << "Sprite: Loading bitmap \"" << name << "\"" << std::endl;
 
                 Bitmap* b = new Bitmap(name);
                 b->loadXml(child);
                 addBitmap(b);
-            }
+            //}
+            /*
             else
             {
 
-                LOG_WARN << "Bitmap: Cannot load bitmap without name, line "
+                LOG_WARN << "Sprite: Cannot load bitmap without name, line "
                          << child->Row() << endl;
             }
+            */
         }
 
         child = child->NextSiblingElement();
@@ -258,7 +263,7 @@ bool Sprite::processOscMessage(const osc::ReceivedMessage& message,
     		message.types() == "i")
     {
         //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-        bDrawFromCenter= (bool) message.asInt32(0);
+        setDrawFromCenter((bool) message.asInt32(0));
         return true;
     }
 
@@ -267,7 +272,14 @@ bool Sprite::processOscMessage(const osc::ReceivedMessage& message,
     		message.types() == "i")
     {
         //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-        bAnimate= (bool) message.asInt32(0);
+        bAnimate = (bool) message.asInt32(0);
+        return true;
+    }
+    
+    else if(message.path() == getOscRootAddress() + "/overlay" &&
+    		message.types() == "i")
+    {
+        bDrawAllLayers = (bool) message.asInt32(0);
         return true;
     }
 

@@ -21,10 +21,9 @@ rc_facade_SOURCES = \
         objects/Pixel.h \
         objects/Rect.h \
         objects/Sprite.h \
-        objects/Sprite.cpp
-        
-#        objects/Image.h 
-#        objects/Image.cpp 
+        objects/Sprite.cpp \
+        objects/Image.h \
+        objects/Image.cpp 
 
 # include paths
 rc_facade_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
@@ -32,8 +31,7 @@ rc_facade_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
 
 # local libs to link
 rc_facade_LDADD = -L$(top_builddir)/src/facade -lfacade $(EXTERNALS_LIBS)
-#				  $(top_builddir)/rc-facade/objects/libobjects.a
 
 # libs to link
-rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS)
+rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_TTF_LIBS)
 

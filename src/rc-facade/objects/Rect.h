@@ -10,7 +10,7 @@ class Rect : public DrawableObject
     public:
 
         Rect(string name) : DrawableObject("rect"), pos(0, 0),
-            width(1), height(1), bFilled(false)
+            width(1), height(1), bFilled(false), bDrawFromCenter(0)
         {
             // add variables to Xml
             addXmlAttribute("x", "position", XML_TYPE_INT, &pos.x);
@@ -18,6 +18,7 @@ class Rect : public DrawableObject
             addXmlAttribute("width", "size", XML_TYPE_UINT, &width);
             addXmlAttribute("height", "size", XML_TYPE_UINT, &height);
             addXmlAttribute("yesno", "filled", XML_TYPE_BOOL, &bFilled);
+            addXmlAttribute("yesno", "center", XML_TYPE_BOOL, &bDrawFromCenter);
 
             setName(name);
         }
@@ -26,12 +27,12 @@ class Rect : public DrawableObject
         {
             if(bVisible)
             {
-                Config::getFacade().stroke(color);
+                Config::instance().getFacade().stroke(color);
 
                 if(bFilled)
-                    Config::getFacade().box(pos.x, pos.y, width, height);
+                    Config::instance().getFacade().box(pos.x, pos.y, width, height, bDrawFromCenter);
                 else
-                    Config::getFacade().rect(pos.x, pos.y, width, height);
+                    Config::instance().getFacade().rect(pos.x, pos.y, width, height, bDrawFromCenter);
             }
         }
 
@@ -99,7 +100,15 @@ class Rect : public DrawableObject
             		message.types() == "i")
             {
                 //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-                bFilled = message.asBool(0);
+                bFilled = (bool) message.asInt32(0);
+                return true;
+            }
+            
+            else if(message.path() == getOscRootAddress() + "/center" &&
+    				message.types() == "i")
+            {
+                //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
+                bDrawFromCenter = (bool) message.asInt32(0);
                 return true;
             }
 
@@ -110,6 +119,7 @@ class Rect : public DrawableObject
         vmml::Vector2i pos;
         unsigned int width, height;
         bool bFilled;
+        bool bDrawFromCenter;       /// draw from the center using pos
 };
 
 

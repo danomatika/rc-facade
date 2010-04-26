@@ -177,19 +177,20 @@ void Facade::line(int x1, int y1, int x2, int y2)
 
 void Facade::rect(int x, int y, int w, int h, bool drawFromCenter)
 {
+
     if(drawFromCenter)
     {
-        line(x-w/2, y-h/2, x+w/2, y-h/2);
-        line(x-w/2, y-h/2, x-w/2, y+h/2);
-        line(x+w/2, y+h/2, x-w/2, y+h/2);
-        line(x+w/2, y+h/2, x+w/2, y-h/2);
+        line(x-w/2, y-h/2, x+w/2-1, y-h/2);
+        line(x-w/2, y-h/2, x-w/2, y+h/2-1);
+        line(x+w/2-1, y+h/2-1, x-w/2, y+h/2-1);
+        line(x+w/2-1, y+h/2-1, x+w/2-1, y-h/2);
     }
     else
     {
-        line(x, y, x+w, y);
-        line(x, y, x, y+h);
-        line(x+w, y, x+w, y+h);
-        line(x, y+h, x+w, y+h);
+        line(x, y, x+w-1, y);
+        line(x, y, x, y+h-1);
+        line(x+w-1, y, x+w-1, y+h-1);
+        line(x, y+h-1, x+w-1, y+h-1);
     }
 }
 
@@ -198,11 +199,11 @@ void Facade::box(int x, int y, int w, int h, bool drawFromCenter)
     if(drawFromCenter)
     {
         for(int _y = y-h/2; _y < y+h/2; ++_y)
-            line(x-w/2, _y, x+w/2, _y);
+            line(x-w/2, _y, x+w/2-1, _y);
     }
     else
     {
-        for(int _y = y; _y < y+h+1; _y++)
+        for(int _y = y; _y < y+h; _y++)
             line(x, _y, x+w-1, _y);
     }
 }
@@ -266,7 +267,7 @@ void Facade::drawGrid(int x, int y)
           //  else
                 Graphics::noFill();
             Graphics::stroke(Side::getOutlineColor());
-            Graphics::rectangle(xPos, yPos, Side::getWindowSize()*FACADE_WIN_ASPECT_WIDTH, Side::getWindowSize(), Graphics::CORNER);
+            Graphics::rectangle(xPos, yPos, Side::getWindowSize()*FACADE_WIN_ASPECT_WIDTH, Side::getWindowSize());
 
             xPos += Side::getWindowSize()*FACADE_WIN_ASPECT_WIDTH;
         }

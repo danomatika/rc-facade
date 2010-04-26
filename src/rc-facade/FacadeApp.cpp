@@ -8,7 +8,8 @@
 #define OSC_BASE_ADDR   "/visual/facade"
 
 FacadeApp::FacadeApp() : OscObject(""), bRunning(true),
-    facade(Config::getFacade()), receiver(Config::getReceiver()),
+    facade(Config::instance().getFacade()),
+    receiver(Config::instance().getReceiver()),
     reloadTimestamp(0)
 {
     // set osc addresses
@@ -17,7 +18,7 @@ FacadeApp::FacadeApp() : OscObject(""), bRunning(true),
     sceneManager.setOscRootAddress(OSC_BASE_ADDR);
 
     receiver.addOscObject(this);
-    //receiver.addOscObject(&sceneManager);
+    receiver.addOscObject(&sceneManager);
     
     reloadTimestamp = Graphics::getMillis();
 }
@@ -42,6 +43,7 @@ void FacadeApp::init()
     facade.drawOutlines(false);
 
     // move some sides
+    
     facade.setSidePos(Facade::SIDE_LAB_EAST, 0, 18);
     facade.setSidePos(Facade::SIDE_LAB_NORTH, 5, 17);
 
@@ -50,11 +52,15 @@ void FacadeApp::init()
     facade.setSidePos(Facade::SIDE_MAIN_NORTH, 0, 0);
 
     facade.recomputeSize();
+    
 
     facade.print();
 
     // load the xml file
-    sceneManager.loadXmlFile("../data/CloseEncounters.xml");
+    if(Config::instance().file != "")
+    {
+    	sceneManager.loadXmlFile(Config::instance().file);
+    }
 }
 
 void FacadeApp::setup()
@@ -112,8 +118,8 @@ void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
             {
                 LOG << "Reloading xml file" << endl;
                 sceneManager.closeXmlFile();
-                sceneManager.clear();
-                sceneManager.loadXmlFile("../data/CloseEncounters.xml");
+                sceneManager.clear(true);
+                sceneManager.loadXmlFile();
             }
             break;
 
@@ -151,6 +157,18 @@ bool FacadeApp::processOscMessage(const osc::ReceivedMessage& message,
             sceneManager.gotoScene(index);
             return true;
         }
+    }
+    
+    else if(message.path() == getOscRootAddress() + "/scene/prev")
+    {
+    	sceneManager.prevScene();
+    	return true;
+    }
+    
+    else if(message.path() == getOscRootAddress() + "/scene/next")
+    {
+    	sceneManager.nextScene();
+    	return true;
     }
 
     else if(message.path() == getOscRootAddress() + "/quit")

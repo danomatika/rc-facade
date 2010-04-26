@@ -33,7 +33,7 @@ class DrawableObject : public XmlObject, public OscObject
         void setName(string name)
         {
             // set osc address relative to root in listener
-            setOscRootAddress(Config::getReceiver().getOscRootAddress() + "/" + name);
+            setOscRootAddress(Config::instance().getReceiver().getOscRootAddress() + "/" + name);
 
             LOG << name << " " << getOscRootAddress() << endl;
 
@@ -93,7 +93,7 @@ class DrawableObject : public XmlObject, public OscObject
             		message.types() == "i")
             {
                 //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-                bVisible = message.asBool(0);
+                bVisible = (bool) message.asInt32(0);
                 return true;
             }
 
@@ -101,7 +101,7 @@ class DrawableObject : public XmlObject, public OscObject
             return false;
         }
 
-        Color color;
+        visual::Color color;
         bool bVisible;
         string name;
 };

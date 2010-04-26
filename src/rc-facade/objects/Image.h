@@ -34,10 +34,12 @@ class Image : public DrawableObject
         bool processOscMessage(const osc::ReceivedMessage& message,
         					   const osc::MessageSource& source);
 
-        SDL_Surface* image;         /// contians pixel data
+        vector<visual::Color> bitmap;	/// bitmap of colors
 
+		string filename;			/// filename to load
         unsigned int frameTime;     /// how long to display in ms
         vmml::Vector2i pos;
+        unsigned int width, height;
         bool bDrawFromCenter;       /// draw from the center using pos
 };
 

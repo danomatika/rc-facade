@@ -28,7 +28,7 @@ class Scene : public XmlObject, public OscObject
 
         string getName() {return _name;}
 
-        Color& getBackground() {return _background;}
+        visual::Color& getBackground() {return _background;}
 
     protected:
 
@@ -40,7 +40,7 @@ class Scene : public XmlObject, public OscObject
 
         string _name;
         vector<DrawableObject*> _objectList;
-        Color _background;
+        visual::Color _background;
 };
 
 #endif // SCENE_H

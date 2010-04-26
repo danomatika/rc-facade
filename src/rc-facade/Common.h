@@ -12,7 +12,7 @@
 #include <oscframework/oscframework.h>
 #include <xmlframework/xmlframework.h>
 
-using namespace visual;
+//using namespace visual;
 using namespace osc;
 using namespace xml;
 using namespace std;

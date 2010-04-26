@@ -36,14 +36,14 @@ void Bitmap::draw(int x, int y)
             yPos = yPos - height/2;
         }
 
-        Config::getFacade().stroke(color);
+        Config::instance().getFacade().stroke(color);
 
         for(unsigned int _y = 0; _y < height; ++_y)
         {
             for(unsigned int _x = 0; _x < width; ++_x)
             {
                 if(bitmap.at(_y*width + _x))
-                    Config::getFacade().pixel(xPos+_x, yPos+_y);
+                    Config::instance().getFacade().pixel(xPos+_x, yPos+_y);
             }
         }
     }
@@ -56,7 +56,7 @@ bool Bitmap::readXml(TiXmlElement* e)
     {
         stringstream frame(Xml::getText(child));
         string line;
-        unsigned int numPix= 0;
+        unsigned int numPix = 0;
 
         // read through all the chars
         while(!frame.eof())
@@ -154,7 +154,7 @@ bool Bitmap::processOscMessage(const osc::ReceivedMessage& message,
         return true;
     }
     
-
+/*
     else if(message.path() == getOscRootAddress() + "/size" &&
     		message.types() == "ii")
     {
@@ -177,13 +177,13 @@ bool Bitmap::processOscMessage(const osc::ReceivedMessage& message,
         height = message.asInt32(0);
         return true;
     }
-
+*/
 
     else if(message.path() == getOscRootAddress() + "/center" &&
     		message.types() == "i")
     {
         //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-        bDrawFromCenter= message.asBool(0);
+        bDrawFromCenter = (bool) message.asInt32(0);
         return true;
     }
 

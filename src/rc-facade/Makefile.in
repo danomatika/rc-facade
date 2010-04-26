@@ -53,7 +53,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am_rc_facade_OBJECTS = rc_facade-Config.$(OBJEXT) \
 	rc_facade-FacadeApp.$(OBJEXT) rc_facade-main.$(OBJEXT) \
 	rc_facade-Scene.$(OBJEXT) rc_facade-SceneManager.$(OBJEXT) \
-	rc_facade-Bitmap.$(OBJEXT) rc_facade-Sprite.$(OBJEXT)
+	rc_facade-Bitmap.$(OBJEXT) rc_facade-Sprite.$(OBJEXT) \
+	rc_facade-Image.$(OBJEXT)
 rc_facade_OBJECTS = $(am_rc_facade_OBJECTS)
 am__DEPENDENCIES_1 =
 rc_facade_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -125,6 +126,7 @@ SDL_CFLAGS = @SDL_CFLAGS@
 SDL_GFX_LIBS = @SDL_GFX_LIBS@
 SDL_LIBS = @SDL_LIBS@
 SDL_NET_LIBS = @SDL_NET_LIBS@
+SDL_TTF_LIBS = @SDL_TTF_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -174,14 +176,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # directories to build (rel to top dir)
-EXTERNALS_DIRS = oscframework xmlframework visualframework
+EXTERNALS_DIRS = oscframework xmlframework visualframework tclap
 
 # includes
 EXTERNALS_CFLAGS = \
     -I$(top_srcdir)/externals/oscframework/src \
     -I$(top_srcdir)/externals/xmlframework/src \
     -I$(top_srcdir)/externals/visualframework/src \
-    -I$(top_srcdir)/externals/visualframework/externals
+    -I$(top_srcdir)/externals/visualframework/src/visualframework \
+    -I$(top_srcdir)/externals
 
 
 # libs to link
@@ -208,11 +211,10 @@ rc_facade_SOURCES = \
         objects/Pixel.h \
         objects/Rect.h \
         objects/Sprite.h \
-        objects/Sprite.cpp
+        objects/Sprite.cpp \
+        objects/Image.h \
+        objects/Image.cpp 
 
-
-#        objects/Image.h 
-#        objects/Image.cpp 
 
 # include paths
 rc_facade_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
@@ -221,10 +223,9 @@ rc_facade_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
 
 # local libs to link
 rc_facade_LDADD = -L$(top_builddir)/src/facade -lfacade $(EXTERNALS_LIBS)
-#				  $(top_builddir)/rc-facade/objects/libobjects.a
 
 # libs to link
-rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS)
+rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_TTF_LIBS)
 all: all-am
 
 .SUFFIXES:
@@ -309,6 +310,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Bitmap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Config.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-FacadeApp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Image.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Scene.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-SceneManager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Sprite.Po@am__quote@
@@ -425,6 +427,20 @@ rc_facade-Sprite.obj: objects/Sprite.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='objects/Sprite.cpp' object='rc_facade-Sprite.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-Sprite.obj `if test -f 'objects/Sprite.cpp'; then $(CYGPATH_W) 'objects/Sprite.cpp'; else $(CYGPATH_W) '$(srcdir)/objects/Sprite.cpp'; fi`
+
+rc_facade-Image.o: objects/Image.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-Image.o -MD -MP -MF $(DEPDIR)/rc_facade-Image.Tpo -c -o rc_facade-Image.o `test -f 'objects/Image.cpp' || echo '$(srcdir)/'`objects/Image.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-Image.Tpo $(DEPDIR)/rc_facade-Image.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='objects/Image.cpp' object='rc_facade-Image.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-Image.o `test -f 'objects/Image.cpp' || echo '$(srcdir)/'`objects/Image.cpp
+
+rc_facade-Image.obj: objects/Image.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-Image.obj -MD -MP -MF $(DEPDIR)/rc_facade-Image.Tpo -c -o rc_facade-Image.obj `if test -f 'objects/Image.cpp'; then $(CYGPATH_W) 'objects/Image.cpp'; else $(CYGPATH_W) '$(srcdir)/objects/Image.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-Image.Tpo $(DEPDIR)/rc_facade-Image.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='objects/Image.cpp' object='rc_facade-Image.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-Image.obj `if test -f 'objects/Image.cpp'; then $(CYGPATH_W) 'objects/Image.cpp'; else $(CYGPATH_W) '$(srcdir)/objects/Image.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

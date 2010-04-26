@@ -20,7 +20,7 @@ class SceneManager : public XmlObject, public OscObject
         void removeObject(Scene* object);
 
         /// clears (deletes) all the objects in the list
-        void clear();
+        void clear(bool keepCurScene=false);
 
         void nextScene();
         void prevScene();

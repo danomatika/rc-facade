@@ -8,32 +8,67 @@
 
 #include <facade/Facade.h>
 
+/**
+    \class  Config
+    \brief  global, per-application instance state variable container class
+
+    implemented as a singleton class following:
+    http://en.wikipedia.org/wiki/Singleton_pattern
+
+    no initialization is needed, just use equt::Config::instance() to access
+    member functions, data
+**/
 class Config
 {
     public:
 
-        static void setupFacade(string ip, unsigned int port=8080)
+		/**
+            \brief singleton data access
+            \return a reference to itself
+
+            creates a new object on the first call
+        **/
+        static Config& instance();
+        
+        /* ***** VARIABLES ***** */
+        
+        std::string file;	///< facade xml file to load
+
+		/* **** OBJECTS ***** */
+
+		/// setup the facade object
+        inline void setupFacade(string ip, unsigned int port=8080)
         {
             _facade.setup(ip, port);
         }
 
-        static void setupReceiver(unsigned int port)
+		/// setup the osc receiver
+        inline void setupReceiver(unsigned int port)
         {
             _oscReceiver.setup(port);
         }
 
-        static Facade& getFacade() {return _facade;}
-        static OscReceiver& getReceiver() {return _oscReceiver;}
+		/// get the facade object
+        Facade& getFacade() {return _facade;}
+        
+        /// get the osc reciever
+        OscReceiver& getReceiver() {return _oscReceiver;}
+        
+        /**
+        	\brief	parse the commandline options
+        */
+        bool parseCommandLine(int argc, char **argv);
 
     private:
 
-        Config() {}                       // cannot create
-        Config(const Config& from) {}     // not copyable
-        virtual ~Config() {}              // cannot destroy
-        void operator =(Config& from) {}   // not copyable
-
-        static Facade _facade;
-        static OscReceiver _oscReceiver;
+        Facade _facade;				///< the facade object
+        OscReceiver _oscReceiver;	///< the osc recviever
+        
+        // hide all the constructors, copy functions here
+        Config();                       // cannot create
+        Config(const Config& from) {}	// not copyable
+        virtual ~Config() {}           	// cannot destroy
+        void operator =(Config& from) {}// not copyable
 };
 
 #endif // CONFIG_H

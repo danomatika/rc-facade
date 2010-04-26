@@ -25,8 +25,8 @@ class Pixel : public DrawableObject
         {
             if(bVisible)
             {
-                Config::getFacade().stroke(color);
-                Config::getFacade().pixel(pos.x, pos.y);
+                Config::instance().getFacade().stroke(color);
+                Config::instance().getFacade().pixel(pos.x, pos.y);
             }
         }
 

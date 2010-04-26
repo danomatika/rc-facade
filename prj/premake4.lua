@@ -20,7 +20,7 @@ project "facade"
 	
 	includedirs { "../src",
 				  "../externals/visualframework/src",
-				  "../externals/visualframework/externals",
+				  "../externals/visualframework/src/visualframework",
 			 	  "../externals/xmlframework/src",
 			  	  "../externals/oscframework/src",
 			  	  "../externals/" }
@@ -29,11 +29,15 @@ project "facade"
 	
 	configuration "linux"
 		buildoptions { "`pkg-config --cflags sdl`",
-					   "`pkg-config --cflags SDL_gfx`" }
+					   "`pkg-config --cflags SDL_gfx`",
+					   "`pkg-config --cflags SDL_image`" }
 		linkoptions { "`pkg-config --libs sdl`",
-					  "`pkg-config --libs SDL_gfx`" }
+					  "`pkg-config --libs SDL_gfx`",
+					  "`pkg-config --libs SDL_image`" }
 	
 	configuration "macosx"
+		-- get rid of visibilty warnings
+		buildoptions { "-fvisibility-inlines-hidden" }
 		-- MacPorts
 		includedirs { "/opt/local/include" }
 		libdirs { "/opt/local/lib" }
@@ -55,7 +59,7 @@ project "rc-facade"
 	
 	includedirs { "../src",
 				  "../externals/visualframework/src",
-				  "../externals/visualframework/externals",
+				  "../externals/visualframework/src/visualframework",
 			 	  "../externals/xmlframework/src",
 			  	  "../externals/oscframework/src",
 			  	  "../externals/" }
@@ -63,15 +67,17 @@ project "rc-facade"
 			  "../externals/xmlframework/src/xmlframework",
       		  "../externals/oscframework/src/oscframework" }
 	links { "facade", "oscframework", "xmlframework", "visualframework",
-		    "SDL_net" }
+		    "SDL_net", "SDL_ttf" }
 
 	configuration "linux"
 		buildoptions { "`pkg-config --cflags sdl`",
 					   "`pkg-config --cflags SDL_gfx`",
-					   "`pkg-config --cflags liblo`" }
+					   "`pkg-config --cflags liblo`",
+					   "`pkg-config --cflags SDL_image`" }
 		linkoptions { "`pkg-config --libs sdl`",
 					  "`pkg-config --libs SDL_gfx`",
-					  "`pkg-config --libs liblo`" }
+					  "`pkg-config --libs liblo`",
+					  "`pkg-config --libs SDL_image`" }
 
 	configuration 'macosx'
 		-- MacPorts

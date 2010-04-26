@@ -24,8 +24,8 @@ class Line : public DrawableObject
         {
             if(bVisible)
             {
-                Config::getFacade().stroke(color);
-                Config::getFacade().line(pos1.x, pos1.y, pos2.x, pos2.y);
+                Config::instance().getFacade().stroke(color);
+                Config::instance().getFacade().line(pos1.x, pos1.y, pos2.x, pos2.y);
             }
         }
 

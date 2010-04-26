@@ -9,6 +9,7 @@ Image::Image(string name) : DrawableObject("image"), frameTime(0),
 {
     // add variables to Xml
     addXmlAttribute("name", "image", XML_TYPE_STRING, &name);
+    addXmlAttribute("file", "image", XML_TYPE_STRING, &filename);
     addXmlAttribute("frametime", "image", XML_TYPE_UINT, &frameTime);
     addXmlAttribute("x", "position", XML_TYPE_INT, &pos.x);
     addXmlAttribute("y", "position", XML_TYPE_INT, &pos.y);
@@ -26,26 +27,17 @@ Image::Image(string name) : DrawableObject("image"), frameTime(0),
 }
 
 Image::~Image()
-{
-    if(image != NULL)
-    {
-        SDL_FreeSurface(image);
-    }
-}
+{}
 
 bool Image::loadFile(string filename)
 {
-    if(image != NULL)
-    {
-        SDL_FreeSurface(image);
-    }
+	if(filename == "")
+    	filename = this->filename;
+       
+//    if(!image(filename))
+//    	return false;
 
-    image = IMG_Load(filename.c_str());
-    if(image == NULL)
-    {
-
-        return false;
-    }
+    
 
     return true;
 }
@@ -57,7 +49,8 @@ void Image::draw()
 
 void Image::draw(int x, int y)
 {
-    if(image == NULL)
+/*
+    if(bitmap == NULL)
         return;
 
     if(bVisible)
@@ -66,20 +59,20 @@ void Image::draw(int x, int y)
 
         if(bDrawFromCenter)
         {
-            xPos = xPos - image->w/2;
-            yPos = yPos - image->h/2;
+            xPos = xPos - bitmap->w/2;
+            yPos = yPos - bitmap->h/2;
         }
-
-        Config::getFacade().stroke(color);
 
         for(int _y = 0; _y < image->h; ++_y)
         {
             for(int _x = 0; _x < image->w; ++_x)
             {
-
+            	Config::instance().getFacade().stroke(bitmap.at(_y*width + _x));
+                Config::instance().getFacade().pixel(xPos+_x, yPos+_y);
             }
         }
     }
+    */
 }
 
 bool Image::readXml(TiXmlElement* e)

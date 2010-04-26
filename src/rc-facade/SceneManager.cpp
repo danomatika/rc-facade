@@ -39,7 +39,7 @@ void SceneManager::removeObject(Scene* object)
     }
 }
 
-void SceneManager::clear()
+void SceneManager::clear(bool keepCurScene)
 {
     /// delete all the objects
     for(unsigned int i = 0; i < _objectList.size(); ++i)
@@ -49,6 +49,11 @@ void SceneManager::clear()
         delete o;
     }
     _objectList.clear();
+    
+    if(!keepCurScene)
+    {
+    	_currentScene = 0;
+	}
 }
 
 void SceneManager::nextScene()
@@ -65,7 +70,7 @@ void SceneManager::nextScene()
 
     LOG_DEBUG << "SceneManager: Changed to scene \"" << _objectList.at(_currentScene)->getName() << "\"" << std::endl;
 
-    Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
+    Config::instance().getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
 
 void SceneManager::prevScene()
@@ -83,7 +88,7 @@ void SceneManager::prevScene()
     LOG_DEBUG << "SceneManager: Changed to scene \"" << _objectList.at(_currentScene)->getName() << "\"" << std::endl;
 
 
-    Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
+    Config::instance().getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
 
 void SceneManager::gotoScene(unsigned int num)
@@ -103,7 +108,7 @@ void SceneManager::gotoScene(unsigned int num)
     LOG_DEBUG << "SceneManager: Changed scene to \""
               << _objectList.at(_currentScene)->getName() << "\""<< endl;
 
-    Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
+    Config::instance().getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 }
 
 void SceneManager::gotoScene(string name)
@@ -117,7 +122,7 @@ void SceneManager::gotoScene(string name)
             LOG_DEBUG << "SceneManager: Changed scene to \""
                       << _objectList.at(_currentScene)->getName() << "\"" << endl;
 
-            Config::getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
+            Config::instance().getFacade().setClearColor(_objectList.at(_currentScene)->getBackground());
 
             return;
         }
@@ -163,7 +168,7 @@ bool SceneManager::readXml(TiXmlElement* e)
     }
 
     // try to load the first scene
-    gotoScene(0);
+    //gotoScene(0);
 
     return true;
 }

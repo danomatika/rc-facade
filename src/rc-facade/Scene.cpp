@@ -176,6 +176,13 @@ bool Scene::readXml(TiXmlElement* e)
             }
         }
 
+		else if(child->ValueStr() != "background")
+        {
+            LOG_WARN << "Scene \"" << _name << "\": ignoring unknown element \""
+                     << child->ValueStr() << "\"" << endl;
+        }
+
+
         child = child->NextSiblingElement();
     }
 
