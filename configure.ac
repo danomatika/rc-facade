@@ -1,7 +1,7 @@
 #########################################
 ##### Prelude #####
 
-AC_INIT([rc-facade], [0.1.0], [danomatika@gmail.com])
+AC_INIT([rc-facade], [0.2.0], [danomatika@gmail.com])
 AC_CONFIG_SRCDIR([src/rc-facade/main.cpp])
 AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
