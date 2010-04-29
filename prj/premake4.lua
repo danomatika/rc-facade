@@ -19,12 +19,11 @@ project "facade"
 	files { "../src/facade/**.h", "../src/facade/**.cpp" }
 	
 	includedirs { "../src",
-				  "../externals/visualframework/src",
-				  "../externals/visualframework/src/visualframework",
-			 	  "../externals/xmlframework/src",
-			  	  "../externals/oscframework/src",
-			  	  "../externals/" }
-	libdirs { "../externals/visualframework/src/visualframework"}
+				  "../externals/",
+				  "../externals/visualframework",
+			 	  "../externals/xmlframework",
+			  	  "../externals/oscframework" }
+	libdirs { "../externals/visualframework" }
     links { "visualframework", "SDL_net" }
 	
 	configuration "linux"
@@ -58,14 +57,13 @@ project "rc-facade"
 	files { "../src/rc-facade/**.h", "../src/rc-facade/**.cpp" }
 	
 	includedirs { "../src",
-				  "../externals/visualframework/src",
-				  "../externals/visualframework/src/visualframework",
-			 	  "../externals/xmlframework/src",
-			  	  "../externals/oscframework/src",
-			  	  "../externals/" }
-	libdirs { "../externals/visualframework/src/visualframework",
-			  "../externals/xmlframework/src/xmlframework",
-      		  "../externals/oscframework/src/oscframework" }
+				  "../externals/",
+				  "../externals/visualframework",
+			 	  "../externals/xmlframework",
+			  	  "../externals/oscframework" }
+	libdirs { "../externals/visualframework",
+			  "../externals/xmlframework",
+      		  "../externals/oscframework" }
 	links { "facade", "oscframework", "xmlframework", "visualframework",
 		    "SDL_net", "SDL_ttf" }
 

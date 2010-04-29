@@ -18,6 +18,7 @@ RELEASE_CXXFLAGS="-g -O2"
 # check progs
 AC_PROG_CXX
 AC_PROG_RANLIB
+AC_PROG_CC # needed for visualframework
 
 # using c++ compiler and linker
 AC_LANG_CPLUSPLUS
@@ -82,11 +83,7 @@ fi
 ##### Externals #####
 
 # externals with configure scripts
-AC_CONFIG_SUBDIRS(
-	[externals/oscframework]
-	[externals/xmlframework]
-	[externals/visualframework]
-)
+AC_CONFIG_SUBDIRS()
 
 #########################################
 ##### Output files #####
@@ -95,7 +92,10 @@ AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	externals/Makefile
-	externals/tclap/Makefile
+	externals/oscframework/Makefile
+	externals/xmlframework/Makefile
+	externals/visualframework/Makefile
+	externals/visualframework/vmmlib/Makefile
 	src/Makefile
 	src/facade/Makefile
 	src/rc-facade/Makefile
