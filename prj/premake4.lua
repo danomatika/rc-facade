@@ -25,7 +25,6 @@ project "facade"
 			  	  "../externals/oscframework" }
 	libdirs { "../externals/visualframework" }
     links { "visualframework", "SDL_net" }
-    buildoptions { "-Werror" }
 	
 	configuration "linux"
 		buildoptions { "`pkg-config --cflags sdl`",
@@ -43,11 +42,11 @@ project "facade"
 		libdirs { "/opt/local/lib" }
 
 	configuration "Debug"
-		--defines { "DEBUG" }
+		defines { "DEBUG" }
 		flags { "Symbols" }
 
 	configuration "Release"
-		--defines { "NDEBUG" }
+		defines { "NDEBUG" }
 		flags { "Optimize" } 
 
 -- rc-unit executable
@@ -67,7 +66,6 @@ project "rc-facade"
       		  "../externals/oscframework" }
 	links { "facade", "oscframework", "xmlframework", "visualframework",
 		    "SDL_net", "SDL_ttf" }
-	buildoptions { "-Werror" }
 
 	configuration "linux"
 		buildoptions { "`pkg-config --cflags sdl`",
@@ -90,10 +88,10 @@ project "rc-facade"
 					  "-Wl,-framework,AudioUnit", "-Wl,-framework,IOKit" }
 
 	configuration "Debug"
-		--defines { "DEBUG" }
+		defines { "DEBUG" }
 		flags { "Symbols" }
 
 	configuration "Release"
-		--defines { "NDEBUG" }
+		defines { "NDEBUG" }
 		flags { "Optimize" }
 		
