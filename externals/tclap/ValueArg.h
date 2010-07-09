@@ -29,13 +29,13 @@
 
 #include <tclap/Arg.h>
 #include <tclap/Constraint.h>
-
+/*
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #else
 #define HAVE_SSTREAM
 #endif
-
+*/
 #if defined(HAVE_SSTREAM)
 #include <sstream>
 #elif defined(HAVE_STRSTREAM)

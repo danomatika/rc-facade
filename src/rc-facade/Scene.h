@@ -20,15 +20,18 @@ class Scene : public XmlObject, public OscObject
 
         /// clears (deletes) all the objects in the list
         void clear();
+        
+        /// setup resources
+        void setup();
 
         /// draw all the objects in the list
         void draw();
 
         /* ***** UTIL ***** */
 
-        string getName() {return _name;}
+        inline string getName() {return _name;}
 
-        visual::Color& getBackground() {return _background;}
+        inline visual::Color getBackground() {return _background;}
 
     protected:
 

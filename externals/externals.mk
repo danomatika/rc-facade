@@ -1,7 +1,7 @@
 # external libs variables
 
 # directories to build (rel to top dir)
-EXTERNALS_DIRS = oscframework xmlframework visualframework
+EXTERNALS_DIRS = oscframework xmlframework visualframework tclap
 
 # includes
 EXTERNALS_CFLAGS = \

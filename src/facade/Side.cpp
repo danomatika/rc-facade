@@ -7,7 +7,7 @@ using namespace visual;
 
 unsigned int Side::_windowSize = 5;
 bool Side::_bDrawOutlines = true;
-Color Side::_outlineColor(0x666666);
+uint32_t Side::_outlineColor(0x666666);
 
 Side::~Side()
 {
@@ -24,10 +24,15 @@ void Side::setPos(int row, int column)
     endCol = column+nrCols-1;
 }
 
+void Side::move(int rowAmount, int colAmount)
+{
+	setPos(startRow+rowAmount, startCol+colAmount);
+}
+
 int Side::getAddress(int row, int col, bool global)
 {
-    if(!bEnabled)
-        return -1;
+    //if(!bEnabled)
+    //    return -1;
 
     if(global)  // grab address in relation to building's overall grid
     {
@@ -63,7 +68,7 @@ int Side::getAddress(int row, int col, bool global)
     return -1;
 }
 
-void Side::setColor(FrameBuffer& frame, Color color)
+void Side::setColor(FrameBuffer& frame, uint32_t color)
 {
     if(!bEnabled)
         return;
@@ -74,7 +79,7 @@ void Side::setColor(FrameBuffer& frame, Color color)
     }
 }
 
-void Side::setRowColor(FrameBuffer& frame, int row, Color color, bool global)
+void Side::setRowColor(FrameBuffer& frame, int row, uint32_t color, bool global)
 {
     if(!bEnabled)
         return;
@@ -88,7 +93,7 @@ void Side::setRowColor(FrameBuffer& frame, int row, Color color, bool global)
     }
 }
 
-void Side::setColColor(FrameBuffer& frame, int column, Color color, bool global)
+void Side::setColColor(FrameBuffer& frame, int column, uint32_t color, bool global)
 {
     if(!bEnabled)
         return;
@@ -102,7 +107,7 @@ void Side::setColColor(FrameBuffer& frame, int column, Color color, bool global)
     }
 }
 
-void Side::setWindowColor(FrameBuffer& frame, int row, int column, Color color, bool global)
+void Side::setWindowColor(FrameBuffer& frame, int row, int column, uint32_t color, bool global)
 {
     if(!bEnabled)
         return;
@@ -114,23 +119,23 @@ void Side::print()
 {
     for(int r = 0; r < nrRows; ++r)
     {
-        LOG << "    ";
+        std::cout << "    ";
 
         for(int c = 0; c < nrCols; ++c)
         {
             int addr = getAddress(r, c);
             if(addr < 0)
-                LOG << "  -1 ";
+                std::cout << "  -1 ";
             else if(addr < 10)
-                LOG << "   " << addr << " ";
+                std::cout << "   " << addr << " ";
             else if(addr < 100)
-                LOG << "  " << addr << " ";
+                std::cout << "  " << addr << " ";
             else if(addr < 1000)
-                LOG << " " << addr << " ";
+                std::cout << " " << addr << " ";
             else
-                LOG << addr << " ";
+                std::cout << addr << " ";
         }
-        LOG << std::endl;
+        std::cout << std::endl;
     }
 }
 
@@ -158,12 +163,12 @@ void Side::draw(FrameBuffer& frame, int x, int y, bool global)
             int addr = getAddress(r, c);
             if(addr != -1)
             {
-                Color color = frame.getColor(addr);
-
-                Graphics::fill(color);
+                Color c = frame.getColor(addr);
+                c.A = 0x66;
+                Graphics::fill(Color(c));
                 if(_bDrawOutlines)
                 {
-                    visual::Graphics::stroke(_outlineColor);
+                    visual::Graphics::stroke(Color(_outlineColor));
                 }
                 visual::Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH-1, _windowSize-1);
             }

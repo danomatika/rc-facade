@@ -26,6 +26,7 @@ class DrawableObject : public XmlObject, public OscObject
             addXmlAttribute("name", objectName, XML_TYPE_STRING, &name);
         }
 
+		virtual void setup() {}
         virtual void draw() = 0;
 
         /// sets the name and osc address, call this after the Config::_listener

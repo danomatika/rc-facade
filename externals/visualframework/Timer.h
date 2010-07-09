@@ -1,5 +1,24 @@
 /*==============================================================================
-    Dan Wilcox <danomatika@gmail.com>, 2009
+
+	Timer.h
+
+	visualframework: a simple 2d graphics framework
+  
+	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ==============================================================================*/
 #ifndef VISUAL_TIMER_H
 #define VISUAL_TIMER_H
@@ -16,7 +35,7 @@ class Timer
 {
 	public:
     
-    	Timer() : alarmstamp(0) {set();}
+    	Timer() : alarmMS(0), alarmstamp(0) {set();}
         Timer(const unsigned int alarmTime) {setAlarm(alarmTime);}
         virtual ~Timer() {}
         
@@ -30,8 +49,9 @@ class Timer
         /// \param	alarmTime	how many ms i nthe future the alrm should go off
         inline void setAlarm(const unsigned int alarmTime)
         {
+        	alarmMS = alarmTime;
         	timestamp = Graphics::getMillis();
-        	alarmstamp = timestamp + alarmTime;
+            alarmstamp = timestamp + alarmTime;
         }
         
         /// has the alarm gone off?
@@ -46,10 +66,17 @@ class Timer
         	return Graphics::getMillis() - timestamp;
         }
         
+        /// returns the difference between 0 and 1 (normalized)
+        inline float getDiffN()
+        {
+        	return getDiff()/alarmMS;
+        }
+        
     protected:
     
-    	unsigned int alarmstamp;	///< future timestamp
-    	unsigned int timestamp; 	///< current timestamp
+    	unsigned int alarmMS;	///< length of alarm
+    	unsigned int timestamp;	///< current timestamp
+        unsigned int alarmstamp; ///< future timestamp
 };
 
 } // namespace

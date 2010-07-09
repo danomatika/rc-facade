@@ -6,5 +6,6 @@
 #include "Rect.h"
 #include "Bitmap.h"
 #include "Sprite.h"
+#include "Image.h"
 
 #endif // OBJECTS_H

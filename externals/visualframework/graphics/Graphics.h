@@ -1,5 +1,26 @@
 /*==============================================================================
-    Dan Wilcox <danomatika@gmail.com>, 2009
+
+	Graphics.h
+
+	visualframework: a simple 2d graphics framework
+    
+    Uses the SPriG - SDL Primitive Generator by Jonathan Dearborn (GPL2)
+  
+	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ==============================================================================*/
 #ifndef VISUAL_GRAPHICS_H
 #define VISUAL_GRAPHICS_H
@@ -31,6 +52,14 @@ enum DrawMode
 {
     CENTER,
     CORNER
+};
+
+// global font modes
+enum FontMode
+{
+	SOLID,		// fast
+    BLENDED,	// antialiased
+    SHADED		// background
 };
 
 /// Window exception
@@ -65,6 +94,11 @@ class Graphics
         /// toggles between fullscreen and window,
         /// automatically destroys and recreates draw surface
         static bool toggleFullscreen();
+        
+        /// show/hide the mouse cursor (shown by default)
+        static bool getShowMouseCursor();
+        static void showMouseCursor(bool show);
+        static void toggleShowMouseCursor();
 
         /// get available fullscreen video resolutions (descending order)
         /// note: do not free any of the SDL_Rect pointers
@@ -95,13 +129,20 @@ class Graphics
         static void noStroke();
         static void noFill();
         
+        static const Color& getStroke()	{return _strokeColor;}
+        static const Color& getFill()	{return _fillColor;}
+        
         // affects rectangles
         static void rectMode(const DrawMode mode) {_rectMode = mode;}
         static const DrawMode getRectMode() {return _rectMode;} 
         
         // affects images
         static void imageMode(const DrawMode mode) {_imageMode = mode;}
-        static const DrawMode getImageMode() {return _imageMode;} 
+        static const DrawMode getImageMode() {return _imageMode;}
+        
+        // affects fonts
+        static void fontMode(const FontMode mode) {_fontMode = mode;}
+        static const FontMode getFontMode() {return _fontMode;}
 
         // global primitives
         static void point(const int x, const int y);
@@ -142,8 +183,10 @@ class Graphics
         static bool _bStroke;
         static bool _bFill;
 
+		// global draw modes
         static DrawMode _rectMode;
         static DrawMode _imageMode;
+        static FontMode _fontMode;
 };
 
 } // namespace

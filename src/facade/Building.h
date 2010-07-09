@@ -4,8 +4,6 @@
 #ifndef BUILDING_APP_H
 #define BUILDING_APP_H
 
-#include <visualframework/visualframework.h>
-
 #include <vector>
 #include "Side.h"
 #include "SideFuturelabEast.h"
@@ -55,15 +53,18 @@ class Building
             for(unsigned int i = 0; i < sides.size(); ++i)
             {
                 Side* side = sides.at(i);
-
-                if(side->getEndRow() > nrRows)
+                if(side->isEnabled())
                 {
-                    nrRows = side->getEndRow()+1;
-                }
 
-                if(side->getEndCol() > nrCols)
-                {
-                    nrCols = side->getEndCol()+1;
+                    if(side->getEndRow() >= nrRows)
+                    {
+                        nrRows = side->getEndRow()+1;
+                    }
+
+                    if(side->getEndCol() >= nrCols)
+                    {
+                        nrCols = side->getEndCol()+1;
+                    }
                 }
             }
         }
@@ -74,17 +75,20 @@ class Building
 
         void print()
         {
-            LOG << "Building: " << nrRows << "x" << nrCols << std::endl << std::endl;
+            std::cout << "Building: " << nrCols << "x" << nrRows << std::endl << std::endl;
 
             for(unsigned int i = 0; i < sides.size(); ++i)
             {
                 Side* side = sides.at(i);
-                LOG << "Side: " << side->getName() << " "
-                    <<side->getNrCols() << "x" << side->getNrRows()
-                    << " at (" << side->getStartCol() << ", " << side->getStartRow()
-                    << ")" << std::endl;
-                side->print();
-                LOG << std::endl;
+                if(side->isEnabled())
+                {
+                    std::cout << "Side: " << side->getName() << " "
+                        <<side->getNrCols() << "x" << side->getNrRows()
+                        << " at (" << side->getStartCol() << ", " << side->getStartRow()
+                        << ")" << std::endl;
+                    side->print();
+                    std::cout << std::endl;
+                }
             }
         }
 

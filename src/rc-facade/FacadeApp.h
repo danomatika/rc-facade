@@ -34,6 +34,7 @@ class FacadeApp : public Application, public OscObject
 
     protected:
 
+        /// osc callback
         bool processOscMessage(const osc::ReceivedMessage& message,
 								  const osc::MessageSource& source);
 

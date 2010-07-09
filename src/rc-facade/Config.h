@@ -18,7 +18,7 @@
     no initialization is needed, just use equt::Config::instance() to access
     member functions, data
 **/
-class Config
+class Config : public xml::XmlObject
 {
     public:
 
@@ -29,6 +29,11 @@ class Config
             creates a new object on the first call
         **/
         static Config& instance();
+        
+        /**
+        	\brief	parse the commandline options
+        */
+        bool parseCommandLine(int argc, char **argv);
         
         /* ***** VARIABLES ***** */
         
@@ -53,11 +58,11 @@ class Config
         
         /// get the osc reciever
         OscReceiver& getReceiver() {return _oscReceiver;}
-        
-        /**
-        	\brief	parse the commandline options
-        */
-        bool parseCommandLine(int argc, char **argv);
+
+	protected:
+    
+    	/// xml read callback
+        bool readXml(TiXmlElement* e);
 
     private:
 
@@ -66,7 +71,7 @@ class Config
         
         // hide all the constructors, copy functions here
         Config();                       // cannot create
-        Config(const Config& from) {}	// not copyable
+        //Config(const Config& from) {}	// not copyable
         virtual ~Config() {}           	// cannot destroy
         void operator =(Config& from) {}// not copyable
 };

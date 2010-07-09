@@ -33,5 +33,6 @@ rc_facade_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
 rc_facade_LDADD = -L$(top_builddir)/src/facade -lfacade $(EXTERNALS_LIBS)
 
 # libs to link
-rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_TTF_LIBS)
+rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) \
+					$(SDL_image_LIBS) $(SDL_TTF_LIBS)
 

@@ -13,6 +13,8 @@ Image::Image(string name) : DrawableObject("image"), frameTime(0),
     addXmlAttribute("frametime", "image", XML_TYPE_UINT, &frameTime);
     addXmlAttribute("x", "position", XML_TYPE_INT, &pos.x);
     addXmlAttribute("y", "position", XML_TYPE_INT, &pos.y);
+    addXmlAttribute("width", "size", XML_TYPE_UINT, &width);
+    addXmlAttribute("height", "size", XML_TYPE_UINT, &height);
     addXmlAttribute("yesno", "center", XML_TYPE_BOOL, &bDrawFromCenter);
 
     // detach variables from Xml
@@ -20,26 +22,54 @@ Image::Image(string name) : DrawableObject("image"), frameTime(0),
     removeXmlAttribute("G", "color");
     removeXmlAttribute("B", "color");
     removeXmlAttribute("A", "color");
-    removeXmlAttribute("width", "size");
-    removeXmlAttribute("height", "size");
 
     setName(name);
 }
 
 Image::~Image()
-{}
+{
+	bitmap.clear();
+}
 
 bool Image::loadFile(string filename)
 {
 	if(filename == "")
     	filename = this->filename;
-       
-//    if(!image(filename))
-//    	return false;
-
     
+    visual::Image image;
+	image.load(filename);
+    if(!image.isLoaded())
+    	return false;
 
+    if(image.width() != (int) width || image.height() != (int) height)
+    {
+        // resize image
+        LOG_DEBUG << "Image: \"" << name << "\" resized to "
+                  << width << "x" << height << std::endl;
+                  
+        image.pixelate(image.width()/width, image.height()/height);
+        image.resize(width, height);
+	}
+    
+    // clear the bitmap
+    bitmap.clear();
+    
+    // load the image values into the bitmap
+    for(unsigned int y = 0; y < height; ++y)
+    {
+    	for(unsigned int x = 0; x < width; ++x)
+        {	
+        	visual::Color c = image.getPixel(x, y);
+            bitmap.push_back(c);
+        }
+	}
+    
     return true;
+}
+
+void Image::setup()
+{
+	loadFile();
 }
 
 void Image::draw()
@@ -49,8 +79,7 @@ void Image::draw()
 
 void Image::draw(int x, int y)
 {
-/*
-    if(bitmap == NULL)
+    if(bitmap.empty())
         return;
 
     if(bVisible)
@@ -59,20 +88,19 @@ void Image::draw(int x, int y)
 
         if(bDrawFromCenter)
         {
-            xPos = xPos - bitmap->w/2;
-            yPos = yPos - bitmap->h/2;
+            xPos = xPos - width/2;
+            yPos = yPos - height/2;
         }
 
-        for(int _y = 0; _y < image->h; ++_y)
+        for(unsigned int _y = 0; _y < height; ++_y)
         {
-            for(int _x = 0; _x < image->w; ++_x)
+            for(unsigned int _x = 0; _x < width; ++_x)
             {
             	Config::instance().getFacade().stroke(bitmap.at(_y*width + _x));
                 Config::instance().getFacade().pixel(xPos+_x, yPos+_y);
             }
         }
     }
-    */
 }
 
 bool Image::readXml(TiXmlElement* e)
@@ -98,7 +126,6 @@ bool Image::processOscMessage(const osc::ReceivedMessage& message,
     if(message.path() == getOscRootAddress() + "/position" &&
     	message.types() == "ii")
     {
-        //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
         pos.x = message.asInt32(0);
         pos.y = message.asInt32(1);
         return true;
@@ -106,14 +133,12 @@ bool Image::processOscMessage(const osc::ReceivedMessage& message,
     else if(message.path() == getOscRootAddress() + "/position/x" &&
     		message.types() == "i")
     {
-        //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
         pos.x = message.asInt32(0);
         return true;
     }
     else if(message.path() == getOscRootAddress() + "/position/y" &&
     		message.types() == "i")
     {
-        //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
         pos.y = message.asInt32(0);
         return true;
     }
@@ -122,7 +147,6 @@ bool Image::processOscMessage(const osc::ReceivedMessage& message,
     else if(message.path() == getOscRootAddress() + "/center" &&
     		message.types() == "i")
     {
-        //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
         bDrawFromCenter = message.asBool(0);
         return true;
     }

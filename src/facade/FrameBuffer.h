@@ -5,6 +5,7 @@
 #define FRAMEBUFFER_APP_H
 
 #include <visualframework/visualframework.h>
+#include <stdint.h>
 
 #define FACADE_PKG_SIZE     5
 #define FACADE_NUM_ADDR     1085
@@ -27,31 +28,34 @@ class FrameBuffer
         void setup(std::string ip, unsigned int port);
 
         /// clear the framebuffer with a certain color, does alpha
-        void clear(visual::Color color);
+        void clear(uint32_t color);
 
         /// set all packages to the same color, uses alpha as blend amount if belnd is on
-        void setColor(visual::Color color);
+        void setColor(uint32_t color);
 
         /// set package at address to color, uses alpha as blend amount if belnd is on
-        void setColor(int _address, visual::Color color);
+        void setColor(int address, uint32_t color);
 
         /// get the color from a specific address package
-        visual::Color getColor(int _address);
+        uint32_t getColor(int address);
 
-        /// send the complete UDP packet
-        void flush();
+        /// interface to send the complete UDP packet
+        virtual void flush();// = 0;
 
-        static void blend(bool yesno) {_bBlend = yesno;}
+        // enable blending?
+        inline void blend(bool yesno) {_bBlend = yesno;}
 
 	private:
 
         void allocate();
 
-        char _frameBuffer[FACADE_PKG_SIZE*FACADE_NUM_ADDR];
+		// facade framebuffer
+        uint8_t _facadeFB[FACADE_PKG_SIZE*FACADE_NUM_ADDR];
+        
         visual::UdpSender _sender;
         UdpPacket* _packet;
 
-        static bool _bBlend;
+        bool _bBlend;
 };
 
 #endif // FRAMEBUFFER_APP_H

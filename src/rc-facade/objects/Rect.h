@@ -27,12 +27,21 @@ class Rect : public DrawableObject
         {
             if(bVisible)
             {
-                Config::instance().getFacade().stroke(color);
-
+            	Facade& facade = Config::instance().getFacade();
+                
+                facade.stroke(color);
+				
                 if(bFilled)
-                    Config::instance().getFacade().box(pos.x, pos.y, width, height, bDrawFromCenter);
+                    facade.fill();
                 else
-                    Config::instance().getFacade().rect(pos.x, pos.y, width, height, bDrawFromCenter);
+                    facade.noFill();
+                
+                if(bDrawFromCenter)
+                	facade.rectModeCenter();
+                else
+                    facade.rectModeCorner();
+
+                Config::instance().getFacade().rect(pos.x, pos.y, width, height);
             }
         }
 

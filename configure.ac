@@ -54,6 +54,9 @@ AC_CHECK_LIB(SDL_ttf, TTF_OpenFont,
 # check for headers & libs
 PKG_CHECK_MODULES(SDL, sdl >= 1.2,[],
 	AC_MSG_ERROR([SDL library >= 1.2 not found]))
+
+PKG_CHECK_MODULES(SDL_image, SDL_image >= 1.2.0 ,[],
+    AC_MSG_ERROR([SDL_image library not found]))
 	
 PKG_CHECK_MODULES(LO, liblo >= 0.23,[],
 	AC_MSG_ERROR([lo library >= 0.23 not found]))
@@ -92,6 +95,7 @@ AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	externals/Makefile
+	externals/tclap/Makefile
 	externals/oscframework/Makefile
 	externals/xmlframework/Makefile
 	externals/visualframework/Makefile

@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     	return EXIT_FAILURE;
 	
     // initialize SDL context
+    //Graphics::init(1200, 400, 16, HARDWARE);
     //Graphics::init(946, 196, 16, HARDWARE);
     Graphics::init(1280, 196, 16, HARDWARE);
 

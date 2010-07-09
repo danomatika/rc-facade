@@ -24,9 +24,7 @@ FacadeApp::FacadeApp() : OscObject(""), bRunning(true),
 }
 
 FacadeApp::~FacadeApp()
-{
-    //dtor
-}
+{}
 
 void FacadeApp::init()
 {
@@ -37,23 +35,31 @@ void FacadeApp::init()
     // setup the facade
     LOG << endl;
     //facade.setup("192.168.7.121", 8080);
-    facade.setup("192.168.5.79", 8080);
-    facade.setClearColor(Color(40, 40, 40, 127));
+    facade.setup("192.168.5.73", 8080);
+    //facade.setClearColor(0xFFFF00);//Color(40, 40, 40));
     facade.setWindowSize(7);
     facade.drawOutlines(false);
 
     // move some sides
+    //facade.moveSides(-10, 0);
+    // close encounters setup
+    //facade.setSidePos(Facade::SIDE_LAB_EAST, 0, 18);
+    //facade.setSidePos(Facade::SIDE_LAB_NORTH, 5, 17);
+
+	// facade opera pic setup
+    /*
+	facade.enableSide(Facade::SIDE_LAB_EAST, false);
+    facade.enableSide(Facade::SIDE_LAB_NORTH, false);
+    facade.enableSide(Facade::SIDE_MAIN_WEST, false);
+    facade.setSidePos(Facade::SIDE_MAIN_EAST, 0, 3);
     
-    facade.setSidePos(Facade::SIDE_LAB_EAST, 0, 18);
-    facade.setSidePos(Facade::SIDE_LAB_NORTH, 5, 17);
-
-    facade.setSidePos(Facade::SIDE_MAIN_SOUTH, 0, 0);
-    facade.setSidePos(Facade::SIDE_MAIN_EAST, 0, 0);
-    facade.setSidePos(Facade::SIDE_MAIN_NORTH, 0, 0);
-
-    facade.recomputeSize();
+    facade.enableSide(Facade::SIDE_MAIN_NORTH, false);
+    facade.moveSide(Facade::SIDE_MAIN_SOUTH, -10, 0);
+    facade.moveSide(Facade::SIDE_MAIN_SOUTH_STREET, -9, 0);
+    facade.moveSide(Facade::SIDE_LAB_SOUTH, -10, 0);
+	*/
+    //facade.recomputeSize();
     
-
     facade.print();
 
     // load the xml file
@@ -67,6 +73,8 @@ void FacadeApp::setup()
 {
     setBackground(0x505050);
     setFrameRate(25);
+    
+    sceneManager.setup();
 }
 
 void FacadeApp::update()
@@ -81,10 +89,10 @@ void FacadeApp::update()
 
 void FacadeApp::draw()
 {
-    facade.draw(0, 0);
+    facade.draw(0, 0, bDebug);
 
-    if(bDebug)
-        facade.drawGrid(0, 0);
+//    if(bDebug
+//        facade.drawGrid(100, 100, bDebug);
 
     if(bRunning)
         facade.send();
@@ -109,9 +117,9 @@ void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
             facade.showSides(bDebug);
             break;
 
-        case 's':
-            sceneManager.saveXmlFile("../data/testout.xml");
-            break;
+        //case 's':
+        //    sceneManager.saveXmlFile("../data/testout.xml");
+        //    break;
 
         case 'r':
             if(Graphics::getMillis() - reloadTimestamp > 5000)
@@ -136,6 +144,8 @@ void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
     }
 }
 
+/* ***** PROTECTED ***** */
+
 bool FacadeApp::processOscMessage(const osc::ReceivedMessage& message,
 								  const osc::MessageSource& source)
 {
@@ -143,8 +153,6 @@ bool FacadeApp::processOscMessage(const osc::ReceivedMessage& message,
     
     if(message.path() == getOscRootAddress() + "/scene")
     {
-        //osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-
         if(message.types() == "s")
         {
             string scene = message.asString(0);
@@ -173,7 +181,7 @@ bool FacadeApp::processOscMessage(const osc::ReceivedMessage& message,
 
     else if(message.path() == getOscRootAddress() + "/quit")
     {
-        stop();
+        exitMainLoop();
         return true;
     }
 

@@ -52,7 +52,47 @@ bool Config::parseCommandLine(int argc, char **argv)
 	return true;
 }
 
+/* ***** PROTECTED ***** */
+
+bool Config::readXml(TiXmlElement* e)
+{
+	return false;
+/*
+    string name;
+
+    TiXmlElement* child = e->FirstChildElement();
+    while(child != NULL)
+    {
+        if(child->ValueStr() == "setup")
+        {
+            if((name = Xml::getAttrString(child, "name")) != "")
+            {
+                LOG_DEBUG << "SceneManager: Loading scene \"" << name << "\"" << std::endl;
+
+                Scene* s = new Scene(name);
+                s->loadXml(child);
+                addObject(s);
+            }
+            else
+            {
+
+                LOG_WARN << "SceneManager: Cannot load scene without name, line "
+                         << child->Row() << endl;
+            }
+        }
+
+        child = child->NextSiblingElement();
+    }
+
+    // try to load the first scene
+    if(_currentScene < 0)
+    	gotoScene(0);
+
+    return true;
+    */
+}
+
 /* ***** PRIVATE ***** */
 
-Config::Config() : file("")
+Config::Config() : XmlObject("facade"), file("")
 {}

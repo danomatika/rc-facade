@@ -26,7 +26,7 @@ noinst_HEADERS =	 \
 				tclap.h
 
 # include paths
-AM_CPPFLAGS = $(CXXFLAGS)
+AM_CPPFLAGS = $(CXXFLAGS) -I$(top_srcdir)
 
 # libs to link
 AM_LDFLAGS = 

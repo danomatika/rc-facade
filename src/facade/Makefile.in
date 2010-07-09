@@ -125,6 +125,8 @@ SDL_GFX_LIBS = @SDL_GFX_LIBS@
 SDL_LIBS = @SDL_LIBS@
 SDL_NET_LIBS = @SDL_NET_LIBS@
 SDL_TTF_LIBS = @SDL_TTF_LIBS@
+SDL_image_CFLAGS = @SDL_image_CFLAGS@
+SDL_image_LIBS = @SDL_image_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -175,7 +177,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # directories to build (rel to top dir)
-EXTERNALS_DIRS = oscframework xmlframework visualframework
+EXTERNALS_DIRS = oscframework xmlframework visualframework tclap
 
 # includes
 EXTERNALS_CFLAGS = \
@@ -218,7 +220,7 @@ dist_libfacade_a_SOURCES = \
 AM_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS)
 
 # libs to link
-AM_LDFLAGS = $(SDL_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(EXTERNALS_LIBS)
+AM_LDFLAGS = $(SDL_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_image_LIBS) $(EXTERNALS_LIBS)
 all: all-am
 
 .SUFFIXES:

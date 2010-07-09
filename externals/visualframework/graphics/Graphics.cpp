@@ -1,5 +1,24 @@
 /*==============================================================================
-    Dan Wilcox <danomatika@gmail.com>, 2009
+
+	Graphics.cpp
+
+	visualframework: a simple 2d graphics framework
+  
+	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ==============================================================================*/
 #include "Graphics.h"
 
@@ -31,6 +50,7 @@ bool Graphics::_bFill   = true;
 
 DrawMode Graphics::_rectMode = CORNER;
 DrawMode Graphics::_imageMode = CORNER;
+FontMode Graphics::_fontMode = SOLID;
 
 // ***** LOCAL GLOBAL VARIABLES *****
 int _x1, _y1, _x2, _y2; // computed rectangle points
@@ -168,6 +188,31 @@ bool Graphics::toggleFullscreen()
     _ui32VideoFlags = _type|SDL_DOUBLEBUF|_mode;
 
     return createWindow(_sTitle);
+}
+
+bool Graphics::getShowMouseCursor()
+{
+	int state = SDL_ShowCursor(SDL_QUERY);
+    if(state == SDL_ENABLE)
+    	return true;
+    return false;
+}
+
+void Graphics::showMouseCursor(bool show)
+{
+	if(show)
+    	SDL_ShowCursor(SDL_ENABLE);
+    else
+    	SDL_ShowCursor(SDL_DISABLE);
+}
+
+void Graphics::toggleShowMouseCursor()
+{
+	int state = SDL_ShowCursor(SDL_QUERY);
+    if(state == SDL_ENABLE)
+    	SDL_ShowCursor(SDL_DISABLE);
+    else
+    	SDL_ShowCursor(SDL_ENABLE);
 }
 
 bool Graphics::changeResolution(const unsigned int w, const unsigned int h)
@@ -339,12 +384,12 @@ void Graphics::triangle(const int x1, const int y1, const int x2, const int y2, 
 
     if(_bFill)
     {
-        SPG_TrigonFilled(_screen, x1, y1, x2, y2, x3, y3, _fillColor.rgba);
+        SPG_TrigonFilled(_screen, x1, y1, x2, y2, x3, y3, _fillColor);
     }
 
     if(_bStroke)
     {
-        SPG_Trigon(_screen, x1, y1, x2, y2, x3, y3, _strokeColor.rgba);
+        SPG_Trigon(_screen, x1, y1, x2, y2, x3, y3, _strokeColor);
     }
 }
 
@@ -355,12 +400,12 @@ void Graphics::polygon(const PointList& points)
 
     if(_bFill)
     {
-        SPG_PolygonFilled(_screen, points.size(), (SPG_Point*) &points[0], _fillColor.rgba);
+        SPG_PolygonFilled(_screen, points.size(), (SPG_Point*) &points[0], _fillColor);
     }
 
     if(_bStroke)
     {
-        SPG_Polygon(_screen, points.size(), (SPG_Point*) &points[0], _strokeColor.rgba);
+        SPG_Polygon(_screen, points.size(), (SPG_Point*) &points[0], _strokeColor);
     }
 }
 
@@ -371,7 +416,8 @@ void Graphics::character(const int x, const int y, const char c)
 
     if(_bStroke)
     {
-        characterColor(_screen, x, y, c, _strokeColor.rgba);
+        characterRGBA(_screen, x, y, c,
+        	_strokeColor.R, _strokeColor.G, _strokeColor.B, _strokeColor.A);
     }
 }
 
@@ -382,7 +428,8 @@ void Graphics::string(const int x, const int y, const std::string line)
 
     if(_bStroke)
     {
-        stringColor(_screen, x, y, line.c_str(), _strokeColor.rgba);
+        stringRGBA(_screen, x, y, line.c_str(),
+        	_strokeColor.R, _strokeColor.G, _strokeColor.B, _strokeColor.A);
     }
 }
 

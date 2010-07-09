@@ -33,19 +33,23 @@ class Side
 
         inline void flipX(bool yesno)   {bFlipX = yesno;}
         inline void flipY(bool yesno)   {bFlipY = yesno;}
-        inline void enable(bool enabled)    {bEnabled = enabled;}
+        inline void enable(bool enabled){bEnabled = enabled;}
+        inline bool isEnabled()			{return bEnabled;}
 
-        static unsigned int getWindowSize() {return _windowSize;}
+        static unsigned int getWindowSize() 			{return _windowSize;}
         static void setWindowSize(unsigned int size)    {_windowSize = size;}
-        static void drawOutlines(bool yesno)         {_bDrawOutlines = yesno;}
-        static void drawOutlines()                   {_bDrawOutlines = !_bDrawOutlines;}
-        static visual::Color& getOutlineColor() {return _outlineColor;}
-        static void setOutlineColor(visual::Color color)    {_outlineColor = color;}
-        static void setOutlineColor(unsigned int color) {_outlineColor.set(color);}
+        static void drawOutlines(bool yesno)         	{_bDrawOutlines = yesno;}
+        static void drawOutlines()                   	{_bDrawOutlines = !_bDrawOutlines;}
+        static uint32_t getOutlineColor() 		{return _outlineColor;}
+        static void setOutlineColor(uint32_t color){_outlineColor = color;}
+        //static void setOutlineColor(unsigned int color) {_outlineColor.set(color);}
 
-        /// set this windows position realitve the overall building grid
+        /// set the position relative the overall building grid
         /// row, column are the upper left corner
         void setPos(int row, int column);
+        
+        /// set the position relative to the current position
+        void move(int rowAmount, int colAmount);
 
         /**
             \brief retrieve the address of the window at a certain position
@@ -57,20 +61,20 @@ class Side
         int getAddress(int row, int col, bool global=false);
 
         /// set side to a particular color
-        void setColor(FrameBuffer& frame, visual::Color color);
+        void setColor(FrameBuffer& frame, uint32_t color);
 
         /// set row of side to a particular color
-        void setRowColor(FrameBuffer& frame, int row, visual::Color color, bool global=false);
+        void setRowColor(FrameBuffer& frame, int row, uint32_t color, bool global=false);
 
         /// set column of side to a particular color
-        void setColColor(FrameBuffer& frame, int column, visual::Color color, bool global=false);
+        void setColColor(FrameBuffer& frame, int column, uint32_t color, bool global=false);
 
         /// set window at row/column to particular color.
         /// do nothing, if there is no window at that position.
-        void setWindowColor(FrameBuffer& frame, int row, int column, visual::Color color, bool global=false);
+        void setWindowColor(FrameBuffer& frame, int row, int column, uint32_t color, bool global=false);
 
         /// draw the side, x,y is upper left corner
-        /// if global is true, x and y will be offset by where the sides start row nad cols are
+        /// if global is true, x and y will be offset by where the sides start row and cols are
         void draw(FrameBuffer& frame, int x, int y, bool global=false);
 
         /// print the side addresses graphically to LOG
@@ -101,7 +105,8 @@ class Side
 
         static unsigned int _windowSize;/// how big should the window pixel be
         static bool _bDrawOutlines;     /// draw an outline around each window?
-        static visual::Color _outlineColor;     /// the color of the window outlines
+        static uint32_t _outlineColor;  /// the color of the window outlines
+
 };
 
 #endif // SIDE_APP_H

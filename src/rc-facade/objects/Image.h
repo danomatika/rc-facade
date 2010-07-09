@@ -1,8 +1,7 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-
-#include "Config.h"
+#include "Common.h"
 
 #include "DrawableObject.h"
 
@@ -13,10 +12,12 @@ class Image : public DrawableObject
         Image(string name);
         ~Image();
 
+		bool loadFile(string filename="");
+        
+        void setup();
+
         void draw();
         void draw(int x, int y);
-
-        bool loadFile(string filename);
 
         void setDrawFromCenter(bool yesno) {bDrawFromCenter = yesno;}
 

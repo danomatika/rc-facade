@@ -1,7 +1,7 @@
 #include "SceneManager.h"
 
 SceneManager::SceneManager() :
-    XmlObject("facade"), OscObject(""), _currentScene(0)
+    XmlObject("facade"), OscObject(""), _currentScene(-1)
 {}
 
 SceneManager::~SceneManager()
@@ -129,12 +129,33 @@ void SceneManager::gotoScene(string name)
     }
 }
 
+void SceneManager::setup()
+{
+	// setup all scenes
+    for(unsigned int i = 0; i < _objectList.size(); ++i)
+    {
+    	_objectList.at(i)->setup();
+    }
+
+	// try to load the first scene
+    if(_currentScene < 0)
+    	gotoScene(0);
+}
+
 void SceneManager::draw()
 {
     if(_currentScene >= 0 && _currentScene < (int) _objectList.size())
     {
        _objectList.at(_currentScene)->draw();
     }
+}
+
+void SceneManager::reload()
+{
+	closeXmlFile();
+    clear(true);
+    loadXmlFile();
+    setup();
 }
 
 /* ***** XML CALLBACKS ***** */
@@ -168,7 +189,8 @@ bool SceneManager::readXml(TiXmlElement* e)
     }
 
     // try to load the first scene
-    //gotoScene(0);
+    if(_currentScene < 0)
+    	gotoScene(0);
 
     return true;
 }

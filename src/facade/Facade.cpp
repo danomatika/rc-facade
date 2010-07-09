@@ -11,48 +11,78 @@ using namespace visual;
 FrameBuffer _frame;     /// facade framebuffer
 Building _building;     /// building address mapping
 
-Facade::Facade() : _clearColor(0, 0, 0), _drawColor(1, 1, 1),
-    _bWrapX(true), _bWrapY(true), _bShowSides(false)
+Facade::Facade() :
+	_pixels(NULL), _width(0), _height(0),
+	_clearColor(0xFF000000), _drawColor(0xFFFFFFFF),
+    _bWrapX(true), _bWrapY(true), _bShowSides(false), _bBlend(false),
+    _bRectCenter(false), _bRectFill(false)
 {}
 
 Facade::Facade(std::string ip, unsigned int port) :
-    _clearColor(0, 0, 0), _drawColor(1, 1, 1),
-    _bWrapX(true), _bWrapY(false)
+	_pixels(NULL), _width(0), _height(0),
+    _clearColor(0xFF000000), _drawColor(0xFFFFFFFF),
+    _bWrapX(true), _bWrapY(false), _bShowSides(false), _bBlend(false),
+    _bRectCenter(false), _bRectFill(false)
 {
-    setup(ip, port);
+    //setup(ip, port);
 }
 
 Facade::~Facade()
 {
-    //dtor
+    if(_pixels != NULL)
+    	delete [] _pixels;
 }
 
 void Facade::setup(std::string ip, unsigned int port)
 {
     _frame.setup(ip, port);
+    _width = _building.getNrCols();
+    _height = _building.getNrRows();
+    
+    if(_pixels != NULL)
+    	delete [] _pixels;
+    _pixels = new uint8_t[_width*_height];
+    
+    memset(_pixels, 0, _width*_height);
 }
 
 void Facade::clear()
 {
     if(_bShowSides)
     {
-        _building.main_N.setColor(_frame, Color(0xFF0000));
-        _building.main_E.setColor(_frame, Color(0xFF00FF));
-        _building.main_S.setColor(_frame, Color(0x00FF00));
-        _building.main_S_street.setColor(_frame, Color(0x00FFFF));
-        _building.main_W.setColor(_frame, Color(0xFFFF00));
+        _building.main_N.setColor(_frame, 0x66990000);
+        _building.main_E.setColor(_frame, 0x66990099);
+        _building.main_S.setColor(_frame, 0x66009900);
+        _building.main_S_street.setColor(_frame, 0x66009999);
+        _building.main_W.setColor(_frame, 0x66999900);
 
-        _building.lab_N.setColor(_frame, Color(0x0000FF));
-        _building.lab_E.setColor(_frame, Color(0x333333));
-        _building.lab_S.setColor(_frame, Color(0xAAAAAA));
+        _building.lab_N.setColor(_frame, 0x66000099);
+        _building.lab_E.setColor(_frame, 0x66999999);
+        _building.lab_S.setColor(_frame, 0x66666666);
 
     }
     else
         _frame.clear(_clearColor);
+        
+	memset(_pixels, _clearColor, _width*_height);
 }
 
 void Facade::send()
 {
+	/*
+	for(unsigned int x = 0; x < _width; ++x)
+    {
+    	for(unsigned int y = 0; y < _height; ++y)
+        {
+        	uint32_t color = _pixels[y*_width+x];
+            std::vector<Side*>& sides = _building.getSides();
+            for(unsigned int i = 0; i < sides.size(); ++i)
+            {
+                sides[i]->setWindowColor(_frame, y, x, color, true);
+            }
+        }
+    }
+    */
     _frame.flush();
 }
 
@@ -61,6 +91,20 @@ void Facade::send()
 void Facade::setSidePos(FacadeSide side, int x, int y)
 {
     _building.getSides().at((int) side)->setPos(y, x);
+}
+
+void Facade::moveSide(FacadeSide side, int xAmount, int yAmount)
+{
+	_building.getSides().at((int) side)->move(yAmount, xAmount);
+}
+
+void Facade::moveSides(int xAmount, int yAmount)
+{
+	std::vector<Side*>& sides = _building.getSides();
+    for(unsigned int i = 0; i < sides.size(); ++i)
+    {
+        sides[i]->move(yAmount, xAmount);
+    }
 }
 
 void Facade::enableSide(FacadeSide side, bool enabled)
@@ -101,7 +145,18 @@ void Facade::sidePixel(FacadeSide side, int x, int y)
     _building.getSides().at((int) side)->setWindowColor(_frame, y, x, _drawColor);
 }
 
+//uint32_t Facade::getSidePixel(FacadeSide side, int x, int y)
+//{}
+/*
+uint32_t Facade::getPixel(int x, int y)
+{
+	return _frame.getColor(
+}
+*/
 /* ***** BUILDING GRAPHICS ***** */
+
+void blend()	{_frame.blend(true);}
+void noBlend()	{_frame.blend(false);}
 
 void Facade::pixel(int x, int y)
 {
@@ -122,11 +177,14 @@ void Facade::pixel(int x, int y)
             yPos = _building.getNrRows() - y;
     }
 
+	
     std::vector<Side*>& sides = _building.getSides();
     for(unsigned int i = 0; i < sides.size(); ++i)
     {
         sides[i]->setWindowColor(_frame, y, x, _drawColor, true);
     }
+    
+    //_pixels[x+y*_width] = _drawColor;
 }
 
 /* an improved Bresenham line drawing alogrithm
@@ -175,25 +233,42 @@ void Facade::line(int x1, int y1, int x2, int y2)
     }
 }
 
-void Facade::rect(int x, int y, int w, int h, bool drawFromCenter)
+void Facade::rect(int x, int y, int w, int h)//, bool drawFromCenter)
 {
-
-    if(drawFromCenter)
+	if(_bRectFill)
     {
-        line(x-w/2, y-h/2, x+w/2-1, y-h/2);
-        line(x-w/2, y-h/2, x-w/2, y+h/2-1);
-        line(x+w/2-1, y+h/2-1, x-w/2, y+h/2-1);
-        line(x+w/2-1, y+h/2-1, x+w/2-1, y-h/2);
+    	// box
+        if(_bRectCenter)
+        {
+            for(int _y = y-h/2; _y < y+h/2; ++_y)
+                line(x-w/2, _y, x+w/2-1, _y);
+        }
+        else
+        {
+            for(int _y = y; _y < y+h; _y++)
+                line(x, _y, x+w-1, _y);
+        }
     }
     else
     {
-        line(x, y, x+w-1, y);
-        line(x, y, x, y+h-1);
-        line(x+w-1, y, x+w-1, y+h-1);
-        line(x, y+h-1, x+w-1, y+h-1);
+    	// rect
+        if(_bRectCenter)
+        {
+            line(x-w/2, y-h/2, x+w/2-1, y-h/2);
+            line(x-w/2, y-h/2, x-w/2, y+h/2-1);
+            line(x+w/2-1, y+h/2-1, x-w/2, y+h/2-1);
+            line(x+w/2-1, y+h/2-1, x+w/2-1, y-h/2);
+        }
+        else
+        {
+            line(x, y, x+w-1, y);
+            line(x, y, x, y+h-1);
+            line(x+w-1, y, x+w-1, y+h-1);
+            line(x, y+h-1, x+w-1, y+h-1);
+        }
     }
 }
-
+/*
 void Facade::box(int x, int y, int w, int h, bool drawFromCenter)
 {
     if(drawFromCenter)
@@ -207,9 +282,8 @@ void Facade::box(int x, int y, int w, int h, bool drawFromCenter)
             line(x, _y, x+w-1, _y);
     }
 }
-
-/*
-void Facade::circle(int x, int y, int r, Color color)
+*/
+void Facade::circle(int x, int y, int r)//, uint32_t color)
 {
     int f = 1 - r;
     int ddF_x = 0;
@@ -217,10 +291,10 @@ void Facade::circle(int x, int y, int r, Color color)
     int _x = 0;
     int _y = r;
 
-    pixel(x, y + r, color);
-    pixel(x, y - r, color);
-    pixel(x + r, y, color);
-    pixel(x - r, y, color);
+    pixel(x, y + r);
+    pixel(x, y - r);
+    pixel(x + r, y);
+    pixel(x - r, y);
 
     while(_x < _y)
     {
@@ -233,25 +307,27 @@ void Facade::circle(int x, int y, int r, Color color)
         _x++;
         ddF_x += 2;
         f += ddF_x + 1;
-        pixel(x + _x, y + _y, color);
-        pixel(x - _x, y + _y, color);
-        pixel(x + _x, y - _y, color);
-        pixel(x - _x, y - _y, color);
-        pixel(x + _y, y + _x, color);
-        pixel(x - _y, y + _x, color);
-        pixel(x + _y, y - _x, color);
-        pixel(x - _y, y - _x, color);
+        pixel(x + _x, y + _y);
+        pixel(x - _x, y + _y);
+        pixel(x + _x, y - _y);
+        pixel(x - _x, y - _y);
+        pixel(x + _y, y + _x);
+        pixel(x - _y, y + _x);
+        pixel(x + _y, y - _x);
+        pixel(x - _y, y - _x);
     }
 }
-*/
 
-void Facade::draw(int x, int y)
+void Facade::draw(int x, int y, bool debug)
 {
     std::vector<Side*>& sides = _building.getSides();
     for(unsigned int i = 0; i < sides.size(); ++i)
     {
         sides[i]->draw(_frame, x, y, true);
     }
+    
+    if(debug)
+    	drawGrid(x, y);
 }
 
 void Facade::drawGrid(int x, int y)
@@ -275,29 +351,31 @@ void Facade::drawGrid(int x, int y)
         yPos += Side::getWindowSize();
     }
 }
-void Facade::setClearColor(visual::Color color)
+
+void Facade::setClearColor(uint32_t color)
 {
     _clearColor = color;
+    printf("background now 0x%x ", _clearColor);
 }
-
+/*
 void Facade::setClearColor(unsigned int color)
 {
     _clearColor.set(color);
 }
-
+*/
 void Facade::print()    {_building.print();}
 
-int Facade::getWidth()  {return _building.getNrCols();}
-int Facade::getHeight() {return _building.getNrRows();}
+//unsigned int Facade::getWidth()  {return _width;}
+//unsigned int Facade::getHeight() {return _height;}
 
 void Facade::setWindowSize(unsigned int size)   {Side::setWindowSize(size);}
 void Facade::drawOutlines(bool yesno)           {Side::drawOutlines(yesno);}
 void Facade::drawOutlines()                     {Side::drawOutlines();}
-void Facade::setOutlineColor(Color color)       {Side::setOutlineColor(color);}
-void Facade::setOutlineColor(unsigned int color) {Side::setOutlineColor(color);}
+void Facade::setOutlineColor(uint32_t color)    {Side::setOutlineColor(color);}
+//void Facade::setOutlineColor(unsigned int color) {Side::setOutlineColor(color);}
 
-int Facade::getSideWidth(FacadeSide side) {return _building.getSides().at((int) side)->getNrCols();}
-int Facade::getSideHeight(FacadeSide side) {return _building.getSides().at((int) side)->getNrRows();}
+unsigned int Facade::getSideWidth(FacadeSide side) {return _building.getSides().at((int) side)->getNrCols();}
+unsigned int Facade::getSideHeight(FacadeSide side) {return _building.getSides().at((int) side)->getNrRows();}
 
-int Facade::getSidePosX(FacadeSide side) {return _building.getSides().at((int) side)->getStartCol();}
-int Facade::getSidePosY(FacadeSide side) {return _building.getSides().at((int) side)->getStartRow();}
+unsigned int Facade::getSidePosX(FacadeSide side) {return _building.getSides().at((int) side)->getStartCol();}
+unsigned int Facade::getSidePosY(FacadeSide side) {return _building.getSides().at((int) side)->getStartRow();}

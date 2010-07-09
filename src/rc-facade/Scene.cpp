@@ -2,7 +2,7 @@
 
 #include "objects/Objects.h"
 
-Scene::Scene(string name) : XmlObject("scene"), OscObject(""), _name(name), _background(127, 127, 127, 255)
+Scene::Scene(string name) : XmlObject("scene"), OscObject(""), _name(name), _background(0x00000)
 {
     // attach variables to Xml
     addXmlAttribute("R", "background", XML_TYPE_BYTE, &_background.R);
@@ -64,6 +64,14 @@ void Scene::clear()
         delete o;
     }
     _objectList.clear();
+}
+
+void Scene::setup()
+{
+	for(unsigned int i = 0; i < _objectList.size(); ++i)
+    {
+    	_objectList.at(i)->setup();
+  	}
 }
 
 void Scene::draw()
@@ -172,6 +180,23 @@ bool Scene::readXml(TiXmlElement* e)
             else
             {
                 LOG_WARN << "Scene \"" << _name << "\": cannot load sprite without name, line "
+                         << child->Row() << endl;
+            }
+        }
+        
+        else if(child->ValueStr() == "image")
+        {
+            if((objName = Xml::getAttrString(child, "name")) != "")
+            {
+                LOG_DEBUG << "Scene \"" << _name << "\": Loading image \"" << objName << "\"" << std::endl;
+
+                Image* i = new Image(objName);
+                i->loadXml(child);
+                addObject(i);
+            }
+            else
+            {
+                LOG_WARN << "Scene \"" << _name << "\": cannot load image without name, line "
                          << child->Row() << endl;
             }
         }
