@@ -3,13 +3,13 @@
 # load externals variables
 include $(top_srcdir)/externals/externals.mk
 
-# the library to build, dont install just link to execs
-noinst_LIBRARIES = libfacade.a
+# the library to build
+lib_LTLIBRARIES = libfacade.la
 
 # libs sources, headers here because we dont want to install them
-dist_libfacade_a_SOURCES = \
+libfacade_la_SOURCES = \
         Building.h \
-        Facade.h Facade.cpp \
+        Facade.cpp \
         FrameBuffer.h FrameBuffer.cpp \
         Side.h Side.cpp \
         SideFuturelabEast.h \
@@ -20,6 +20,9 @@ dist_libfacade_a_SOURCES = \
         SideMainBuildingSouth.h \
         SideMainBuildingSouthStreetLevel.h \
         SideMainBuildingWest.h
+
+# lib headers to install
+include_HEADERS = Facade.h
 
 # include paths
 AM_CPPFLAGS =  $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS)
