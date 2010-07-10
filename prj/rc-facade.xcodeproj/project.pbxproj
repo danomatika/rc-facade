@@ -10,7 +10,8 @@
 		21286C5700CC001278688821 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF76F4461D001278688821 /* Bitmap.cpp */; };
 		23B55C1446B4001278688821 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 004F782B52FC001278688821 /* Scene.cpp */; };
 		2B7055AC3B6A001278688821 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CE749D95D46001278688821 /* Sprite.cpp */; };
-		4C5E34A3654D001278688821 /* FacadeApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7411F0F4C001278688821 /* FacadeApp.cpp */; };
+		302D7F8811E7E05000432848 /* Facade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302D7F8711E7E05000432848 /* Facade.cpp */; };
+		302D7FE511E7E6D000432848 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302D7FE311E7E6D000432848 /* App.cpp */; };
 		4D9924293D08001278688821 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F873D012147001278688821 /* Image.cpp */; };
 		4EBE3E4A0957001278688821 /* libfacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34561F970CCA001278688821 /* libfacade.a */; };
 		602555F750B9001278688821 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BC51F590E9A001278688821 /* SceneManager.cpp */; };
@@ -44,6 +45,10 @@
 		230D44B02C03001278688821 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		26DF03556DB4001278688821 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2BC51F590E9A001278688821 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		302D7F8611E7E05000432848 /* Facade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facade.h; sourceTree = "<group>"; };
+		302D7F8711E7E05000432848 /* Facade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Facade.cpp; sourceTree = "<group>"; };
+		302D7FE311E7E6D000432848 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
+		302D7FE411E7E6D000432848 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		3EEF76F4461D001278688821 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
 		40911A751DC1001278688821 /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		40AB59407F6E001278688821 /* DrawableObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawableObject.h; sourceTree = "<group>"; };
@@ -52,13 +57,11 @@
 		51F8229C3D84001278688821 /* Bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		554F6B071D2B001278688821 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		5E4B3EC500AA001278688821 /* Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objects.h; sourceTree = "<group>"; };
-		5E7D0F0F5D76001278688821 /* FacadeApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacadeApp.h; sourceTree = "<group>"; };
 		5FFC41900887001278688821 /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		6486236D56B8001278688821 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		6BBC372624F5001278688821 /* rc-facade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rc-facade"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE749D95D46001278688821 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		72180879699F001278688821 /* Config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
-		7FF7411F0F4C001278688821 /* FacadeApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FacadeApp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,16 +79,18 @@
 		09FF62614F11001278688821 /* rc-facade */ = {
 			isa = PBXGroup;
 			children = (
+				302D7FE311E7E6D000432848 /* App.cpp */,
+				302D7FE411E7E6D000432848 /* App.h */,
 				195B515E07BC001278688821 /* Common.h */,
 				72180879699F001278688821 /* Config.cpp */,
 				230D44B02C03001278688821 /* Config.h */,
-				7FF7411F0F4C001278688821 /* FacadeApp.cpp */,
-				5E7D0F0F5D76001278688821 /* FacadeApp.h */,
 				004F782B52FC001278688821 /* Scene.cpp */,
 				554F6B071D2B001278688821 /* Scene.h */,
 				2BC51F590E9A001278688821 /* SceneManager.cpp */,
 				40911A751DC1001278688821 /* SceneManager.h */,
 				26DF03556DB4001278688821 /* main.cpp */,
+				302D7F8611E7E05000432848 /* Facade.h */,
+				302D7F8711E7E05000432848 /* Facade.cpp */,
 				4196140A2104001278688821 /* objects */,
 			);
 			path = "rc-facade";
@@ -223,13 +228,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ED423AA2B46001278688821 /* Config.cpp in Sources */,
-				4C5E34A3654D001278688821 /* FacadeApp.cpp in Sources */,
 				23B55C1446B4001278688821 /* Scene.cpp in Sources */,
 				602555F750B9001278688821 /* SceneManager.cpp in Sources */,
 				6F3C027428E6001278688821 /* main.cpp in Sources */,
 				21286C5700CC001278688821 /* Bitmap.cpp in Sources */,
 				4D9924293D08001278688821 /* Image.cpp in Sources */,
 				2B7055AC3B6A001278688821 /* Sprite.cpp in Sources */,
+				302D7F8811E7E05000432848 /* Facade.cpp in Sources */,
+				302D7FE511E7E6D000432848 /* App.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

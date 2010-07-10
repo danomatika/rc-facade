@@ -68,8 +68,27 @@ bool Font::isLoaded()
 
 void Font::draw(const char c, const int x, const int y)
 {
-	if(!_font)
+	SDL_Surface* surface = render(c);
+	if(!surface)
     	return;
+
+    Graphics::surface(x, y, surface);
+    SDL_FreeSurface(surface);
+}
+
+void Font::draw(const std::string& text, const int x, const int y)
+{
+    SDL_Surface* surface = render(text);
+    if(!surface)
+    	return;
+
+    Graphics::surface(x, y, surface);
+    SDL_FreeSurface(surface);
+}
+
+SDL_Surface* Font::render(const char c)
+{
+	assert(_font);	// font not loaded!
 
 	SDL_Surface* surface = NULL;
 	switch(Graphics::getFontMode())
@@ -90,24 +109,18 @@ void Font::draw(const char c, const int x, const int y)
             break;
         }
     }
-
-	if(!surface)
-    	return;
-        
-    SDL_Rect dest;
-    dest.x = x;
-    dest.y = y;
-    dest.w = surface->w;
-    dest.h = surface->h;
-
-	SDL_BlitSurface(surface, NULL, Graphics::getScreen(), &dest);
-    SDL_FreeSurface(surface);
+    
+    if(!surface)
+    {
+    	LOG_ERROR << "Font::render: couldn't create surface: " << TTF_GetError() << std::endl;
+    }
+    
+    return surface;
 }
 
-void Font::draw(const std::string& text, const int x, const int y)
+SDL_Surface* Font::render(const std::string& text)
 {
-	if(!_font)
-    	return;
+	assert(_font);	// font not loaded!
 
 	SDL_Surface* surface = NULL;
 	switch(Graphics::getFontMode())
@@ -127,17 +140,12 @@ void Font::draw(const std::string& text, const int x, const int y)
             break;
     }
     
-	if(!surface)
-    	return;
-        
-    SDL_Rect dest;
-    dest.x = x;
-    dest.y = y;
-    dest.w = surface->w;
-    dest.h = surface->h;
-
-	SDL_BlitSurface(surface, NULL, Graphics::getScreen(), &dest);
-    SDL_FreeSurface(surface);
+    if(!surface)
+    {
+    	LOG_ERROR << "Font::render: couldn't create surface: " << TTF_GetError() << std::endl;
+    }
+    
+    return surface;
 }
 
 /*

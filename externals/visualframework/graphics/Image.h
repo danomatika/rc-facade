@@ -39,7 +39,11 @@ class Image
         Image(std::string filename);
     	virtual ~Image();
         
+        /// laod an image
         bool load(std::string filename);
+        
+        /// load from ARGB pixels
+        bool load(const uint32_t* pixels, unsigned int w, unsigned int h);
         
         void clear();
         

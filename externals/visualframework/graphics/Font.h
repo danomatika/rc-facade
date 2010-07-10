@@ -51,11 +51,12 @@ class Font
         /// draw strings
         void draw(const std::string& text, const int x, const int y);
         
+        /// render the text to a surface
+        SDL_Surface* render(const char c);
+        SDL_Surface* render(const std::string& text);
+        
         //const int width();
         //const int height();
-        
-        /// get the raw surface structure of the Font (contains pixels)
-        //SDL_Surface* getSurface() {return _Font;}
         
         inline std::string getFilename() {return _filename;}
         

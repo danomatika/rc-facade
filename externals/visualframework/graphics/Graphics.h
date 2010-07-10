@@ -111,6 +111,13 @@ class Graphics
         /// get the current vode mode as a string
         static std::string getModeString();
         
+        /// clear the screen with a given color
+        static void clear(unsigned int color);	///< ARGB
+        static void clear(Color color);
+        
+        /// swap the draw surface to the screen
+        static void swap();
+        
 
         // global gets
         static const GraphicsType getType()     {return _type;}
@@ -121,9 +128,9 @@ class Graphics
         static const unsigned int getDepth()   	{return _iDepth;}
 
         // global color
-        static void stroke(const unsigned int color);
+        static void stroke(const unsigned int color);	///< ARGB
         static void stroke(const Color& color);
-        static void fill(const unsigned int color);
+        static void fill(const unsigned int color);		///< ARGB
         static void fill(const Color& color);
 
         static void noStroke();
@@ -143,6 +150,13 @@ class Graphics
         // affects fonts
         static void fontMode(const FontMode mode) {_fontMode = mode;}
         static const FontMode getFontMode() {return _fontMode;}
+        
+        // affects lines and object edges
+        static void strokeWeight(unsigned int weight=1);
+        
+        // antialiasing on lines and objects
+        static void smooth();
+        static void noSmooth();
 
         // global primitives
         static void point(const int x, const int y);
@@ -154,6 +168,8 @@ class Graphics
         static void polygon(const PointList& points);
         static void character(const int x, const int y, const char c);
         static void string(const int x, const int y, const std::string line);
+        
+        static void surface(const int x, const int y, const SDL_Surface* surface);
 
         // global utils
         static std::string getLastError();
@@ -166,7 +182,7 @@ class Graphics
         virtual ~Graphics() {}              // cannot destroy
         void operator =(Color& from) {}     // not copyable
 
-        static SDL_Surface* _screen;	/// SDL draw surface
+        static SDL_Surface* _screen;		/// SDL draw surface
 
         static unsigned int _iWidth;    /// window width
         static unsigned int _iHeight;   /// window height

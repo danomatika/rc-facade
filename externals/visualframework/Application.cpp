@@ -102,17 +102,20 @@ void Application::setFrameRate(float frameRate)
 /* ***** PRIVATE FUNCTIONS ***** */
 
 void Application::_draw()
-{
+{    
     // clear background
+    /*
     SDL_FillRect(Graphics::getScreen(), 0,
-        SDL_MapRGB(Graphics::getScreen()->format,
-            _background.R, _background.G, _background.B));
-
+        SDL_MapRGBA(Graphics::getScreen()->format,
+            _background.R, _background.G, _background.B, _background.A));
+	*/
+    Graphics::clear(_background);
+    
     // user render function
     draw();
 
     // swap buffers
-    SDL_Flip(Graphics::getScreen());
+    Graphics::swap();
 }
 
 void Application::_events()

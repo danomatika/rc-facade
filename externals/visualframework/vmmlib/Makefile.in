@@ -34,7 +34,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-subdir = externals/visualframework/vmmlib
+subdir = src/visualframework/vmmlib
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -82,8 +82,6 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
-LO_CFLAGS = @LO_CFLAGS@
-LO_LIBS = @LO_LIBS@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -99,10 +97,11 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 SDL_CFLAGS = @SDL_CFLAGS@
-SDL_GFX_LIBS = @SDL_GFX_LIBS@
 SDL_LIBS = @SDL_LIBS@
 SDL_NET_LIBS = @SDL_NET_LIBS@
 SDL_TTF_LIBS = @SDL_TTF_LIBS@
+SDL_gfx_CFLAGS = @SDL_gfx_CFLAGS@
+SDL_gfx_LIBS = @SDL_gfx_LIBS@
 SDL_image_CFLAGS = @SDL_image_CFLAGS@
 SDL_image_LIBS = @SDL_image_LIBS@
 SET_MAKE = @SET_MAKE@
@@ -185,9 +184,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign externals/visualframework/vmmlib/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/visualframework/vmmlib/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign externals/visualframework/vmmlib/Makefile
+	  $(AUTOMAKE) --foreign src/visualframework/vmmlib/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

@@ -58,6 +58,31 @@ bool Image::load(std::string filename)
     return true;
 }
 
+bool Image::load(const uint32_t* pixels, unsigned int w, unsigned int h)
+{
+	clear();
+    
+    _image = SPG_CreateSurface32(SDL_SWSURFACE, w, h);
+    if(!_image)
+    {
+    	LOG_ERROR << "Image: "  << SDL_GetError() << std::endl; 
+        return false;
+    }
+    
+    // load image
+    for(unsigned int x = 0; x < w; ++x)
+    {
+    	for(unsigned int y = 0; y < h; ++y)
+        {
+        	Color color;
+            color.setWithAlpha(pixels[y*w + x]);
+        	SPG_Pixel(_image, x, y, color.get(_image));
+        }
+    }
+    
+    return true;
+}
+
 void Image::clear()
 {
 	if(_image)
@@ -71,10 +96,9 @@ bool Image::isLoaded()
 
 void Image::draw(int x, int y)
 {
-	if(!_image)
-    	return;
+	assert(_image);	// image not created!
 
-	SDL_Rect dest;// = {(Sint16) posX, (Sint16) posY, 0, 0};
+	SDL_Rect dest;
     
 	if(Graphics::getImageMode() == CENTER)
     {
@@ -92,8 +116,7 @@ void Image::draw(int x, int y)
 
 void Image::resize(int w, int h)
 {
-	if(!_image)
-    	return;
+	assert(_image);	// image not created!
 	
     // resize automatically frees old image
     _image = SDL_Resize(_image, w, h);
@@ -106,8 +129,7 @@ void Image::resize(int w, int h)
 
 void Image::scale(float scaleX, float scaleY)
 {
-	if(!_image)
-    	return;
+	assert(_image);	// image not created!
 	
     // resize automatically frees old image
     _image = SDL_Resize(_image, scaleX, scaleY);
@@ -130,26 +152,23 @@ const int Image::height()
 
 Color Image::getPixel(unsigned int x, unsigned int y)
 {
-	Color c;
-	if(!_image)
-    	return c;	/// empty
-        
-	c.set(SPG_GetPixel(_image, x, y));
-    return c;
+	assert(_image);	// image not created!
+    
+    Color color;
+    color.set(SPG_GetPixel(_image, x, y), _image);
+    return color;
 }
 
 void Image::setPixel(unsigned int x, unsigned int y, Color& color)
 {
-	if(!_image)
-    	return;
+	assert(_image);	// image not created!
 
-	SPG_Pixel(_image, x, y, color);
+	SPG_PixelBlend(_image, x, y, color.get(_image), color.A);
 }
 
 void Image::pixelate(unsigned int pixelWidth, unsigned int pixelHeight)
 {
-    if(!_image)
-    	return;
+    assert(_image);	// image not created!
 
 	if(pixelWidth == 0)	pixelWidth = 1;
     if(pixelHeight == 0) pixelHeight = 1;
@@ -165,7 +184,7 @@ void Image::pixelate(unsigned int pixelWidth, unsigned int pixelHeight)
             Color thisColor = getPixel(x, y);
             
             // new color (must be large enough, Color too small)
-            unsigned int newR = 0, newG = 0, newB = 0;
+            unsigned int newR = 0, newG = 0, newB = 0, newA = 0;
             
             // our color values
             std::vector<Color> colors;
@@ -193,16 +212,18 @@ void Image::pixelate(unsigned int pixelWidth, unsigned int pixelHeight)
             	newR += colors[i].R & 0xFF;
                 newG += colors[i].G & 0xFF;
                 newB += colors[i].B & 0xFF;
+                newA += colors[i].A & 0xFF;
             }
             
             // now divide the master numbers by the number of valid samples to get an average
             newR /= colors.size();
     		newG /= colors.size();
             newB /= colors.size();
+            newA /= colors.size();
             
             // and use the new numbers as our color
             SPG_RectFilled(_image, x, y, x+pixelWidth, y+pixelHeight,
-            	SDL_MapRGB(_image->format, newR, newG, newB));
+            	SDL_MapRGBA(_image->format, newR, newG, newB, newA));
         }
     }
 }
