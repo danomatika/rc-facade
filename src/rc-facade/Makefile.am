@@ -9,7 +9,8 @@ bin_PROGRAMS = rc-facade
 # bin sources, headers here because we dont want to install them
 rc_facade_SOURCES = \
         Common.h Config.h Config.cpp \
-        FacadeApp.h FacadeApp.cpp \
+        App.h App.cpp \
+	Facade.h Facade.cpp \
         main.cpp \
         Scene.h Scene.cpp \
         SceneManager.h SceneManager.cpp \

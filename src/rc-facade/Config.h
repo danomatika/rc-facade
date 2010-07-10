@@ -6,7 +6,7 @@
 
 #include "Common.h"
 
-#include <facade/Facade.h>
+#include "Facade.h"
 
 /**
     \class  Config
@@ -42,11 +42,13 @@ class Config : public xml::XmlObject
 		/* **** OBJECTS ***** */
 
 		/// setup the facade object
+        /*
         inline void setupFacade(string ip, unsigned int port=8080)
         {
             _facade.setup(ip, port);
         }
-
+		*/
+        
 		/// setup the osc receiver
         inline void setupReceiver(unsigned int port)
         {

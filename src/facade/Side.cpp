@@ -3,11 +3,11 @@
 ==============================================================================*/
 #include "Side.h"
 
-using namespace visual;
+#include <iostream>
 
-unsigned int Side::_windowSize = 5;
-bool Side::_bDrawOutlines = true;
-uint32_t Side::_outlineColor(0x666666);
+#include "Building.h"
+
+namespace facade {
 
 Side::~Side()
 {
@@ -31,9 +31,6 @@ void Side::move(int rowAmount, int colAmount)
 
 int Side::getAddress(int row, int col, bool global)
 {
-    //if(!bEnabled)
-    //    return -1;
-
     if(global)  // grab address in relation to building's overall grid
     {
         if(row >= startRow && row <= endRow)
@@ -68,7 +65,9 @@ int Side::getAddress(int row, int col, bool global)
     return -1;
 }
 
-void Side::setColor(FrameBuffer& frame, uint32_t color)
+/* ***** FRAME BUFFER DRAWING ***** */
+
+void Side::set(FrameBuffer& frame, uint32_t color)
 {
     if(!bEnabled)
         return;
@@ -79,42 +78,115 @@ void Side::setColor(FrameBuffer& frame, uint32_t color)
     }
 }
 
-void Side::setRowColor(FrameBuffer& frame, int row, uint32_t color, bool global)
+void Side::setRow(FrameBuffer& frame, int row, uint32_t color, bool global)
 {
     if(!bEnabled)
         return;
 
-    if(row >= getStartRow() && row <= getEndRow())
+    if(row >= startRow && row <= endRow)
     {
-        for(int column = 0; column <= getEndCol(); ++column)
+        for(int col = 0; col <= endCol; ++col)
         {
-            frame.setColor(getAddress(row, column, global), color);
+            frame.setColor(getAddress(row, col), color);
         }
     }
 }
 
-void Side::setColColor(FrameBuffer& frame, int column, uint32_t color, bool global)
+void Side::setCol(FrameBuffer& frame, int col, uint32_t color, bool global)
 {
     if(!bEnabled)
         return;
 
-    if(column >= 0 && column < getNrCols())
+    if(col >= startCol && col < endCol)
     {
-        for(int row = getStartRow(); row <= getEndRow(); ++row)
+        for(int row = startRow; row <= endRow; ++row)
         {
-            frame.setColor(getAddress(row, column, global), color);
+            frame.setColor(getAddress(row, col), color);
         }
     }
 }
 
-void Side::setWindowColor(FrameBuffer& frame, int row, int column, uint32_t color, bool global)
+void Side::setWindow(FrameBuffer& frame, int row, int col, uint32_t color, bool global)
 {
     if(!bEnabled)
         return;
 
-    frame.setColor(getAddress(row, column, global), color);
+    frame.setColor(getAddress(row, col), color);
 }
 
+/* ***** PIXEL BUFFER DRAWING ***** */
+
+/// draw the side into a pixel buffer
+void Side::draw(uint32_t* pixels, Building& _building, uint32_t color, bool drawEmpty)
+{
+    if(!bEnabled)
+        return;
+
+    int xPos = startCol;
+    int yPos = startRow;
+    int xStart = xPos;
+
+    for(int r = 0; r < nrRows; ++r)
+    {
+        for(int c = 0; c < nrCols; ++c)
+        {            
+            if(getAddress(r, c) != -1)
+            	pixels[yPos*_building.getNrCols()+xPos] = color;
+                
+            else if(drawEmpty)	// set the empty color?
+                pixels[yPos*_building.getNrCols()+xPos] = 0x00000000;
+			
+            ++xPos;
+        }
+        xPos = xStart;
+        ++yPos;
+    }
+}
+
+/// draw a row of the side into a pixel buffer
+void Side::drawRow(uint32_t* pixels, Building& building, unsigned int row, uint32_t color)
+{
+    if(!bEnabled)
+        return;
+        
+	if(row >= 0 && row < (unsigned int) nrRows)
+    {
+        for(int col = 0; col < nrCols; ++col)
+        {
+        	if(getAddress(row, col) != -1)
+            	pixels[(row+startRow)*building.getNrCols()+(col+startCol)] = color;
+        }
+    }
+}
+
+/// draw a col of the side into a pixel buffer
+void Side::drawCol(uint32_t* pixels, Building& building, unsigned int col, uint32_t color)
+{
+    if(!bEnabled)
+        return;
+        
+    if(col >= 0 && col < (unsigned int) nrCols)
+    {
+        for(int row = 0; row < nrRows; ++row)
+        {
+        	if(getAddress(row, col) != -1)
+            	pixels[(row+startRow)*building.getNrCols()+(col+startCol)] = color;
+        }
+    }
+}
+
+/// draw a window of the side into a pixel buffer
+void Side::drawWindow(uint32_t* pixels, Building& building, unsigned int row, unsigned int col, uint32_t color)
+{
+    if(!bEnabled)
+        return;
+    
+    if(getAddress(row, col) != -1)
+        pixels[(row+startRow)*building.getNrCols()+(col+startCol)] = color;   
+}
+
+/* ***** UTIL ***** */
+        
 void Side::print()
 {
     for(int r = 0; r < nrRows; ++r)
@@ -139,44 +211,4 @@ void Side::print()
     }
 }
 
-void Side::draw(FrameBuffer& frame, int x, int y, bool global)
-{
-    if(!bEnabled)
-        return;
-
-    int xStart, xPos = x, yPos = y;
-
-    if(global)
-    {
-        xPos = x + (startCol*_windowSize*FACADE_WIN_ASPECT_WIDTH);
-        yPos = y + (startRow*_windowSize);
-    }
-    xStart = xPos;
-
-    if(!_bDrawOutlines)
-        Graphics::noStroke();
-
-    for(int r = 0; r < nrRows; ++r)
-    {
-        for(int c = 0; c < nrCols; ++c)
-        {
-            int addr = getAddress(r, c);
-            if(addr != -1)
-            {
-                Color c = frame.getColor(addr);
-                c.A = 0x66;
-                Graphics::fill(Color(c));
-                if(_bDrawOutlines)
-                {
-                    visual::Graphics::stroke(Color(_outlineColor));
-                }
-                visual::Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH-1, _windowSize-1);
-            }
-
-            xPos += _windowSize*FACADE_WIN_ASPECT_WIDTH;
-        }
-        xPos = xStart;
-        yPos += _windowSize;
-    }
-}
-
+} // namespace

@@ -1,7 +1,5 @@
 #include "Image.h"
 
-#include <SDL/SDL_image.h>
-
 #include <sstream>
 
 Image::Image(string name) : DrawableObject("image"), frameTime(0),

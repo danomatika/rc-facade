@@ -7,36 +7,40 @@
 
 #include "Common.h"
 
-#include "FacadeApp.h"
+#include "App.h"
+
+using namespace visual;
 
 int main(int argc, char *argv[])
 {
+	Config& config = Config::instance();
+    
 	// parse the commandline
-    if(!Config::instance().parseCommandLine(argc, argv))
+    if(!config.parseCommandLine(argc, argv))
     	return EXIT_FAILURE;
 	
     // initialize SDL context
-    //Graphics::init(1200, 400, 16, HARDWARE);
-    //Graphics::init(946, 196, 16, HARDWARE);
-    Graphics::init(1280, 196, 16, HARDWARE);
-
+    // ste window size based on facade grid size
+    Graphics::init(config.getFacade().getDrawWidth(),
+                   config.getFacade().getDrawHeight(),
+                   32, HARDWARE);
 
     // initialize app
-    FacadeApp facade;
-    facade.init();
+    App facadeApp;
+    facadeApp.init();
 
     // set icon and open window
     Graphics::setWindowIcon("../data/icon.bmp");
     Graphics::createWindow("rc-facade");
 
     // setup sdl resources
-    facade.setup();
+    facadeApp.setup();
 
     // main app loop
-    facade.mainLoop();
+    facadeApp.mainLoop();
 
     // cleanup after exit from loop
-    facade.cleanup();
+    facadeApp.cleanup();
 
     return EXIT_SUCCESS;
 }

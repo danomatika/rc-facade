@@ -1,8 +1,8 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef BUILDING_APP_H
-#define BUILDING_APP_H
+#ifndef FACADE_BUILDING_H
+#define FACADE_BUILDING_H
 
 #include <vector>
 #include "Side.h"
@@ -14,6 +14,8 @@
 #include "SideMainBuildingSouth.h"
 #include "SideMainBuildingSouthStreetLevel.h"
 #include "SideMainBuildingWest.h"
+
+namespace facade {
 
 /// represents the building as a list of bulding sides
 class Building
@@ -56,12 +58,12 @@ class Building
                 if(side->isEnabled())
                 {
 
-                    if(side->getEndRow() >= nrRows)
+                    if(side->getEndRow() >= (int) nrRows)
                     {
                         nrRows = side->getEndRow()+1;
                     }
 
-                    if(side->getEndCol() >= nrCols)
+                    if(side->getEndCol() >= (int) nrCols)
                     {
                         nrCols = side->getEndCol()+1;
                     }
@@ -69,8 +71,8 @@ class Building
             }
         }
 
-        inline int getNrRows()  {return nrRows;}
-        inline int getNrCols()  {return nrCols;}
+        inline unsigned int getNrRows()  {return nrRows;}
+        inline unsigned int getNrCols()  {return nrCols;}
         inline std::vector<Side*>& getSides() {return sides;}
 
         void print()
@@ -94,9 +96,11 @@ class Building
 
 	private:
 
-        std::vector<Side*> sides;   /// pointer vector to all sides
-        int nrRows;		/// the overall number of rows of the building
-        int nrCols;     /// the maximum number of columns of a side
+        std::vector<Side*> sides;   ///< pointer vector to all sides
+        unsigned int nrRows;		///< the overall number of rows of the building
+        unsigned int nrCols;     	///< the maximum number of columns of a side
 };
+
+} // namespace
 
 #endif // BUILDING_APP_H

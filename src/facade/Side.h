@@ -1,14 +1,18 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef SIDE_APP_H
-#define SIDE_APP_H
+#ifndef FACADE_SIDE_H
+#define FACADE_SIDE_H
 
 #include <string>
 
 #include "FrameBuffer.h"
 
 #define FACADE_WIN_ASPECT_WIDTH 3
+
+namespace facade {
+
+class Building;
 
 /**
     abstract base class for building sides, initialized in derived
@@ -36,14 +40,6 @@ class Side
         inline void enable(bool enabled){bEnabled = enabled;}
         inline bool isEnabled()			{return bEnabled;}
 
-        static unsigned int getWindowSize() 			{return _windowSize;}
-        static void setWindowSize(unsigned int size)    {_windowSize = size;}
-        static void drawOutlines(bool yesno)         	{_bDrawOutlines = yesno;}
-        static void drawOutlines()                   	{_bDrawOutlines = !_bDrawOutlines;}
-        static uint32_t getOutlineColor() 		{return _outlineColor;}
-        static void setOutlineColor(uint32_t color){_outlineColor = color;}
-        //static void setOutlineColor(unsigned int color) {_outlineColor.set(color);}
-
         /// set the position relative the overall building grid
         /// row, column are the upper left corner
         void setPos(int row, int column);
@@ -60,22 +56,36 @@ class Side
         **/
         int getAddress(int row, int col, bool global=false);
 
+		/* ***** FRAME BUFFER DRAWING ***** */
+
         /// set side to a particular color
-        void setColor(FrameBuffer& frame, uint32_t color);
+        void set(FrameBuffer& frame, uint32_t color);
 
         /// set row of side to a particular color
-        void setRowColor(FrameBuffer& frame, int row, uint32_t color, bool global=false);
+        void setRow(FrameBuffer& frame, int row, uint32_t color, bool global=false);
 
         /// set column of side to a particular color
-        void setColColor(FrameBuffer& frame, int column, uint32_t color, bool global=false);
+        void setCol(FrameBuffer& frame, int col, uint32_t color, bool global=false);
 
         /// set window at row/column to particular color.
         /// do nothing, if there is no window at that position.
-        void setWindowColor(FrameBuffer& frame, int row, int column, uint32_t color, bool global=false);
+        void setWindow(FrameBuffer& frame, int row, int col, uint32_t color, bool global=false);
+        
+        /* ***** PIXEL BUFFER DRAWING ***** */
+        
+        /// draw the side into a pixel buffer
+        void draw(uint32_t* pixels, Building& building, uint32_t color, bool drawEmpty=false);
+		
+        /// draw a row of the side into a pixel buffer
+        void drawRow(uint32_t* pixels, Building& building, unsigned int row, uint32_t color);
+        
+        /// draw a col of the side into a pixel buffer
+        void drawCol(uint32_t* pixels, Building& building, unsigned int col, uint32_t color);
+        
+        /// draw a window of the side into a pixel buffer
+        void drawWindow(uint32_t* pixels, Building& building, unsigned int row, unsigned int col, uint32_t color);
 
-        /// draw the side, x,y is upper left corner
-        /// if global is true, x and y will be offset by where the sides start row and cols are
-        void draw(FrameBuffer& frame, int x, int y, bool global=false);
+		/* ***** UTIL ***** */
 
         /// print the side addresses graphically to LOG
         void print();
@@ -84,29 +94,24 @@ class Side
 
 		std::string name;
 
-        int startAddr;		/// first window address
-        int endAddr;		/// last window address
+        int startAddr;		///< first window address
+        int endAddr;		///< last window address
 
-        int startRow;		/// index of top row in an overall numbering
-        int endRow;			/// index of last row in an overall numbering
+        int startRow;		///< index of top row in an overall numbering
+        int endRow;			///< index of last row in an overall numbering
 
-        int startCol;       /// index of leftmost col in overall numbering
-        int endCol;         /// index of rightmost col in overall numbering
+        int startCol;       ///< index of leftmost col in overall numbering
+        int endCol;         ///< index of rightmost col in overall numbering
 
-        int nrRows;         /// number of rows
-        int nrCols;		    /// number of columns
+        int nrRows;         ///< number of rows
+        int nrCols;		    ///< number of columns
 
-        int* windowAddrs;	/// window addresses of this side
+        int* windowAddrs;	///< window addresses of this side
 
-        bool bFlipX, bFlipY;  /// flip the side?
-        bool bEnabled;        /// is this side enabled?
-
-    private:
-
-        static unsigned int _windowSize;/// how big should the window pixel be
-        static bool _bDrawOutlines;     /// draw an outline around each window?
-        static uint32_t _outlineColor;  /// the color of the window outlines
-
+        bool bFlipX, bFlipY;  ///< flip the side?
+        bool bEnabled;        ///< is this side enabled?
 };
 
-#endif // SIDE_APP_H
+} // namespace
+
+#endif // FACADE_SIDE_H

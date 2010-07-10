@@ -51,10 +51,10 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_rc_facade_OBJECTS = rc_facade-Config.$(OBJEXT) \
-	rc_facade-FacadeApp.$(OBJEXT) rc_facade-main.$(OBJEXT) \
-	rc_facade-Scene.$(OBJEXT) rc_facade-SceneManager.$(OBJEXT) \
-	rc_facade-Bitmap.$(OBJEXT) rc_facade-Sprite.$(OBJEXT) \
-	rc_facade-Image.$(OBJEXT)
+	rc_facade-App.$(OBJEXT) rc_facade-Facade.$(OBJEXT) \
+	rc_facade-main.$(OBJEXT) rc_facade-Scene.$(OBJEXT) \
+	rc_facade-SceneManager.$(OBJEXT) rc_facade-Bitmap.$(OBJEXT) \
+	rc_facade-Sprite.$(OBJEXT) rc_facade-Image.$(OBJEXT)
 rc_facade_OBJECTS = $(am_rc_facade_OBJECTS)
 am__DEPENDENCIES_1 =
 rc_facade_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -203,7 +203,8 @@ EXTERNALS_LIBS = \
 # bin sources, headers here because we dont want to install them
 rc_facade_SOURCES = \
         Common.h Config.h Config.cpp \
-        FacadeApp.h FacadeApp.cpp \
+        App.h App.cpp \
+	Facade.h Facade.cpp \
         main.cpp \
         Scene.h Scene.cpp \
         SceneManager.h SceneManager.cpp \
@@ -313,9 +314,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-App.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Bitmap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Config.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-FacadeApp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Facade.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Image.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-Scene.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rc_facade-SceneManager.Po@am__quote@
@@ -350,19 +352,33 @@ rc_facade-Config.obj: Config.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-Config.obj `if test -f 'Config.cpp'; then $(CYGPATH_W) 'Config.cpp'; else $(CYGPATH_W) '$(srcdir)/Config.cpp'; fi`
 
-rc_facade-FacadeApp.o: FacadeApp.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-FacadeApp.o -MD -MP -MF $(DEPDIR)/rc_facade-FacadeApp.Tpo -c -o rc_facade-FacadeApp.o `test -f 'FacadeApp.cpp' || echo '$(srcdir)/'`FacadeApp.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-FacadeApp.Tpo $(DEPDIR)/rc_facade-FacadeApp.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FacadeApp.cpp' object='rc_facade-FacadeApp.o' libtool=no @AMDEPBACKSLASH@
+rc_facade-App.o: App.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-App.o -MD -MP -MF $(DEPDIR)/rc_facade-App.Tpo -c -o rc_facade-App.o `test -f 'App.cpp' || echo '$(srcdir)/'`App.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-App.Tpo $(DEPDIR)/rc_facade-App.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='App.cpp' object='rc_facade-App.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-FacadeApp.o `test -f 'FacadeApp.cpp' || echo '$(srcdir)/'`FacadeApp.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-App.o `test -f 'App.cpp' || echo '$(srcdir)/'`App.cpp
 
-rc_facade-FacadeApp.obj: FacadeApp.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-FacadeApp.obj -MD -MP -MF $(DEPDIR)/rc_facade-FacadeApp.Tpo -c -o rc_facade-FacadeApp.obj `if test -f 'FacadeApp.cpp'; then $(CYGPATH_W) 'FacadeApp.cpp'; else $(CYGPATH_W) '$(srcdir)/FacadeApp.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-FacadeApp.Tpo $(DEPDIR)/rc_facade-FacadeApp.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FacadeApp.cpp' object='rc_facade-FacadeApp.obj' libtool=no @AMDEPBACKSLASH@
+rc_facade-App.obj: App.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-App.obj -MD -MP -MF $(DEPDIR)/rc_facade-App.Tpo -c -o rc_facade-App.obj `if test -f 'App.cpp'; then $(CYGPATH_W) 'App.cpp'; else $(CYGPATH_W) '$(srcdir)/App.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-App.Tpo $(DEPDIR)/rc_facade-App.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='App.cpp' object='rc_facade-App.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-FacadeApp.obj `if test -f 'FacadeApp.cpp'; then $(CYGPATH_W) 'FacadeApp.cpp'; else $(CYGPATH_W) '$(srcdir)/FacadeApp.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-App.obj `if test -f 'App.cpp'; then $(CYGPATH_W) 'App.cpp'; else $(CYGPATH_W) '$(srcdir)/App.cpp'; fi`
+
+rc_facade-Facade.o: Facade.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-Facade.o -MD -MP -MF $(DEPDIR)/rc_facade-Facade.Tpo -c -o rc_facade-Facade.o `test -f 'Facade.cpp' || echo '$(srcdir)/'`Facade.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-Facade.Tpo $(DEPDIR)/rc_facade-Facade.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Facade.cpp' object='rc_facade-Facade.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-Facade.o `test -f 'Facade.cpp' || echo '$(srcdir)/'`Facade.cpp
+
+rc_facade-Facade.obj: Facade.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-Facade.obj -MD -MP -MF $(DEPDIR)/rc_facade-Facade.Tpo -c -o rc_facade-Facade.obj `if test -f 'Facade.cpp'; then $(CYGPATH_W) 'Facade.cpp'; else $(CYGPATH_W) '$(srcdir)/Facade.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/rc_facade-Facade.Tpo $(DEPDIR)/rc_facade-Facade.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Facade.cpp' object='rc_facade-Facade.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rc_facade-Facade.obj `if test -f 'Facade.cpp'; then $(CYGPATH_W) 'Facade.cpp'; else $(CYGPATH_W) '$(srcdir)/Facade.cpp'; fi`
 
 rc_facade-main.o: main.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rc_facade_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rc_facade-main.o -MD -MP -MF $(DEPDIR)/rc_facade-main.Tpo -c -o rc_facade-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp

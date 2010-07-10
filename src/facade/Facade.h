@@ -1,11 +1,12 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef FACADE_H
-#define FACADE_H
+#ifndef FACADE_FACADE_H
+#define FACADE_FACADE_H
 
-#include <visualframework/visualframework.h>
 #include <string>
+
+namespace facade {
 
 enum FacadeSide
 {
@@ -26,46 +27,26 @@ class Facade
         Facade();
         virtual ~Facade();
 
-        /// calls setup automatically
-        Facade(std::string ip, unsigned int port=8080);
-
-        /// set the ip and port to send the facade packets to
-        void setup(std::string ip, unsigned int port=8080);
-
         /// clears the framebuffer by setting the background
         void clear();
 
-        /// send the facade framebuffer
-        void send();
-
-        /// draw the facade sides, (x,y) is the upper left corner
-        /// note: only draws windows that exist at a specific position
-        void draw(int x, int y, bool debug=false);
-
-        /// draw the overall building grid, (x,y) is the upper left corner
-        void drawGrid(int x, int y);
-
         /// set the framebuffer clear color
         void setClearColor(uint32_t color);
-        //void setClearColor(unsigned int color);
+        
+        /// swap the pixel framebuffer into the facade framebuffer packet
+        /// automatically discards pixels not on a side
+        void swap();
+        
+        /* ***** RAW PACKET ACCESS ***** */
+        
+        /// get the raw facade frame packet
+        const uint8_t* getPacket() const;
 
-        /* ***** SETTINGS ***** */
-
-        /// set the draw size of a window in pixels
-        /// note: aspect ration is 3:1
-        void setWindowSize(unsigned int size);
-
-        /// should the sides draw outlines around the windows?
-        void drawOutlines(bool yesno);
-        void drawOutlines();    /// toggle
-
-        /// set the color of the window outlines
-        void setOutlineColor(visual::Color color);
-        void setOutlineColor(unsigned int color);
-
-        /// should the graphics primitives wrap around the grid? (on by default)
-        inline void wrapX(bool yesno)	{_bWrapX = yesno;}
-        inline void wrapY(bool yesno)	{_bWrapY = yesno;}
+		/// get the length of the packet
+		unsigned int getPacketLen();
+        
+        /// set the raw packet from memory, assumes correct length
+        void setPacket(const uint8_t* packet);
 
         /* ***** SIDE SETTINGS ***** */
 
@@ -84,14 +65,33 @@ class Facade
         /// flip the side horizontally or vertically
         void flipSide(FacadeSide side, bool flipX, bool flipY);
 
-        /// call this after changing any if the side attributes to recompute the overall all building grid size
+        /// call this after changing any if the side attributes to recompute the overall all building grid size,
+        /// (possibley) changes the width and height; reallocates the pixel framebuffer, not the facade packet
         void recomputeSize();
+    
+    	/* ***** PIXEL FRAME BUFFER ***** */
+        
+        /// get the current framebuffer, length is  getWidth()*getHeight()
+        /// pixels are 0xAARRGGBB with A always 0xFF
+        const uint32_t* getFramebuffer() const;
+        
+        /// set the current framebuffer, assumes length is getWidth()*getHeight()
+        /// pixels should be 0xAARRGGBB with A always 0xFF
+        void setFramebuffer(const uint32_t* pixels);
+        
+        // load the pixel framebuffer, assumes width and height
+        void setPixels(const uint32_t* pixels);
+        
+        /// get the pixel mask image, the sides are colored and empty pixels = 0
+        const uint32_t* getMask() const;
+        
+        /// get a pixel in the building grid
+    	uint32_t getPixel(unsigned int x, unsigned int y);
+        
+        /// get a pixel in a specific side, returns 0 on empty pixel
+        uint32_t getSidePixel(FacadeSide side, unsigned int x, unsigned int y);
 
-        /// draw the individual sides with different colors for debugging placement, ignores background
-        /// (off by default)
-        inline void showSides(bool yesno) {_bShowSides = yesno;}
-
-        /* ***** GRAPHICS ***** */
+        /* ***** GRAPHICS SETTINGS ***** */
 
         /// set the ARGB draw color, white by default
         /// pure black (0xFFFFFFFF) may turn off the leds, so it is
@@ -100,8 +100,8 @@ class Facade
         
         /// blend colors when drawing? off by default
         /// alpha is ignored when off
-        void blend();
-        void noBlend();
+        inline void blend()	{_bBlend = true;}
+        inline void noBlend()	{_bBlend = false;}
         
         /// fill rectangles? off by default
         inline void fill()		{_bRectFill = true;}
@@ -110,26 +110,14 @@ class Facade
         /// draw rectangles from the center or corner? corner by default
         inline void rectModeCenter() {_bRectCenter = true;}
         inline void rectModeCorner() {_bRectCenter = false;}
-
-        /// set the color of a specific side
-        void sideColor(FacadeSide side);
-
-        /// set the color of a row on a specific side
-        void sideRow(FacadeSide side, int row);
-
-        /// set the color of a column on a specific side
-        void sideCol(FacadeSide side, int col);
-
-        /// draw a pixel on a specific side
-        /// x, y are coordinates relative the WINDOWS's size, not the building grid
-        /// aka (0, 0) is the upper left corder of the side no matter where it is
-        void sidePixel(FacadeSide side, int x, int y);
         
-        /// get a pixel in the building grid, returns black (0xFFFFFFFF) on empty pixel
-    	//uint32_t getPixel(int x, int y);
-        
-        /// get a pixel in a specific side, returns black (0xFFFFFFFF) on empty pixel
-        //uint32_t getSidePixel(FacadeSide side, int x, int y);
+        /// should the graphics primitives wrap around the grid? (on by default)
+        inline void wrap()				{_bWrapX = true; _bWrapY = true;}
+        inline void noWrap()			{_bWrapX = false; _bWrapY = false;}
+        inline void wrapX(bool yesno)	{_bWrapX = yesno;}
+        inline void wrapY(bool yesno)	{_bWrapY = yesno;}
+
+		/* ***** GRAPHICS PRIMITIVES ***** */
 
         /// draw a pixel in the building grid
         void pixel(int x, int y);
@@ -143,22 +131,30 @@ class Facade
         /// draw a circle in the building grid
         void circle(int x, int y, int r);
         
-        /* ***** FRAMEBUFFER ***** */
+        /* ***** SIDE GRAPHICS ***** */
         
-        // get the pixel framebuffer
-        uint32_t* getPixels();
-        
-        // load the pixel framebuffer, assumes width and height
-        void setPixels(uint32_t* p); 
+        /// set the color of a specific side
+        void sideColor(FacadeSide side);
+
+        /// set the color of a row on a specific side
+        void sideRow(FacadeSide side, int row);
+
+        /// set the color of a column on a specific side
+        void sideCol(FacadeSide side, int col);
+
+        /// draw a pixel on a specific side
+        /// x, y are coordinates relative the WINDOWS's size, not the building grid
+        /// aka (0, 0) is the upper left corder of the side no matter where it is
+        void sidePixel(FacadeSide side, int x, int y);
 
         /* ***** UTIL ***** */
 
-        /// print the facade "graphically" to stdout
+        /// print the facade addresses "graphically" to stdout
         void print();
 
         /// get the overall width and height of the building grid
-        inline unsigned int getWidth() {return _width;}
-        inline unsigned int getHeight(){return _height;}
+        unsigned int getWidth();
+        unsigned int getHeight();
 
         /// get the width/height of a specific window
         unsigned int getSideWidth(FacadeSide side);
@@ -169,20 +165,27 @@ class Facade
         unsigned int getSidePosY(FacadeSide side);
 
     private:
-
-        uint8_t *_pixels;	/// pixel framebuffer
-        unsigned int _width, _height;	/// framebuffer size
-
-        uint32_t _clearColor;      /// framebuffer clear color
-        uint32_t _drawColor;       /// current draw color
-
-        bool _bWrapX, _bWrapY;  /// does drawing wrap around the grid edges?
-        bool _bShowSides;       /// draw the individual sides in diff colors?
+    
+    	/// (re)allocate and build the mask
+    	void setup();
         
-        bool _bBlend;		/// blend colors when drawing?
+        /// set a pixel in the framebuffer
+        void setPixel(unsigned int x, unsigned int y, uint32_t color);
+
+        uint32_t* _pixels;	///< pixel framebuffer
+        uint32_t* _mask;	///< side location mask
+
+        uint32_t _clearColor;      ///< current clear color
+        uint32_t _drawColor;       ///< current draw color
+
+        bool _bWrapX, _bWrapY;  ///< does drawing wrap around the grid edges?
         
-        bool _bRectCenter;	/// draw rects from the center point or corner?
-        bool _bRectFill;	/// fill rectangles?
+        bool _bBlend;		///< blend colors when drawing?
+        
+        bool _bRectCenter;	///< draw rects from the center point or corner?
+        bool _bRectFill;	///< fill rectangles?
 };
 
-#endif // FACADE_H
+} // namespace
+
+#endif // FACADE_FACADE_H

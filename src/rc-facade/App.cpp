@@ -1,13 +1,16 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#include "FacadeApp.h"
+#include "App.h"
 
+#include "Config.h"
 #include "facade/Facade.h"
 
 #define OSC_BASE_ADDR   "/visual/facade"
 
-FacadeApp::FacadeApp() : OscObject(""), bRunning(true),
+using namespace visual;
+
+App::App() : OscObject(""), bRunning(true),
     facade(Config::instance().getFacade()),
     receiver(Config::instance().getReceiver()),
     reloadTimestamp(0)
@@ -21,24 +24,32 @@ FacadeApp::FacadeApp() : OscObject(""), bRunning(true),
     receiver.addOscObject(&sceneManager);
     
     reloadTimestamp = Graphics::getMillis();
+    
+    // allocate packet
+    packet = SDLNet_AllocPacket(facade.getPacketLen());
+    packet->len = facade.getPacketLen();
 }
 
-FacadeApp::~FacadeApp()
-{}
+App::~App()
+{
+	SDLNet_FreePacket(packet); // cleanup
+}
 
-void FacadeApp::init()
+void App::init()
 {
     // setup the osc listener
     receiver.setup(7000);
     receiver.start();
 
+	// set destibation
+    sender.setup("192.168.5.73", 8080);
+
     // setup the facade
     LOG << endl;
+    facade.blend();
     //facade.setup("192.168.7.121", 8080);
-    facade.setup("192.168.5.73", 8080);
     //facade.setClearColor(0xFFFF00);//Color(40, 40, 40));
-    facade.setWindowSize(7);
-    facade.drawOutlines(false);
+    //facade.setWindowSize(7);
 
     // move some sides
     //facade.moveSides(-10, 0);
@@ -59,6 +70,7 @@ void FacadeApp::init()
     facade.moveSide(Facade::SIDE_LAB_SOUTH, -10, 0);
 	*/
     //facade.recomputeSize();
+    facadeMask.load(facade.getMask(), facade.getWidth(), facade.getHeight());
     
     facade.print();
 
@@ -69,7 +81,7 @@ void FacadeApp::init()
     }
 }
 
-void FacadeApp::setup()
+void App::setup()
 {
     setBackground(0x505050);
     setFrameRate(25);
@@ -77,7 +89,7 @@ void FacadeApp::setup()
     sceneManager.setup();
 }
 
-void FacadeApp::update()
+void App::update()
 {
     if(bRunning)
     {
@@ -85,25 +97,32 @@ void FacadeApp::update()
 
         sceneManager.draw();
     }
+    
+    facadeImage.load(facade.getFramebuffer(), facade.getWidth(), facade.getHeight());
 }
 
-void FacadeApp::draw()
+void App::draw()
 {
-    facade.draw(0, 0, bDebug);
+    facade.draw(0, 0);
 
-//    if(bDebug
-//        facade.drawGrid(100, 100, bDebug);
-
+	if(bDebug)
+    {
+    	facadeImage.draw(Graphics::getWidth()-facadeImage.width(), 0);
+    	facadeMask.draw(Graphics::getWidth()-facadeMask.width(), facadeImage.height());
+	}
+    
     if(bRunning)
+	{
         facade.send();
+    }
 }
 
-void FacadeApp::cleanup()
+void App::cleanup()
 {
     receiver.stop();
 }
 
-void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
+void App::keyPressed(SDLKey key, SDLMod mod)
 {
     switch(key)
     {
@@ -115,11 +134,8 @@ void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
         case 'd':
             bDebug = !bDebug;
             facade.showSides(bDebug);
+            facade.drawOutlines(bDebug);
             break;
-
-        //case 's':
-        //    sceneManager.saveXmlFile("../data/testout.xml");
-        //    break;
 
         case 'r':
             if(Graphics::getMillis() - reloadTimestamp > 5000)
@@ -146,7 +162,7 @@ void FacadeApp::keyPressed(SDLKey key, SDLMod mod)
 
 /* ***** PROTECTED ***** */
 
-bool FacadeApp::processOscMessage(const osc::ReceivedMessage& message,
+bool App::processOscMessage(const osc::ReceivedMessage& message,
 								  const osc::MessageSource& source)
 {
 	LOG_DEBUG << "received " << message.path() << " " << message.types() << std::endl;

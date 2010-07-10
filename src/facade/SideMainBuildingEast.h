@@ -1,10 +1,12 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef SIDE_MAIN_EAST_APP_H
-#define SIDE_MAIN_EAST_APP_H
+#ifndef FACADE_SIDE_MAIN_EAST_H
+#define FACADE_SIDE_MAIN_EAST_H
 
 #include "Side.h"
+
+namespace facade {
 
 class SideMainBuildingEast : public Side
 {
@@ -54,4 +56,6 @@ class SideMainBuildingEast : public Side
         }
 };
 
-#endif // SIDE_MAIN_EAST_APP_H
+} // namespace
+
+#endif // FACADE_SIDE_MAIN_EAST_H

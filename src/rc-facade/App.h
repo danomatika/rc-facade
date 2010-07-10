@@ -1,24 +1,22 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef FACADE_APP_H
-#define FACADE_APP_H
+#ifndef APP_H
+#define APP_H
 
 #include "Common.h"
 
-#include "Config.h"
 #include "SceneManager.h"
 
 using namespace std;
-using namespace visual;
 
-class FacadeApp : public Application, public OscObject
+class App : public visual::Application, public OscObject
 {
     public:
 
-        FacadeApp();
+        App();
 
-        virtual ~FacadeApp();
+        virtual ~App();
 
         void init();
 
@@ -45,8 +43,14 @@ class FacadeApp : public Application, public OscObject
         Facade& facade;
         OscReceiver& receiver;
         SceneManager sceneManager;
+        
+        visual::Image facadeImage;
+        visual::Image facadeMask;
+        
+        visual::UdpSender sender;
+        UdpPacket* packet;
 
         unsigned int reloadTimestamp;
 };
 
-#endif // FACADE_APP_H
+#endif // APP_H

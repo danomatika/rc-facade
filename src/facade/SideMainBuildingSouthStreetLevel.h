@@ -1,8 +1,10 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef SIDE_MAIN_SOUTH_STREET_APP_H
-#define SIDE_MAIN_SOUTH_STREET_APP_H
+#ifndef FACADE_SIDE_MAIN_SOUTH_STREET_H
+#define FACADE_SIDE_MAIN_SOUTH_STREET_H
+
+namespace facade {
 
 class SideMainBuildingSouthStreetLevel : public Side
 {
@@ -33,4 +35,6 @@ class SideMainBuildingSouthStreetLevel : public Side
         }
 };
 
-#endif // SIDE_MAIN_SOUTH_STREET_APP_H
+} // namespace
+
+#endif // FACADE_SIDE_MAIN_SOUTH_STREET_H

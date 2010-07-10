@@ -1,8 +1,10 @@
 /*==============================================================================
     2009 Dan Wilcox <danomatika@gmail.com>
 ==============================================================================*/
-#ifndef SIDE_FL_EAST_APP_H
-#define SIDE_FL_EAST_APP_H
+#ifndef FACADE_SIDE_FL_EAST_H
+#define FACADE_SIDE_FL_EAST_H
+
+namespace facade {
 
 class SideFuturelabEast : public Side
 {
@@ -38,4 +40,6 @@ class SideFuturelabEast : public Side
         }
 };
 
-#endif // SIDE_FL_EAST_APP_H
+} // namespace
+
+#endif // FACADE_SIDE_FL_EAST_H
