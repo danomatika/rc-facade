@@ -57,13 +57,12 @@ class Building
                 Side* side = sides.at(i);
                 if(side->isEnabled())
                 {
-
-                    if(side->getEndRow() >= (int) nrRows)
+                    if(side->getEndRow() > (int) nrRows)
                     {
                         nrRows = side->getEndRow()+1;
                     }
 
-                    if(side->getEndCol() >= (int) nrCols)
+                    if(side->getEndCol() > (int) nrCols)
                     {
                         nrCols = side->getEndCol()+1;
                     }

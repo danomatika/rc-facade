@@ -9,6 +9,7 @@
 #define OSC_BASE_ADDR   "/visual/facade"
 
 using namespace visual;
+using namespace facade;
 
 App::App() : OscObject(""), bRunning(true),
     facade(Config::instance().getFacade()),
@@ -66,9 +67,12 @@ void App::init()
     
     facade.enableSide(Facade::SIDE_MAIN_NORTH, false);
     facade.moveSide(Facade::SIDE_MAIN_SOUTH, -10, 0);
-    facade.moveSide(Facade::SIDE_MAIN_SOUTH_STREET, -9, 0);
-    facade.moveSide(Facade::SIDE_LAB_SOUTH, -10, 0);
-	*/
+    */
+    //facade.enableSide(SIDE_MAIN_SOUTH, false);
+    //facade.enableSide(SIDE_LAB_SOUTH, false);
+    //facade.moveSide(SIDE_MAIN_SOUTH_STREET, 0, 1);
+    //facade.moveSide(Facade::SIDE_LAB_SOUTH, -10, 0);
+	
     //facade.recomputeSize();
     facadeMask.load(facade.getMask(), facade.getWidth(), facade.getHeight());
     

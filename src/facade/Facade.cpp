@@ -377,15 +377,15 @@ void Facade::setup()
     // rebuild mask
     for(unsigned int p = 0; p < _building.getNrRows()*_building.getNrCols(); ++p)
         	_mask[p] = 0;	// clear pixels with black
-    _building.main_N.draw(_mask, _building, 0xFFFF0000, true);
-    _building.main_E.draw(_mask, _building, 0xFFFF00FF, true);
-    _building.main_S.draw(_mask, _building, 0xFF00FF00, true);
-    _building.main_S_street.draw(_mask, _building, 0xFF00FFFF, true);
-    _building.main_W.draw(_mask, _building, 0xFFFFFF00, true);
+    _building.main_N.draw(_mask, _building, 0xFFFF0000);
+    _building.main_E.draw(_mask, _building, 0xFFFF00FF);
+    _building.main_S.draw(_mask, _building, 0xFF00FF00);
+    _building.main_S_street.draw(_mask, _building, 0xFF00FFFF);
+    _building.main_W.draw(_mask, _building, 0xFFFFFF00);
 
-    _building.lab_N.draw(_mask, _building, 0xFF666666, true);
-    _building.lab_E.draw(_mask, _building, 0xFF999999, true);
-    _building.lab_S.draw(_mask, _building, 0xFF0000FF, true);
+    _building.lab_N.draw(_mask, _building, 0xFF666666);
+    _building.lab_E.draw(_mask, _building, 0xFF999999);
+    _building.lab_S.draw(_mask, _building, 0xFF0000FF);
 }
 
 void Facade::setPixel(unsigned int x, unsigned int y, uint32_t color)

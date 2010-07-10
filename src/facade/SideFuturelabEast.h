@@ -21,7 +21,7 @@ class SideFuturelabEast : public Side
             nrRows = 9;
             nrCols = 5;
 
-            setPos(17, 43);
+            setPos(17, 45);
 
             int temp[] =
             {

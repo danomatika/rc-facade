@@ -52,12 +52,11 @@ int Side::getAddress(int row, int col, bool global)
         {
             if(col >= 0 && col < nrCols)
             {
-                int r = row, c = col;
                 if(bFlipY)
-                    r = nrRows-row-1;
+                    row = nrRows-row-1;
                 if(bFlipX)
-                    c = nrCols-col-1;
-                return windowAddrs[(r*nrCols) + c];
+                    col = nrCols-col-1;
+                return windowAddrs[(row*nrCols) + col];
             }
         }
     }
