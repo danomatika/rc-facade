@@ -206,7 +206,7 @@ top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = subdir-objects
 
 # dirs to delve into
-SUBDIRS = src
+SUBDIRS = externals src
 all: all-recursive
 
 .SUFFIXES:

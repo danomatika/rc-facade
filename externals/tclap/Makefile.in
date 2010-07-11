@@ -15,7 +15,7 @@
 
 @SET_MAKE@
 
-# vmmlib lib
+# tclap commandline parser
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -34,7 +34,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-subdir = src/externals/visualframework/vmmlib
+subdir = externals/tclap
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -157,20 +157,32 @@ top_srcdir = @top_srcdir@
 
 # libs sources, headers here because we dont want to install them
 noinst_HEADERS = \
-    axisAlignedBoundingBox.h details.hpp exception.hpp \
-    frustum.h frustum.hpp frustumCuller.h frustumCuller.hpp \
-    helperFunctions.h jacobiSolver.h jacobiSolver.hpp \
-    lapack_includes.hpp lapack_svd.hpp lapack_types.hpp lapack.hpp \
-    lapack_linear_least_squares.hpp linear_least_squares.hpp \
-    matrix_functors.hpp matrix.hpp matrix3.h matrix4.h \
-    qr_decomposition.hpp quaternion.h quaternion.hpp \
-    stringUtils.h stringUtils.hpp svd.h svd.hpp \
-    vector.hpp vector2.h vector3.h vector4.h visibility.h visibility.hpp \
-    vmmlib_config.hpp vmmlib.h vmmlib.hpp
+				Arg.h \
+				ArgException.h \
+				CmdLine.h \
+				CmdLineInterface.h \
+				CmdLineOutput.h \
+				Constraint.h \
+				DocBookOutput.h \
+				HelpVisitor.h \
+				IgnoreRestVisitor.h \
+				MultiArg.h \
+				MultiSwitchArg.h \
+				OptionalUnlabeledTracker.h \
+				StdOutput.h \
+				SwitchArg.h \
+				UnlabeledMultiArg.h \
+				UnlabeledValueArg.h \
+				ValueArg.h \
+				ValuesConstraint.h \
+				VersionVisitor.h \
+				Visitor.h \
+				XorHandler.h \
+				tclap.h
 
 
 # include paths
-AM_CPPFLAGS = $(CXXFLAGS)
+AM_CPPFLAGS = $(CXXFLAGS) -I$(top_srcdir)
 
 # libs to link
 AM_LDFLAGS = 
@@ -186,9 +198,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/externals/visualframework/vmmlib/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign externals/tclap/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign src/externals/visualframework/vmmlib/Makefile
+	  $(AUTOMAKE) --foreign externals/tclap/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

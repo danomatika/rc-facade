@@ -5059,7 +5059,7 @@ subdirs="$subdirs "
 
 ac_config_headers="$ac_config_headers src/config.h"
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/externals/Makefile src/externals/tclap/Makefile src/externals/oscframework/Makefile src/externals/xmlframework/Makefile src/externals/visualframework/Makefile src/externals/visualframework/vmmlib/Makefile src/facade/Makefile src/rc-facade/Makefile src/facade-simulator/Makefile"
+ac_config_files="$ac_config_files Makefile externals/Makefile externals/tclap/Makefile externals/oscframework/Makefile externals/xmlframework/Makefile externals/visualframework/Makefile externals/visualframework/vmmlib/Makefile src/Makefile src/facade/Makefile src/rc-facade/Makefile src/facade-simulator/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5778,13 +5778,13 @@ do
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "src/config.h") CONFIG_HEADERS="$CONFIG_HEADERS src/config.h" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "externals/Makefile") CONFIG_FILES="$CONFIG_FILES externals/Makefile" ;;
+    "externals/tclap/Makefile") CONFIG_FILES="$CONFIG_FILES externals/tclap/Makefile" ;;
+    "externals/oscframework/Makefile") CONFIG_FILES="$CONFIG_FILES externals/oscframework/Makefile" ;;
+    "externals/xmlframework/Makefile") CONFIG_FILES="$CONFIG_FILES externals/xmlframework/Makefile" ;;
+    "externals/visualframework/Makefile") CONFIG_FILES="$CONFIG_FILES externals/visualframework/Makefile" ;;
+    "externals/visualframework/vmmlib/Makefile") CONFIG_FILES="$CONFIG_FILES externals/visualframework/vmmlib/Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-    "src/externals/Makefile") CONFIG_FILES="$CONFIG_FILES src/externals/Makefile" ;;
-    "src/externals/tclap/Makefile") CONFIG_FILES="$CONFIG_FILES src/externals/tclap/Makefile" ;;
-    "src/externals/oscframework/Makefile") CONFIG_FILES="$CONFIG_FILES src/externals/oscframework/Makefile" ;;
-    "src/externals/xmlframework/Makefile") CONFIG_FILES="$CONFIG_FILES src/externals/xmlframework/Makefile" ;;
-    "src/externals/visualframework/Makefile") CONFIG_FILES="$CONFIG_FILES src/externals/visualframework/Makefile" ;;
-    "src/externals/visualframework/vmmlib/Makefile") CONFIG_FILES="$CONFIG_FILES src/externals/visualframework/vmmlib/Makefile" ;;
     "src/facade/Makefile") CONFIG_FILES="$CONFIG_FILES src/facade/Makefile" ;;
     "src/rc-facade/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc-facade/Makefile" ;;
     "src/facade-simulator/Makefile") CONFIG_FILES="$CONFIG_FILES src/facade-simulator/Makefile" ;;

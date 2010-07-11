@@ -1,6 +1,6 @@
 
 # load externals variables
-include $(top_srcdir)/src/externals/externals.mk
+include $(top_srcdir)/externals/externals.mk
 
 # programs to build
 bin_PROGRAMS = facade-simulator
