@@ -28,120 +28,109 @@
 
 namespace visual {
 
-UdpSender::UdpSender() : _bSetup(false), _packet(NULL)
+UdpSender::UdpSender() : _packet(NULL)
 {
     Net::init();
+    _socket = NULL;
 }
 
-UdpSender::UdpSender(std::string addr, unsigned int port) :
-    _bSetup(false), _packet(NULL)
+UdpSender::UdpSender(std::string addr, unsigned int port) : _packet(NULL)
 {
     Net::init();
-
+    _socket = NULL;
     setup(addr, port);
 }
 
 UdpSender::~UdpSender()
 {
-    if(_bSetup)
-    {
-        if(_packet != NULL)
-            SDLNet_FreePacket(_packet);
-
-        SDLNet_UDP_Close(_socket);
-    }
+    if(_packet)
+        SDLNet_FreePacket(_packet);
+    if(_socket)
+    	SDLNet_UDP_Close(_socket);
 }
 
-void UdpSender::setup(std::string addr, unsigned int port)
+bool UdpSender::setup(std::string addr, unsigned int port, unsigned int len)
 {
     if(addr == _sAddr && port == _uiPort)
-        return;
+        return false;
 
-    _sAddr = addr;
-    _uiPort = port;
+	if(_packet)
+		SDLNet_FreePacket(_packet);
 
-    // free the existing socket
-    if(_bSetup)
+	// allocate packet memory
+    if(!(_packet = SDLNet_AllocPacket(len)))
     {
-        SDLNet_UDP_Close(_socket);
+        LOG_ERROR << "UdpSender: Could not allocate packet:" << SDLNet_GetError() << std::endl;
+        return false;
     }
+
+    if(_socket)
+    	SDLNet_UDP_Close(_socket);
 
     // try to open the socket
 	if(!(_socket = SDLNet_UDP_Open(0)))
 	{
-		LOG_ERROR << "UdpSender: Could not open socket on port " << _uiPort << ": "
+		LOG_ERROR << "UdpSender: Could not open socket on port " << port << ": "
                   <<  SDLNet_GetError() << std::endl;
-		return;
+		return false;
 	}
 
 	// Resolve server name
-	if(SDLNet_ResolveHost(&_destination, _sAddr.c_str(), _uiPort) == -1)
+	if(SDLNet_ResolveHost(&_destination, addr.c_str(), port) == -1)
 	{
-	    LOG_ERROR << "UdpSender: Could not resolve hostname " << _sAddr
-                  << " on port " <<  _uiPort<< ": " << SDLNet_GetError() << std::endl;
-		return;
+	    LOG_ERROR << "UdpSender: Could not resolve hostname " << addr
+                  << " on port " <<  port<< ": " << SDLNet_GetError() << std::endl;
+		return false;
 	}
+    
+    _sAddr = addr;
+    _uiPort = port;
+    
+    return true;
 }
 
-bool UdpSender::send(char* buffer, unsigned int length)
+bool UdpSender::send(const uint8_t* data, unsigned int len)
 {
-    if(buffer == NULL || _socket == NULL)
-        return false;
+	assert(data);	// data should not be NULL
 
     // allocate packet memory (if not allocated)
-    if(_packet == NULL)
+    if(!_packet || _packet->maxlen < (int) len)
     {
-        if(!(_packet = SDLNet_AllocPacket(VISUAL_MAX_PACKET_LEN)))
+        if(!(_packet = SDLNet_AllocPacket(len)))
         {
             LOG_ERROR << "UdpSender: Could not allocate packet:" << SDLNet_GetError() << std::endl;
             return false;
         }
     }
 
-    unsigned int position = 0, numSend = 0;
-    while(position < length)
+    // load packet
+    try
     {
-        // how many bytes to send?
-        numSend = length - position;
-        if(numSend > VISUAL_MAX_PACKET_LEN)
-        {
-            numSend = VISUAL_MAX_PACKET_LEN;
-        }
+        _packet->len = len;
+        memcpy(_packet->data, data, len);
+    }
+    catch(std::exception& e)
+    {
+        LOG_ERROR << "UdpSender: Failed to load packet: " << e.what() << std::endl;
+        return false;
+    }
 
-        // load packet
-        try
-        {
-            _packet->len = numSend;
-            _packet->maxlen = VISUAL_MAX_PACKET_LEN;
-            memcpy(_packet->data, buffer+position, numSend);
-        }
-        catch(std::exception& e)
-        {
-            LOG_ERROR << "UdpSender: memcpy failed to load packet: " << e.what() << std::endl;
-            return false;
-        }
-
-        // send
-		if(!send(_packet))
-		{
-		    return false;
-		}
-
-		// move index position
-		position += numSend;
-	}
+    // send
+    if(!send(_packet))
+    {
+        return false;
+    }
 
     return true;
 }
 
 bool UdpSender::send(UDPpacket* packet)
 {
-    if(_socket == NULL)
-        return false;
-
-    if(packet == NULL)
+	assert(packet);	// packet should not be NULL
+    
+    if(!_socket)
     {
-        LOG_WARN << "UdpSender: Send error: Packet is NULL" << std::endl;
+    	LOG_WARN << "UdpSender: Cannot send, socket not setup" << std::endl;
         return false;
     }
 

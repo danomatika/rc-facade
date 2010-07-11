@@ -11,35 +11,13 @@ solution "rc-facade"
 	configurations { "Debug", "Release" }
 	objdir "../obj"
  
--- convenience library
 project "facade"
 	kind "StaticLib"
 	language "C++"
-	targetdir "../lib"
+	targetdir "../src/facade"
 	files { "../src/facade/**.h", "../src/facade/**.cpp" }
 	
-	includedirs { "../src",
-				  "../externals/",
-				  "../externals/visualframework",
-			 	  "../externals/xmlframework",
-			  	  "../externals/oscframework" }
-	libdirs { "../externals/visualframework" }
-    links { "visualframework", "SDL_net" }
-	
-	configuration "linux"
-		buildoptions { "`pkg-config --cflags sdl`",
-					   "`pkg-config --cflags SDL_gfx`",
-					   "`pkg-config --cflags SDL_image`" }
-		linkoptions { "`pkg-config --libs sdl`",
-					  "`pkg-config --libs SDL_gfx`",
-					  "`pkg-config --libs SDL_image`" }
-	
-	configuration "macosx"
-		-- get rid of visibilty warnings
-		buildoptions { "-fvisibility-inlines-hidden" }
-		-- MacPorts
-		includedirs { "/opt/local/include" }
-		libdirs { "/opt/local/lib" }
+	includedirs { "../src" }
 
 	configuration "Debug"
 		defines { "DEBUG" }
@@ -49,11 +27,10 @@ project "facade"
 		defines { "NDEBUG" }
 		flags { "Optimize" } 
 
--- rc-unit executable
 project "rc-facade"
 	kind "ConsoleApp"
 	language "C++"
-	targetdir "../bin"
+	targetdir "../src/rc-facade"
 	files { "../src/rc-facade/**.h", "../src/rc-facade/**.cpp" }
 	
 	includedirs { "../src",
@@ -61,7 +38,8 @@ project "rc-facade"
 				  "../externals/visualframework",
 			 	  "../externals/xmlframework",
 			  	  "../externals/oscframework" }
-	libdirs { "../externals/visualframework",
+	libdirs { "../src/facade",
+			  "../externals/visualframework",
 			  "../externals/xmlframework",
       		  "../externals/oscframework" }
 	links { "facade", "oscframework", "xmlframework", "visualframework",
@@ -75,6 +53,46 @@ project "rc-facade"
 		linkoptions { "`pkg-config --libs sdl`",
 					  "`pkg-config --libs SDL_gfx`",
 					  "`pkg-config --libs liblo`",
+					  "`pkg-config --libs SDL_image`" }
+
+	configuration 'macosx'
+		-- MacPorts
+		includedirs { "/opt/local/include"}
+		libdirs { "/opt/local/lib" }
+		links { "lo", "pthread", "SDLmain", "SDL", "SDL_gfx", "SDL_image" }
+		linkoptions { "-Wl,-framework,Cocoa", "-Wl,-framework,OpenGL",
+					  "-Wl,-framework,ApplicationServices",
+					  "-Wl,-framework,Carbon", "-Wl,-framework,AudioToolbox",
+					  "-Wl,-framework,AudioUnit", "-Wl,-framework,IOKit" }
+
+	configuration "Debug"
+		defines { "DEBUG" }
+		flags { "Symbols" }
+
+	configuration "Release"
+		defines { "NDEBUG" }
+		flags { "Optimize" }
+
+project "facade-simulator"
+	kind "ConsoleApp"
+	language "C++"
+	targetdir "../src/facade-simulator"
+	files { "../src/facade-simulator/**.h", "../src/facade-simulator/**.cpp" }
+	
+	includedirs { "../src",
+				  "../externals/",
+				  "../externals/visualframework",
+			 	  "../externals/xmlframework",
+			  	  "../externals/oscframework" }
+	libdirs { "../externals/visualframework" }
+	links { "facade", "visualframework", "SDL_net", "SDL_ttf" }
+
+	configuration "linux"
+		buildoptions { "`pkg-config --cflags sdl`",
+					   "`pkg-config --cflags SDL_gfx`",
+					   "`pkg-config --cflags SDL_image`" }
+		linkoptions { "`pkg-config --libs sdl`",
+					  "`pkg-config --libs SDL_gfx`",
 					  "`pkg-config --libs SDL_image`" }
 
 	configuration 'macosx'

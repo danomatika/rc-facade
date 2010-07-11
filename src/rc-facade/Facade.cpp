@@ -10,17 +10,16 @@
 
 using namespace visual;
 
-Facade::Facade() : _packet(NULL),
+Facade::Facade() :
 	_bDrawOutlines(false), _bShowSides(false), _windowSize(5)
-{
-    // allocate packet
-    _packet = SDLNet_AllocPacket(getPacketLen());
-    _packet->len = getPacketLen();
-}
+{}
 
 Facade::~Facade()
+{}
+
+void Facade::setup(string addr, unsigned int port)
 {
-	SDLNet_FreePacket(_packet); // cleanup
+	_sender.setup(addr, 8080, getPacketLen());
 }
 
 void Facade::draw(int x, int y)
@@ -35,7 +34,7 @@ void Facade::draw(int x, int y)
         for(unsigned int x = 0; x < getWidth(); ++x)
         {
         	// draw framebufer
-            Graphics::fill(Color(getFramebuffer()[y*getWidth()+x]));
+            Graphics::fill(Color(getFrameBuffer()[y*getWidth()+x]));
             if(_bDrawOutlines)
             	visual::Graphics::stroke(0x666666);
             Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
@@ -66,8 +65,7 @@ void Facade::send()
 	// send the facade frame packet
     try
     {
-        memcpy(_packet->data, getPacket(), getPacketLen());
-        _sender.send(_packet);
+        _sender.send(getPacket(), getPacketLen());
     }
     catch(std::exception& e)
     {

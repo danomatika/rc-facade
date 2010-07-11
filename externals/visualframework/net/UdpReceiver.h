@@ -1,6 +1,6 @@
 /*==============================================================================
 
-	UdpListener.h
+	UdpReceiver.h
 
 	visualframework: a simple 2d graphics framework
   
@@ -20,8 +20,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
-#ifndef VISUAL_UDP_LISTENER_H
-#define VISUAL_UDP_LISTENER_H
+#ifndef VISUAL_UDP_RECEIVER_H
+#define VISUAL_UDP_RECEIVER_H
 
 #include "Net.h"
 #include "../Thread.h"
@@ -30,51 +30,77 @@
 
 namespace visual {
 
+typedef UDPpacket UdpPacket;
+
 /**
-    \class  UdpListener
+    \class  UdpReceiver
     \brief  a threaded UDP listener
 
     set the processing function to process incoming bytes
 **/
-class UdpListener : protected Thread
+class UdpReceiver : protected Thread
 {
     public:
 
-        UdpListener();
-        virtual ~UdpListener();
+        UdpReceiver();
+        virtual ~UdpReceiver();
 
         /// calls setup automatically
-        UdpListener(unsigned int port);
+        UdpReceiver(unsigned int port);
 
-        /// setup the udp socket using the given port
-        void setup(unsigned int port, unsigned int packetLen=VISUAL_MAX_PACKET_LEN);
+        /// setup the udp socket using the given port, returns true on success
+        bool setup(unsigned int port, unsigned int len=1024);
+
+		/// get the packet data, make sure to lock first if using the thread!
+        const uint8_t* getData();
+        
+        /// get the data length
+        unsigned int getDataLen();
+
+		/* ***** THREADED POLLING ***** */
 
         /// start the listening thread, opens connection
-        void startListening();
+        void start();
 
         /// stop the listening thread, closes connection
-        void stopListening();
+        void stop();
+        
+        /// lock/unlock the packet data
+        void lock();
+        void unlock();
+
+		/* ***** MANUAL POLLING ***** */
+        
+        /**
+        	\brief	manually check for incoming packets, nonblocking
+            \return	true if a packet was received
+            
+            note: the address must be set using setup(), this cannot be called
+            while the thread is running
+        */
+        bool receivePacket();
+        
+        /* ***** UTIL ***** */
 
         /// is the thread running?
-        bool isListening() {return isThreadRunning();}
+        inline bool isListening() {return threadIsRunning();}
 
         /// get port num
-        unsigned int getPort() {return _uiPort;}
+        inline unsigned int getPort() {return _uiPort;}
 
     protected:
 
-        /// callback to implement
-        virtual void process(UDPpacket* packet) = 0;
+        /// received packet callback, automaitcally locks the packet
+        virtual void process(const uint8_t* data, unsigned int len) {}
 
     private:
 
-        // thread main loop
+        // thread function
         void run();
 
         bool _bSetup;
 
         unsigned int _uiPort;
-        std::string _sAddr;
 
         UDPsocket   _socket;
         UDPpacket*  _packet;
@@ -82,4 +108,4 @@ class UdpListener : protected Thread
 
 } // namespace
 
-#endif // VISUAL_UDP_LISTENER_H
+#endif // VISUAL_UDP_RECEIVER_H

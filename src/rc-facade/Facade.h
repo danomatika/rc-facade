@@ -16,7 +16,10 @@ class Facade : public facade::Facade
         Facade();
         virtual ~Facade();
         
-        // draw the framebuffer
+        /// setup the sending destination
+        void setup(string addr, unsigned int port);
+        
+        /// draw the framebuffer
         void draw(int x=0, int y=0);
         
         /// send a facade frame
@@ -43,7 +46,6 @@ class Facade : public facade::Facade
         visual::Image _facadeMask;
         
         visual::UdpSender _sender;
-        UdpPacket* _packet;
         
         bool _bDrawOutlines;
         bool _bShowSides;

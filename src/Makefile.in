@@ -133,10 +133,11 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 SDL_CFLAGS = @SDL_CFLAGS@
-SDL_GFX_LIBS = @SDL_GFX_LIBS@
 SDL_LIBS = @SDL_LIBS@
 SDL_NET_LIBS = @SDL_NET_LIBS@
 SDL_TTF_LIBS = @SDL_TTF_LIBS@
+SDL_gfx_CFLAGS = @SDL_gfx_CFLAGS@
+SDL_gfx_LIBS = @SDL_gfx_LIBS@
 SDL_image_CFLAGS = @SDL_image_CFLAGS@
 SDL_image_LIBS = @SDL_image_LIBS@
 SET_MAKE = @SET_MAKE@
@@ -189,7 +190,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # go into these dirs and process makefiles
-SUBDIRS = facade rc-facade
+SUBDIRS = facade rc-facade facade-simulator
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

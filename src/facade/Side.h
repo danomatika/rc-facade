@@ -50,7 +50,7 @@ class Side
         /**
             \brief retrieve the address of the window at a certain position
             \param  row		index of row
-            \param  column	index of column
+            \param  col 	index of column
             \param  global  true to get global address, false for address rel to window
             \return			window address of row/column, -1 if no window at this position
         **/
@@ -74,15 +74,18 @@ class Side
         /* ***** PIXEL BUFFER DRAWING ***** */
         
         /// draw the side into a pixel buffer
+        void draw(uint32_t* pixels, Building& building, FrameBuffer& frame);
+        
+        /// draw the side into a pixel buffer with a color
         void draw(uint32_t* pixels, Building& building, uint32_t color, bool drawEmpty=false);
 		
-        /// draw a row of the side into a pixel buffer
+        /// draw a row of the side into a pixel buffer with a color
         void drawRow(uint32_t* pixels, Building& building, unsigned int row, uint32_t color);
         
-        /// draw a col of the side into a pixel buffer
+        /// draw a col of the side into a pixel buffer with a color
         void drawCol(uint32_t* pixels, Building& building, unsigned int col, uint32_t color);
         
-        /// draw a window of the side into a pixel buffer
+        /// draw a window of the side into a pixel buffer with a color
         void drawWindow(uint32_t* pixels, Building& building, unsigned int row, unsigned int col, uint32_t color);
 
 		/* ***** UTIL ***** */

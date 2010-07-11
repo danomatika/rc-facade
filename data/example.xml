@@ -83,7 +83,7 @@
 	</scene>
 	<scene name="scene3">
 		<background R="0" G="0" B="0" A="200"/>
-		<image name="image" file="../data/test.png">
+		<image name="image" file="../../data/test.png">
 			<position x="0" y="0"/>
 			<size width="10" height="20"/>
 			<center yesno="0"/>

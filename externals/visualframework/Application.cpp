@@ -47,8 +47,6 @@ Application::~Application()
 
 /* ***** SETUP ***** */
 
-void Application::init() {}
-
 void Application::mainLoop()
 {
 	// start fps cal timer

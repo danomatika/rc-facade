@@ -38,7 +38,7 @@ class Application
         /* ***** SETUP ***** */
 
         /// initialization, call before creating sdl window
-        virtual void init();
+        virtual bool init() {return true;}
 
         /// sdl resource setup, call after creating sdl window
         virtual void setup() = 0;
@@ -52,7 +52,7 @@ class Application
 
         virtual void draw() = 0;
 
-        virtual void cleanup() = 0;
+        virtual void cleanup() {};
 
         /* ***** INPUT CALLBACKS ***** */
 

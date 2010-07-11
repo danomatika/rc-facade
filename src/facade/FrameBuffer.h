@@ -35,9 +35,6 @@ class FrameBuffer
         /// get the color from a specific address package, returns 0 if address out of bounds
         uint32_t getColor(int address);
 
-		// enable blending?
-        //inline void blend(bool yesno) {_bBlend = yesno;}
-
 		/// get a pointer to the framebuffer packet
 		inline const uint8_t* getFramebuffer() const {return _framebuffer;}
 		
@@ -46,16 +43,11 @@ class FrameBuffer
         
         /// set the framebuffer from memory, assumes correct length!
         void setFramebuffer(const uint8_t* frame);
-        
-        /// is blending on?
-        //inline bool getBlend() {return _bBlend;} 
 
 	private:
 
         uint8_t _framebuffer[FACADE_PKG_SIZE*FACADE_NUM_ADDR];
         unsigned int _length;
-
-       // bool _bBlend;
 };
 
 } // namespace

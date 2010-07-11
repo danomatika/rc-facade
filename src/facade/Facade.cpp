@@ -3,6 +3,8 @@
 ==============================================================================*/
 #include "Facade.h"
 
+#include <cassert>
+
 #include "Building.h"
 
 // alpha blend from http://www.codeguru.com/cpp/cpp/algorithms/general/article.php/c15989
@@ -19,7 +21,8 @@ Facade::Facade() :
 	_pixels(NULL), _mask(NULL),
 	_clearColor(0xFF000000),
     _bWrapX(true), _bWrapY(true), _bBlend(false),
-    _bRectCenter(false), _bRectFill(false)
+    _bRectCenter(false), _bRectFill(false),
+    _pixelLen(0)
 {
 	setup();
 }
@@ -38,9 +41,7 @@ void Facade::setClearColor(uint32_t color)
 }
 
 void Facade::clear()
-{
-    //_frame.clear(_clearColor);
-        
+{        
     bool blend = _bBlend;
     _bBlend = true;
     
@@ -87,9 +88,18 @@ unsigned int Facade::getPacketLen()
 	return _frame.getFramebufferLen();
 }
 
-void setPacket(const uint8_t* packet)
+void Facade::setPacket(const uint8_t* packet)
 {
+	assert(packet);	// shouldn't be null
+    
 	_frame.setFramebuffer(packet);
+
+	// draw the facade framebuffer onto the pixel framebuffer
+    std::vector<Side*>& sides = _building.getSides();
+    for(unsigned int i = 0; i < sides.size(); ++i)
+    {
+        sides[i]->draw(_pixels, _building, _frame);
+    }
 }
 
 /* ***** SIDE SETTINGS ***** */
@@ -132,7 +142,7 @@ void Facade::recomputeSize()
 
 /* ***** PIXEL FRAME BUFFER ***** */
         
-const uint32_t* Facade::getFramebuffer() const
+const uint32_t* Facade::getFrameBuffer() const
 {
 	return _pixels;
 }
@@ -142,15 +152,17 @@ const uint32_t* Facade::getMask() const
 	return _mask;
 }
         
-void Facade::setFramebuffer(const uint32_t* pixels)
+void Facade::setFrameBuffer(const uint32_t* pixels)
 {
+	assert(pixels);	// shouldn't be null
+    
 	try
     {
-    	memcpy(_pixels, pixels, _building.getNrRows()*_building.getNrCols());
+    	memcpy(_pixels, pixels, _pixelLen);
     }
     catch(std::exception& e)
     {
-        std::cerr << "Facade::setFramebuffer: error: " << e.what() << std::endl;
+        std::cerr << "Facade::setFrameBuffer: error: " << e.what() << std::endl;
     }
 }
 
@@ -363,19 +375,22 @@ unsigned int Facade::getSidePosY(FacadeSide side)
 
 void Facade::setup()
 {
+	// new length
+    _pixelLen = _building.getNrCols()*_building.getNrRows();
+    
     // reallocate pixels
     if(_pixels)
     	delete [] _pixels;
-    _pixels = new uint32_t[_building.getNrCols()*_building.getNrRows()];
+    _pixels = new uint32_t[_pixelLen];
     clear();
     
     // reallocate maks
     if(_mask)
     	delete [] _mask;
-    _mask = new uint32_t[_building.getNrCols()*_building.getNrRows()];
+    _mask = new uint32_t[_pixelLen];
     
     // rebuild mask
-    for(unsigned int p = 0; p < _building.getNrRows()*_building.getNrCols(); ++p)
+    for(unsigned int p = 0; p < _pixelLen; ++p)
         	_mask[p] = 0;	// clear pixels with black
     _building.main_N.draw(_mask, _building, 0xFFFF0000);
     _building.main_E.draw(_mask, _building, 0xFFFF00FF);

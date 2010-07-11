@@ -604,12 +604,13 @@ LO_LIBS
 LO_CFLAGS
 SDL_image_LIBS
 SDL_image_CFLAGS
+SDL_gfx_LIBS
+SDL_gfx_CFLAGS
 SDL_LIBS
 SDL_CFLAGS
 PKG_CONFIG
 SDL_TTF_LIBS
 SDL_NET_LIBS
-SDL_GFX_LIBS
 EGREP
 GREP
 CXXCPP
@@ -718,6 +719,8 @@ CXXCPP
 PKG_CONFIG
 SDL_CFLAGS
 SDL_LIBS
+SDL_gfx_CFLAGS
+SDL_gfx_LIBS
 SDL_image_CFLAGS
 SDL_image_LIBS
 LO_CFLAGS
@@ -1355,6 +1358,10 @@ Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
   SDL_CFLAGS  C compiler flags for SDL, overriding pkg-config
   SDL_LIBS    linker flags for SDL, overriding pkg-config
+  SDL_gfx_CFLAGS
+              C compiler flags for SDL_gfx, overriding pkg-config
+  SDL_gfx_LIBS
+              linker flags for SDL_gfx, overriding pkg-config
   SDL_image_CFLAGS
               C compiler flags for SDL_image, overriding pkg-config
   SDL_image_LIBS
@@ -4521,14 +4528,6 @@ else
 fi
 
 
-ac_fn_cxx_check_header_mongrel "$LINENO" "SDL/SDL_gfxPrimitives.h" "ac_cv_header_SDL_SDL_gfxPrimitives_h" "$ac_includes_default"
-if test "x$ac_cv_header_SDL_SDL_gfxPrimitives_h" = x""yes; then :
-
-else
-  as_fn_error "SDL_gfx headers not found" "$LINENO" 5
-fi
-
-
 
 ac_fn_cxx_check_header_mongrel "$LINENO" "SDL/SDL_net.h" "ac_cv_header_SDL_SDL_net_h" "$ac_includes_default"
 if test "x$ac_cv_header_SDL_SDL_net_h" = x""yes; then :
@@ -4540,50 +4539,6 @@ fi
 
 
 # check for libs
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for boxRGBA in -lSDL_gfx" >&5
-$as_echo_n "checking for boxRGBA in -lSDL_gfx... " >&6; }
-if test "${ac_cv_lib_SDL_gfx_boxRGBA+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lSDL_gfx  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char boxRGBA ();
-int
-main ()
-{
-return boxRGBA ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_cxx_try_link "$LINENO"; then :
-  ac_cv_lib_SDL_gfx_boxRGBA=yes
-else
-  ac_cv_lib_SDL_gfx_boxRGBA=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_SDL_gfx_boxRGBA" >&5
-$as_echo "$ac_cv_lib_SDL_gfx_boxRGBA" >&6; }
-if test "x$ac_cv_lib_SDL_gfx_boxRGBA" = x""yes; then :
-  SDL_GFX_LIBS=-lSDL_gfx
-
-else
-  as_fn_error "SDL_gfx library not found" "$LINENO" 5
-fi
-
-
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for SDLNet_UDP_Open in -lSDL_net" >&5
 $as_echo_n "checking for SDLNet_UDP_Open in -lSDL_net... " >&6; }
 if test "${ac_cv_lib_SDL_net_SDLNet_UDP_Open+set}" = set; then :
@@ -4859,6 +4814,74 @@ fi
 
 
 pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for SDL_gfx" >&5
+$as_echo_n "checking for SDL_gfx... " >&6; }
+
+if test -n "$SDL_gfx_CFLAGS"; then
+    pkg_cv_SDL_gfx_CFLAGS="$SDL_gfx_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"SDL_gfx >= 2.0.0 \""; } >&5
+  ($PKG_CONFIG --exists --print-errors "SDL_gfx >= 2.0.0 ") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_SDL_gfx_CFLAGS=`$PKG_CONFIG --cflags "SDL_gfx >= 2.0.0 " 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$SDL_gfx_LIBS"; then
+    pkg_cv_SDL_gfx_LIBS="$SDL_gfx_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"SDL_gfx >= 2.0.0 \""; } >&5
+  ($PKG_CONFIG --exists --print-errors "SDL_gfx >= 2.0.0 ") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_SDL_gfx_LIBS=`$PKG_CONFIG --libs "SDL_gfx >= 2.0.0 " 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        SDL_gfx_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "SDL_gfx >= 2.0.0 " 2>&1`
+        else
+	        SDL_gfx_PKG_ERRORS=`$PKG_CONFIG --print-errors "SDL_gfx >= 2.0.0 " 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$SDL_gfx_PKG_ERRORS" >&5
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+                as_fn_error "SDL_gfx library not found" "$LINENO" 5
+elif test $pkg_failed = untried; then
+	as_fn_error "SDL_gfx library not found" "$LINENO" 5
+else
+	SDL_gfx_CFLAGS=$pkg_cv_SDL_gfx_CFLAGS
+	SDL_gfx_LIBS=$pkg_cv_SDL_gfx_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	:
+fi
+
+
+pkg_failed=no
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for SDL_image" >&5
 $as_echo_n "checking for SDL_image... " >&6; }
 
@@ -5036,7 +5059,7 @@ subdirs="$subdirs "
 
 ac_config_headers="$ac_config_headers src/config.h"
 
-ac_config_files="$ac_config_files Makefile externals/Makefile externals/tclap/Makefile externals/oscframework/Makefile externals/xmlframework/Makefile externals/visualframework/Makefile externals/visualframework/vmmlib/Makefile src/Makefile src/facade/Makefile src/rc-facade/Makefile"
+ac_config_files="$ac_config_files Makefile externals/Makefile externals/tclap/Makefile externals/oscframework/Makefile externals/xmlframework/Makefile externals/visualframework/Makefile externals/visualframework/vmmlib/Makefile src/Makefile src/facade/Makefile src/rc-facade/Makefile src/facade-simulator/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5764,6 +5787,7 @@ do
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/facade/Makefile") CONFIG_FILES="$CONFIG_FILES src/facade/Makefile" ;;
     "src/rc-facade/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc-facade/Makefile" ;;
+    "src/facade-simulator/Makefile") CONFIG_FILES="$CONFIG_FILES src/facade-simulator/Makefile" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

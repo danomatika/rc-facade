@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     facadeApp.init();
 
     // set icon and open window
-    Graphics::setWindowIcon("../data/icon.bmp");
+    //Graphics::setWindowIcon("../data/icon.bmp");
     Graphics::createWindow("rc-facade");
 
     // setup sdl resources

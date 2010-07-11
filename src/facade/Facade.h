@@ -71,16 +71,16 @@ class Facade
     
     	/* ***** PIXEL FRAME BUFFER ***** */
         
-        /// get the current framebuffer, length is  getWidth()*getHeight()
+        /// get the current framebuffer, length is getFramebufferLen()
         /// pixels are 0xAARRGGBB with A always 0xFF
-        const uint32_t* getFramebuffer() const;
+        const uint32_t* getFrameBuffer() const;
         
-        /// set the current framebuffer, assumes length is getWidth()*getHeight()
+        /// set the current framebuffer, assumes length is getFramebufferLen()
         /// pixels should be 0xAARRGGBB with A always 0xFF
-        void setFramebuffer(const uint32_t* pixels);
+        void setFrameBuffer(const uint32_t* pixels);
         
-        // load the pixel framebuffer, assumes width and height
-        void setPixels(const uint32_t* pixels);
+        /// get the length of either the framebuffer or the mask
+        inline unsigned int getFrameBufferLen()	{return _pixelLen;}
         
         /// get the pixel mask image, the sides are colored and empty pixels = 0
         const uint32_t* getMask() const;
@@ -184,6 +184,8 @@ class Facade
         
         bool _bRectCenter;	///< draw rects from the center point or corner?
         bool _bRectFill;	///< fill rectangles?
+        
+        unsigned int _pixelLen;	///< length of the pxiel framebuffer
 };
 
 } // namespace

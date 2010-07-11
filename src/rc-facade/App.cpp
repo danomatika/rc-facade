@@ -7,6 +7,7 @@
 #include "facade/Facade.h"
 
 #define OSC_BASE_ADDR   "/visual/facade"
+#define FACADE_RECV_PORT 8080
 
 using namespace visual;
 using namespace facade;
@@ -25,25 +26,16 @@ App::App() : OscObject(""), bRunning(true),
     receiver.addOscObject(&sceneManager);
     
     reloadTimestamp = Graphics::getMillis();
-    
-    // allocate packet
-    packet = SDLNet_AllocPacket(facade.getPacketLen());
-    packet->len = facade.getPacketLen();
 }
 
 App::~App()
-{
-	SDLNet_FreePacket(packet); // cleanup
-}
+{}
 
-void App::init()
+bool App::init()
 {
     // setup the osc listener
     receiver.setup(7000);
     receiver.start();
-
-	// set destibation
-    sender.setup("192.168.5.73", 8080);
 
     // setup the facade
     LOG << endl;
@@ -75,7 +67,8 @@ void App::init()
 	
     //facade.recomputeSize();
     facadeMask.load(facade.getMask(), facade.getWidth(), facade.getHeight());
-    
+    facade.setup("192.168.5.57", FACADE_RECV_PORT);
+    //facade.setup("127.0.0.1", FACADE_RECV_PORT);
     facade.print();
 
     // load the xml file
@@ -83,6 +76,8 @@ void App::init()
     {
     	sceneManager.loadXmlFile(Config::instance().file);
     }
+    
+    return true;
 }
 
 void App::setup()
@@ -98,11 +93,12 @@ void App::update()
     if(bRunning)
     {
         facade.clear();
-
         sceneManager.draw();
+        facade.swap();
+        
+        facadeImage.load(facade.getFrameBuffer(), facade.getWidth(), facade.getHeight());
     }
     
-    facadeImage.load(facade.getFramebuffer(), facade.getWidth(), facade.getHeight());
 }
 
 void App::draw()

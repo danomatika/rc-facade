@@ -24,27 +24,29 @@
 
 namespace visual {
 
-Thread::Thread(std::string name, Type type) :
-    _thread(NULL), _bRun(false), _type(type), _name(name)
+Thread::Thread(std::string name) :
+    _thread(NULL), _bRun(false), _name(name)
 {
-    //ctor
+    _lock = SDL_CreateMutex();
 }
 
 Thread::~Thread()
 {
     // still running?
-    if(isThreadRunning())
+    if(_bRun)
     {
-        killThread();
+        kill();
         LOG_ERROR << "Thread::~Thread(): Thread \"" << _name
                   << "\" id " << getThreadID()
                   << " still running, killed" << std::endl;
     }
+    
+    SDL_DestroyMutex(_lock);
 }
 
-void Thread::startThread()
+void Thread::start()
 {
-    if(_bRun == true)
+    if(_bRun)
     {
         LOG_WARN << "Thread::start(): Thread \"" << _name
                  << "\" id " << getThreadID()
@@ -58,30 +60,26 @@ void Thread::startThread()
     SDL_CreateThread(&threadFunc, this);
 }
 
-void Thread::stopThread()
+void Thread::stop()
 {
-    if(_thread == NULL) //|| _type == NORMAL)
-        return;
-
-    _bRun = false;
-}
-
-void Thread::waitThread()
-{
-    if(_thread == NULL)
-        return;
-
     _bRun = false;
     SDL_WaitThread(_thread, NULL);
 }
 
-void Thread::killThread()
+void Thread::kill()
 {
-    if(_thread == NULL)
-        return;
-
     _bRun = false;
     SDL_KillThread(_thread);
+}
+
+void Thread::lock()
+{
+	SDL_mutexP(_lock);
+}
+
+void Thread::unlock()
+{
+	SDL_mutexV(_lock);
 }
 
 int Thread::getThreadID()
@@ -89,28 +87,13 @@ int Thread::getThreadID()
     return SDL_GetThreadID(_thread);
 }
 
-void Thread::_run()
-{
-    if(_type == LOOP) // repeat
-    {
-        while(_bRun)
-        {
-            run();
-        }
-    }
-    else    // run once
-    {
-        run();
-    }
-
-    _bRun = false;
-}
+/* ***** PRIVATE ***** */
 
 int Thread::threadFunc(void* data)
 {
     // thread pointer as data
     Thread* t = (Thread*) data;
-    t->_run();
+    t->run();
 
     return 0;
 }

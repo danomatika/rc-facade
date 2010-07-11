@@ -34,7 +34,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-subdir = src/visualframework
+subdir = externals/visualframework
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -53,7 +53,7 @@ am_libvisualframework_a_OBJECTS = Application.$(OBJEXT) Font.$(OBJEXT) \
 	Graphics.$(OBJEXT) Image.$(OBJEXT) resize++.$(OBJEXT) \
 	SPG_misc.$(OBJEXT) SPG_polygon.$(OBJEXT) \
 	SPG_primitives.$(OBJEXT) SPG_rotation.$(OBJEXT) \
-	SPG_surface.$(OBJEXT) Net.$(OBJEXT) UdpListener.$(OBJEXT) \
+	SPG_surface.$(OBJEXT) Net.$(OBJEXT) UdpReceiver.$(OBJEXT) \
 	UdpSender.$(OBJEXT) Point.$(OBJEXT) Thread.$(OBJEXT)
 libvisualframework_a_OBJECTS = $(am_libvisualframework_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/src
@@ -143,6 +143,8 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
+LO_CFLAGS = @LO_CFLAGS@
+LO_LIBS = @LO_LIBS@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -247,8 +249,8 @@ libvisualframework_a_SOURCES = \
         Log.h \
             net/Net.h \
             net/Net.cpp \
-            net/UdpListener.h \
-            net/UdpListener.cpp \
+            net/UdpReceiver.h \
+            net/UdpReceiver.cpp \
             net/UdpSender.h \
             net/UdpSender.cpp \
         Point.h \
@@ -278,9 +280,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/visualframework/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign externals/visualframework/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign src/visualframework/Makefile
+	  $(AUTOMAKE) --foreign externals/visualframework/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -325,7 +327,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SPG_rotation.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SPG_surface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Thread.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/UdpListener.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/UdpReceiver.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/UdpSender.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/resize++.Po@am__quote@
 
@@ -497,19 +499,19 @@ Net.obj: net/Net.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Net.obj `if test -f 'net/Net.cpp'; then $(CYGPATH_W) 'net/Net.cpp'; else $(CYGPATH_W) '$(srcdir)/net/Net.cpp'; fi`
 
-UdpListener.o: net/UdpListener.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UdpListener.o -MD -MP -MF $(DEPDIR)/UdpListener.Tpo -c -o UdpListener.o `test -f 'net/UdpListener.cpp' || echo '$(srcdir)/'`net/UdpListener.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/UdpListener.Tpo $(DEPDIR)/UdpListener.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='net/UdpListener.cpp' object='UdpListener.o' libtool=no @AMDEPBACKSLASH@
+UdpReceiver.o: net/UdpReceiver.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UdpReceiver.o -MD -MP -MF $(DEPDIR)/UdpReceiver.Tpo -c -o UdpReceiver.o `test -f 'net/UdpReceiver.cpp' || echo '$(srcdir)/'`net/UdpReceiver.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/UdpReceiver.Tpo $(DEPDIR)/UdpReceiver.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='net/UdpReceiver.cpp' object='UdpReceiver.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UdpListener.o `test -f 'net/UdpListener.cpp' || echo '$(srcdir)/'`net/UdpListener.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UdpReceiver.o `test -f 'net/UdpReceiver.cpp' || echo '$(srcdir)/'`net/UdpReceiver.cpp
 
-UdpListener.obj: net/UdpListener.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UdpListener.obj -MD -MP -MF $(DEPDIR)/UdpListener.Tpo -c -o UdpListener.obj `if test -f 'net/UdpListener.cpp'; then $(CYGPATH_W) 'net/UdpListener.cpp'; else $(CYGPATH_W) '$(srcdir)/net/UdpListener.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/UdpListener.Tpo $(DEPDIR)/UdpListener.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='net/UdpListener.cpp' object='UdpListener.obj' libtool=no @AMDEPBACKSLASH@
+UdpReceiver.obj: net/UdpReceiver.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UdpReceiver.obj -MD -MP -MF $(DEPDIR)/UdpReceiver.Tpo -c -o UdpReceiver.obj `if test -f 'net/UdpReceiver.cpp'; then $(CYGPATH_W) 'net/UdpReceiver.cpp'; else $(CYGPATH_W) '$(srcdir)/net/UdpReceiver.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/UdpReceiver.Tpo $(DEPDIR)/UdpReceiver.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='net/UdpReceiver.cpp' object='UdpReceiver.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UdpListener.obj `if test -f 'net/UdpListener.cpp'; then $(CYGPATH_W) 'net/UdpListener.cpp'; else $(CYGPATH_W) '$(srcdir)/net/UdpListener.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UdpReceiver.obj `if test -f 'net/UdpReceiver.cpp'; then $(CYGPATH_W) 'net/UdpReceiver.cpp'; else $(CYGPATH_W) '$(srcdir)/net/UdpReceiver.cpp'; fi`
 
 UdpSender.o: net/UdpSender.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UdpSender.o -MD -MP -MF $(DEPDIR)/UdpSender.Tpo -c -o UdpSender.o `test -f 'net/UdpSender.cpp' || echo '$(srcdir)/'`net/UdpSender.cpp

@@ -32,17 +32,11 @@ AC_CHECK_HEADER([SDL/SDL_net.h],[],
 
 AC_CHECK_HEADER([SDL/SDL_ttf.h],[],
 	AC_MSG_ERROR([SDL_ttf headers not found]))
-AC_CHECK_HEADER([SDL/SDL_gfxPrimitives.h],[],
-	AC_MSG_ERROR([SDL_gfx headers not found]))
 	
 AC_CHECK_HEADER([SDL/SDL_net.h],[],
 	AC_MSG_ERROR([SDL_net headers not found]))
 
-# check for libs
-AC_CHECK_LIB(SDL_gfx, boxRGBA,
-	AC_SUBST(SDL_GFX_LIBS, [-lSDL_gfx]),
-	AC_MSG_ERROR([SDL_gfx library not found]))
-	
+# check for libs	
 AC_CHECK_LIB(SDL_net, SDLNet_UDP_Open,
 	AC_SUBST(SDL_NET_LIBS, [-lSDL_net]),
 	AC_MSG_ERROR([SDL_net library not found]))
@@ -54,6 +48,9 @@ AC_CHECK_LIB(SDL_ttf, TTF_OpenFont,
 # check for headers & libs
 PKG_CHECK_MODULES(SDL, sdl >= 1.2,[],
 	AC_MSG_ERROR([SDL library >= 1.2 not found]))
+
+PKG_CHECK_MODULES(SDL_gfx, SDL_gfx >= 2.0.0 ,[],
+    AC_MSG_ERROR([SDL_gfx library not found]))
 
 PKG_CHECK_MODULES(SDL_image, SDL_image >= 1.2.0 ,[],
     AC_MSG_ERROR([SDL_image library not found]))
@@ -103,6 +100,7 @@ AC_CONFIG_FILES([
 	src/Makefile
 	src/facade/Makefile
 	src/rc-facade/Makefile
+	src/facade-simulator/Makefile
 ])
 AC_OUTPUT
 

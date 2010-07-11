@@ -18,7 +18,7 @@ class App : public visual::Application, public OscObject
 
         virtual ~App();
 
-        void init();
+        bool init();
 
         void setup();
 
@@ -46,9 +46,6 @@ class App : public visual::Application, public OscObject
         
         visual::Image facadeImage;
         visual::Image facadeMask;
-        
-        visual::UdpSender sender;
-        UdpPacket* packet;
 
         unsigned int reloadTimestamp;
 };

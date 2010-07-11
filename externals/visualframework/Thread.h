@@ -24,7 +24,9 @@
 #define VISUAL_THREAD_H
 
 #include "Common.h"
+
 #include "SDL/SDL_thread.h"
+#include "SDL/SDL_mutex.h"
 
 namespace visual {
 
@@ -32,42 +34,47 @@ class Thread
 {
     public:
 
-        enum Type {
-            NORMAL, // run run() once
-            LOOP    // loop run() and wait for stopThread()
-        };
-
-        Thread(std::string name, Type type=NORMAL);
-
+		/// create the thread, name and type
+        Thread(std::string name);
         virtual ~Thread();
 
-        void startThread();
+		/// start the thread
+        virtual void start();
 
-        void stopThread();
+		/// stop the thread, wait for it to finish
+        virtual void stop();
 
-        void waitThread();
+		/// kill this thread
+        virtual void kill();
+        
+        /// lock the mutex
+        void lock();
+        
+        /// unlock the mutex
+        void unlock();
 
-        void killThread();
+		/// is the thread currently running?
+        inline bool threadIsRunning() {return _bRun;}
 
-        bool isThreadRunning() {return _bRun;}
-
+		/// get this thread's ID
         int getThreadID();
 
-        std::string getThreadName() {return _name;}
+		/// get the thread's name
+        inline std::string getThreadName() {return _name;}
 
     protected:
 
+		/// thread callback function
         virtual void run() = 0;
 
     private:
 
-        void _run();
-
+		/// thread runner
         static int threadFunc(void* data);
 
         SDL_Thread* _thread;
+        SDL_mutex*	_lock;
         bool _bRun;
-        Type _type;
         std::string _name;
 };
 

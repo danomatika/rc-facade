@@ -33,8 +33,8 @@ libvisualframework_a_SOURCES = \
         Log.h \
             net/Net.h \
             net/Net.cpp \
-            net/UdpListener.h \
-            net/UdpListener.cpp \
+            net/UdpReceiver.h \
+            net/UdpReceiver.cpp \
             net/UdpSender.h \
             net/UdpSender.cpp \
         Point.h \
