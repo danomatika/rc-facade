@@ -1,0 +1,82 @@
+
+rc-facade: 2d framebuffer lib and tools for the Ars Electronica Center facade
+
+2009, 2010 Dan Wilcox <info@robotcowboy.com>
+
+libfacade licensed under the MIT License
+rc-facade & facade-simulator licensed under the GPL v3
+
+== DESCRIPTION ==
+
+The rc-facade package contains the following parts:
+1. libfacade - 2d framebuffer, builds UDP packets
+2. rc-facade - osc-controlled, 2d framebuffer engine
+3. facade-simulator - osc command tool
+
+This group of tools allows any osc-capable program to control simple 2d visuals which are specified in xml scene descriptions.
+
+These tools are developed for the robotcowboy project. See http://robotcowboy.com.
+
+== BUILD REQUIREMENTS ==
+
+The following libraries are required:
+    - SDL
+    - SDL_gfx
+    - SDL_net
+    - SDL_ttf
+    _ SDL_image
+    - liblo (lightweight osc)
+
+On Max OS X, they can be installed using macports: http://macports.org
+    - install the macport binary and setup the macports environment
+    - goto the Terminal and install the libs:
+        sudo port install libsdl libsdl_gfx libsdl_net libsdl_ttf libsdl_image liblo
+
+If using macports on Mac OS X, you need to set the macports include and lib dirs before running ./configure:
+
+export CPPFLAGS=-I/opt/local/include && export LDFLAGS=-L/opt/local/lib
+
+== BUILD AND INSTALLATION ==
+
+As this is an GNU autotools project, simply run:
+
+./configure
+make
+sudo make install
+
+By default, the configure script installs to /usr/local.  To change this behavior, specify a new dir before building the project:
+
+./configure --prefix=/path/to/install/dir
+
+If using macports on Mac OS X, it is recommended to use the macports default prefix of /opt/local.
+
+== USAGE ==
+
+All applications have a full help usage printout, use -h or --help.
+
+----
+
+% rc-facade scene_file.xml
+
+Starts rc-visual using the given xml scene description. The file sets connection information (if not using defaults) and lists visual scenes and scene elements. Look at the example.xml file install to the doc folder for details.
+
+See the pd patches in the pd folder for info on how to communicate with rc-viusal.
+
+Note: Values set on the commandline override those in the scene file.
+
+----
+
+% facade-simulator
+
+A test destination for facade UDP packets. Displays framebuffer at 25 fps.
+
+== DEVELOPING ==
+
+A Premake4 script and IDE files can be found in the prj folder.  Premake4 can generate the IDE files from a given lua script.  Download Premake4 from http://industriousone.com/premake.
+
+Make sure the externals are built by calling the prj/setupbuild script which runs configure and calls make in the externals dir.
+
+You can enable a debug build using ./configure --enable-debug.
+
+I develop using an IDE, then update the autotools files when the sources are finished.  I run make dist-check to make sure the distributable package can be built successfully.
+
