@@ -15,7 +15,7 @@
 
 @SET_MAKE@
 
-# oscframework
+# external libs variables
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -34,8 +34,9 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-subdir = externals/oscframework
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/externals/externals.mk
+subdir = src/common
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -47,11 +48,10 @@ CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
 AR = ar
 ARFLAGS = cru
-liboscframework_a_AR = $(AR) $(ARFLAGS)
-liboscframework_a_LIBADD =
-dist_liboscframework_a_OBJECTS = OscReceiver.$(OBJEXT) \
-	OscObject.$(OBJEXT) OscSender.$(OBJEXT) OscTypes.$(OBJEXT)
-liboscframework_a_OBJECTS = $(dist_liboscframework_a_OBJECTS)
+libcommon_a_AR = $(AR) $(ARFLAGS)
+libcommon_a_LIBADD =
+dist_libcommon_a_OBJECTS = Facade.$(OBJEXT)
+libcommon_a_OBJECTS = $(dist_libcommon_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/src
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -65,8 +65,8 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(dist_liboscframework_a_SOURCES)
-DIST_SOURCES = $(dist_liboscframework_a_SOURCES)
+SOURCES = $(dist_libcommon_a_SOURCES)
+DIST_SOURCES = $(dist_libcommon_a_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -174,29 +174,45 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-# the library to build, dont install just link to execs
-noinst_LIBRARIES = liboscframework.a
+# directories to build (rel to top dir)
+EXTERNALS_DIRS = oscframework xmlframework visualframework tclap
 
-# libs sources, headers here because we dont want to install them
-dist_liboscframework_a_SOURCES = \
-		Log.h Exception.h \
-		oscframework.h \
-		OscReceiver.h OscReceiver.cpp \
-		OscObject.h OscObject.cpp \
-		OscSender.h OscSender.cpp \
-		OscTypes.h OscTypes.cpp
+# includes
+EXTERNALS_CFLAGS = \
+    -I$(top_srcdir)/externals/oscframework \
+    -I$(top_srcdir)/externals/xmlframework \
+    -I$(top_srcdir)/externals/visualframework \
+    -I$(top_srcdir)/externals
 
-
-# include paths
-AM_CPPFLAGS = $(CXXFLAGS) $(LO_CFLAGS)
 
 # libs to link
-AM_LDFLAGS = $(LO_LIBS)
+EXTERNALS_LIBS = \
+    -L$(top_builddir)/externals/oscframework/ \
+    -L$(top_builddir)/externals/xmlframework/ \
+    -L$(top_builddir)/externals/visualframework/ \
+    -loscframework -lxmlframework -lvisualframework
+
+
+# load externals variables
+
+# the library to build, dont install just link to execs
+noinst_LIBRARIES = libcommon.a
+
+# bin sources, headers here because we dont want to install them
+dist_libcommon_a_SOURCES = Facade.h Facade.cpp
+
+# include paths
+AM_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) -I$(top_srcdir)/src $(EXTERNALS_CFLAGS)
+
+# libs to link
+AM_LDFLAGS = $(SDL_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_image_LIBS) \
+			 -L$(top_builddir)/src/facade -lfacade $(EXTERNALS_LIBS)
+
 all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .cpp .o .obj
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/externals/externals.mk $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -205,9 +221,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign externals/oscframework/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/common/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign externals/oscframework/Makefile
+	  $(AUTOMAKE) --foreign src/common/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -229,10 +245,10 @@ $(am__aclocal_m4_deps):
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-liboscframework.a: $(liboscframework_a_OBJECTS) $(liboscframework_a_DEPENDENCIES) 
-	-rm -f liboscframework.a
-	$(liboscframework_a_AR) liboscframework.a $(liboscframework_a_OBJECTS) $(liboscframework_a_LIBADD)
-	$(RANLIB) liboscframework.a
+libcommon.a: $(libcommon_a_OBJECTS) $(libcommon_a_DEPENDENCIES) 
+	-rm -f libcommon.a
+	$(libcommon_a_AR) libcommon.a $(libcommon_a_OBJECTS) $(libcommon_a_LIBADD)
+	$(RANLIB) libcommon.a
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -240,10 +256,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OscObject.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OscReceiver.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OscSender.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OscTypes.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Facade.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

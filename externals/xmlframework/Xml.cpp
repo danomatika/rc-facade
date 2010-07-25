@@ -1,5 +1,24 @@
 /*==============================================================================
-    Dan Wilcox <Daniel.Wilcox@aec.at>, 2009
+
+	Xml.cpp
+    
+    xmlframework: object based xml classes for TinyXml
+  
+	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ==============================================================================*/
 #include "Xml.h"
 
@@ -31,9 +50,9 @@ bool Xml::getAttrBool(const TiXmlElement* xmlPtr, std::string name, bool default
             return defaultVal;
 
         case TIXML_NO_ATTRIBUTE:
-            LOG_WARN << "Xml::getAttrBool(): int attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//            LOG_WARN << "Xml::getAttrBool(): int attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
             return defaultVal;
 
         default:    // TIXML_SUCCESS:
@@ -61,9 +80,9 @@ uint8_t Xml::getAttrByte(const TiXmlElement* xmlPtr, std::string name, uint8_t d
             return defaultVal;
 
         case TIXML_NO_ATTRIBUTE:
-            LOG_WARN << "Xml::getAttrBool(): int attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//            LOG_WARN << "Xml::getAttrBool(): int attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
             return defaultVal;
 
         default:    // TIXML_SUCCESS:
@@ -90,9 +109,9 @@ unsigned int Xml::getAttrUInt(const TiXmlElement* xmlPtr, std::string name, unsi
             return defaultVal;
 
         case TIXML_NO_ATTRIBUTE:
-            LOG_WARN << "Xml::getAttrUInt(): int attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//            LOG_WARN << "Xml::getAttrUInt(): int attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
             return defaultVal;
 
         default:    // TIXML_SUCCESS:
@@ -119,9 +138,9 @@ int Xml::getAttrInt(const TiXmlElement* xmlPtr, std::string name, int defaultVal
             return defaultVal;
 
         case TIXML_NO_ATTRIBUTE:
-            LOG_WARN << "Xml::getAttrInt(): int attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//            LOG_WARN << "Xml::getAttrInt(): int attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
             return defaultVal;
 
         default:    // TIXML_SUCCESS:
@@ -148,9 +167,9 @@ float Xml::getAttrFloat(const TiXmlElement* xmlPtr, std::string name, float defa
             return defaultVal;
 
         case TIXML_NO_ATTRIBUTE:
-            LOG_WARN << "Xml::getAttrFloat(): float attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//            LOG_WARN << "Xml::getAttrFloat(): float attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
             return defaultVal;
 
         default:    // TIXML_SUCCESS:
@@ -177,9 +196,9 @@ double Xml::getAttrDouble(const TiXmlElement* xmlPtr, std::string name, double d
             return defaultVal;
 
         case TIXML_NO_ATTRIBUTE:
-            LOG_WARN << "Xml::getAttrDouble(): double attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//            LOG_WARN << "Xml::getAttrDouble(): double attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
             return defaultVal;
 
         default:    // TIXML_SUCCESS:
@@ -199,9 +218,9 @@ std::string Xml::getAttrString(const TiXmlElement* xmlPtr, std::string name, std
     const char* value = xmlPtr->Attribute(name.c_str());
     if(value == NULL)
     {
-        LOG_WARN << "Xml::getAttrString(): string attribute \"" << name
-                     << "\" was not found in element \"" << xmlPtr->ValueStr()
-                     << "\"" << std::endl;
+//        LOG_WARN << "Xml::getAttrString(): string attribute \"" << name
+//                     << "\" was not found in element \"" << xmlPtr->ValueStr()
+//                     << "\"" << std::endl;
         return defaultVal;
     }
     

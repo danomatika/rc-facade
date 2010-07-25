@@ -49,9 +49,7 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_facade_simulator_OBJECTS = facade_simulator-Config.$(OBJEXT) \
-	facade_simulator-App.$(OBJEXT) \
-	facade_simulator-Facade.$(OBJEXT) \
-	facade_simulator-main.$(OBJEXT)
+	facade_simulator-App.$(OBJEXT) facade_simulator-main.$(OBJEXT)
 facade_simulator_OBJECTS = $(am_facade_simulator_OBJECTS)
 am__DEPENDENCIES_1 =
 facade_simulator_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -202,7 +200,6 @@ EXTERNALS_LIBS = \
 facade_simulator_SOURCES = \
         Common.h Config.h Config.cpp \
         App.h App.cpp \
-	Facade.h Facade.cpp \
         main.cpp
 
 
@@ -212,7 +209,10 @@ facade_simulator_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
 
 
 # local libs to link
-facade_simulator_LDADD = -L$(top_builddir)/src/facade -lfacade $(EXTERNALS_LIBS)
+facade_simulator_LDADD = -L$(top_builddir)/src/facade -lfacade \
+						 -L$(top_builddir)/src/common -lcommon \
+						 $(EXTERNALS_LIBS)
+
 
 # libs to link
 facade_simulator_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_gfx_LIBS) $(SDL_NET_LIBS) \
@@ -301,7 +301,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/facade_simulator-App.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/facade_simulator-Config.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/facade_simulator-Facade.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/facade_simulator-main.Po@am__quote@
 
 .cpp.o:
@@ -345,20 +344,6 @@ facade_simulator-App.obj: App.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='App.cpp' object='facade_simulator-App.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(facade_simulator_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o facade_simulator-App.obj `if test -f 'App.cpp'; then $(CYGPATH_W) 'App.cpp'; else $(CYGPATH_W) '$(srcdir)/App.cpp'; fi`
-
-facade_simulator-Facade.o: Facade.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(facade_simulator_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT facade_simulator-Facade.o -MD -MP -MF $(DEPDIR)/facade_simulator-Facade.Tpo -c -o facade_simulator-Facade.o `test -f 'Facade.cpp' || echo '$(srcdir)/'`Facade.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/facade_simulator-Facade.Tpo $(DEPDIR)/facade_simulator-Facade.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Facade.cpp' object='facade_simulator-Facade.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(facade_simulator_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o facade_simulator-Facade.o `test -f 'Facade.cpp' || echo '$(srcdir)/'`Facade.cpp
-
-facade_simulator-Facade.obj: Facade.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(facade_simulator_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT facade_simulator-Facade.obj -MD -MP -MF $(DEPDIR)/facade_simulator-Facade.Tpo -c -o facade_simulator-Facade.obj `if test -f 'Facade.cpp'; then $(CYGPATH_W) 'Facade.cpp'; else $(CYGPATH_W) '$(srcdir)/Facade.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/facade_simulator-Facade.Tpo $(DEPDIR)/facade_simulator-Facade.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Facade.cpp' object='facade_simulator-Facade.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(facade_simulator_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o facade_simulator-Facade.obj `if test -f 'Facade.cpp'; then $(CYGPATH_W) 'Facade.cpp'; else $(CYGPATH_W) '$(srcdir)/Facade.cpp'; fi`
 
 facade_simulator-main.o: main.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(facade_simulator_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT facade_simulator-main.o -MD -MP -MF $(DEPDIR)/facade_simulator-main.Tpo -c -o facade_simulator-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp

@@ -6,7 +6,7 @@ noinst_LIBRARIES = liboscframework.a
 # libs sources, headers here because we dont want to install them
 dist_liboscframework_a_SOURCES = \
 		Log.h Exception.h \
-        	oscframework.h \
+		oscframework.h \
 		OscReceiver.h OscReceiver.cpp \
 		OscObject.h OscObject.cpp \
 		OscSender.h OscSender.cpp \

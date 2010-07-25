@@ -59,6 +59,8 @@ class App : public visual::Application, public OscObject
 
         bool bRunning;  // running or paused?
 
+		Config& config;
+		
         Facade& facade;
         OscReceiver& receiver;
         SceneManager sceneManager;

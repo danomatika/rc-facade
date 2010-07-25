@@ -3,4 +3,4 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 # dirs to delve into
-SUBDIRS = externals src
+SUBDIRS = data externals src

@@ -10,7 +10,6 @@ bin_PROGRAMS = rc-facade
 rc_facade_SOURCES = \
         Common.h Config.h Config.cpp \
         App.h App.cpp \
-	Facade.h Facade.cpp \
         main.cpp \
         Scene.h Scene.cpp \
         SceneManager.h SceneManager.cpp \
@@ -31,7 +30,9 @@ rc_facade_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS) \
 					-I$(top_srcdir)/src
 
 # local libs to link
-rc_facade_LDADD = -L$(top_builddir)/src/facade -lfacade $(EXTERNALS_LIBS)
+rc_facade_LDADD = -L$(top_builddir)/src/facade -lfacade \
+				  -L$(top_builddir)/src/common -lcommon \
+				  $(EXTERNALS_LIBS)
 
 # libs to link
 rc_facade_LDFLAGS = $(SDL_LIBS) $(LO_LIBS) $(SDL_gfx_LIBS) $(SDL_NET_LIBS) \

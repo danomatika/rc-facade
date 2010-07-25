@@ -39,27 +39,27 @@ int main(int argc, char *argv[])
     	return EXIT_FAILURE;
 	
     // initialize SDL context
-    // ste window size based on facade grid size
+    // set window size based on facade grid size
     Graphics::init(config.getFacade().getDrawWidth(),
                    config.getFacade().getDrawHeight(),
                    32, HARDWARE);
 
     // initialize app
-    App facadeApp;
-    facadeApp.init();
+    App app;
+    app.init();
 
     // set icon and open window
     //Graphics::setWindowIcon("../data/icon.bmp");
     Graphics::createWindow("rc-facade");
 
     // setup sdl resources
-    facadeApp.setup();
+    app.setup();
 
     // main app loop
-    facadeApp.mainLoop();
+    app.mainLoop();
 
     // cleanup after exit from loop
-    facadeApp.cleanup();
+    app.cleanup();
 
     return EXIT_SUCCESS;
 }

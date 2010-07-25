@@ -24,6 +24,9 @@
 
 #include <tclap/tclap.h>
 
+using namespace xml;
+using namespace facade;
+
 Config& Config::instance()
 {
     static Config * pointerToTheSingletonInstance = new Config;
@@ -35,7 +38,7 @@ bool Config::parseCommandLine(int argc, char **argv)
 	try
     {
         // the commandline parser
-        TCLAP::CommandLine cmd("simple aec facade rendering engine", VERSION);
+        TCLAP::CommandLine cmd("2d aec facade simulator", VERSION);
         
         
         // options to parse
@@ -43,7 +46,7 @@ bool Config::parseCommandLine(int argc, char **argv)
 
         // commands to parse
         // name, description, required?, default value, short usage type description
-        TCLAP::UnlabeledValueArg<string> fileCmd("xml", "facade xml file to load", false, "", "file");
+        TCLAP::UnlabeledValueArg<string> fileCmd("xml", "facade mapping xml file to load", false, "", "file");
 
         // add args to parser (in reverse order)
         
@@ -52,11 +55,14 @@ bool Config::parseCommandLine(int argc, char **argv)
 
         // parse the commandline
         cmd.parse(argc, argv);
-
-        // set variables
+		
+		// load the mapping file (if one exists)
         if(fileCmd.getValue() != "")
         {
-            file = fileCmd.getValue();
+            _facade.setXmlFilename(fileCmd.getValue());
+            LOG << "Config: loading \"" << _facade.getXmlFilename() << "\"" << endl;
+    		_facade.loadXmlFile();
+    		_facade.closeXmlFile();
         }
     }
     catch(TCLAP::ArgException &e)  // catch any exceptions
@@ -70,5 +76,5 @@ bool Config::parseCommandLine(int argc, char **argv)
 
 /* ***** PRIVATE ***** */
 
-Config::Config() : file("")
+Config::Config()
 {}

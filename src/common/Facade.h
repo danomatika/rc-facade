@@ -1,10 +1,8 @@
 /*==============================================================================
 
 	Facade.h
-
-	rc-facade: a simple 2d graphics engine for the AEC facade
   
-	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,29 +21,28 @@
 #ifndef FACADE_H
 #define FACADE_H
 
-#include "Common.h"
+#include <visualframework/visualframework.h>
+#include <xmlframework/xmlframework.h>
 #include <facade/Facade.h>
 
-class facade::Facade;
-
-class Facade : public facade::Facade
+class Facade : public facade::Facade, public xml::XmlObject
 {
     public:
 
         Facade();
         virtual ~Facade();
+		
+		/// setup the sending destination
+        void setup(std::string addr, unsigned int port);
         
-        /// setup the sending destination
-        void setup(string addr, unsigned int port);
-        
-        /// draw the framebuffer
+        // draw the framebuffer
         void draw(int x=0, int y=0);
         
         /// send a facade frame
         void send();
         
-        /// draw the individual sides with different colors for debugging placement, ignores background
-        /// (off by default)
+        /// draw the individual sides with different colors for debugging placement,
+        /// ignores background (off by default)
         inline void showSides(bool yesno) 		{_bShowSides = yesno;}
         
         /// should the sides draw outlines around the windows?
@@ -58,6 +55,14 @@ class Facade : public facade::Facade
         /// get the draw width and height, based on windowSize
         unsigned int getDrawWidth();
         unsigned int getDrawHeight();
+		
+	protected:
+	
+    		/// xml read callback
+        bool readXml(TiXmlElement* e);
+		
+		/// parse xml for one side
+		void parseSideXml(TiXmlElement* e, facade::FacadeSide side);
 
     private:
         
@@ -65,6 +70,7 @@ class Facade : public facade::Facade
         visual::Image _facadeMask;
         
         visual::UdpSender _sender;
+        UdpPacket* _packet;
         
         bool _bDrawOutlines;
         bool _bShowSides;

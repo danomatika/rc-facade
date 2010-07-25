@@ -44,7 +44,9 @@ class SideMainBuildingWest : public Side
             nrRows = 22;
             nrCols = 10;
 
-            setPos(0, 0);
+            c_startRow = 0;
+			c_startCol = 0;
+            setPos(c_startRow, c_startCol);
 
             int temp[] =
             {

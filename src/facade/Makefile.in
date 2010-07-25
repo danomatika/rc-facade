@@ -17,8 +17,6 @@
 
 # facade
 
-# external libs variables
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -36,9 +34,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/externals/externals.mk
 subdir = src/facade
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -177,27 +174,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-# directories to build (rel to top dir)
-EXTERNALS_DIRS = oscframework xmlframework visualframework tclap
-
-# includes
-EXTERNALS_CFLAGS = \
-    -I$(top_srcdir)/externals/oscframework \
-    -I$(top_srcdir)/externals/xmlframework \
-    -I$(top_srcdir)/externals/visualframework \
-    -I$(top_srcdir)/externals
-
-
-# libs to link
-EXTERNALS_LIBS = \
-    -L$(top_builddir)/externals/oscframework/ \
-    -L$(top_builddir)/externals/xmlframework/ \
-    -L$(top_builddir)/externals/visualframework/ \
-    -loscframework -lxmlframework -lvisualframework
-
-
-# load externals variables
-
 # the library to build, dont install just link to execs
 noinst_LIBRARIES = libfacade.a
 
@@ -218,15 +194,15 @@ dist_libfacade_a_SOURCES = \
 
 
 # include paths
-AM_CPPFLAGS = $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS)
+AM_CPPFLAGS = $(CXXFLAGS)
 
 # libs to link
-AM_LDFLAGS = $(SDL_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_image_LIBS) $(EXTERNALS_LIBS)
+AM_LDFLAGS = 
 all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .cpp .o .obj
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/externals/externals.mk $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \

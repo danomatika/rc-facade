@@ -44,7 +44,9 @@ class SideMainBuildingSouthStreetLevel : public Side
             nrRows = 5;
             nrCols = 27;
 
-            setPos(23, 9);
+            c_startRow = 23;
+			c_startCol = 9;
+            setPos(c_startRow, c_startCol);
 
             int temp[] =
             {

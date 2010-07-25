@@ -32,6 +32,7 @@ using namespace visual;
 using namespace facade;
 
 App::App() : OscObject(""), bRunning(true),
+	config(Config::instance()),
     facade(Config::instance().getFacade()),
     receiver(Config::instance().getReceiver()),
     reloadTimestamp(0)
@@ -53,8 +54,10 @@ App::~App()
 bool App::init()
 {
     // setup the osc listener
-    receiver.setup(7000);
+    receiver.setup(config.listeningPort);
     receiver.start();
+	
+	config.print();
 
     // setup the facade
     LOG << endl;
@@ -86,14 +89,15 @@ bool App::init()
 	
     //facade.recomputeSize();
     facadeMask.load(facade.getMask(), facade.getWidth(), facade.getHeight());
-    facade.setup("192.168.5.57", FACADE_RECV_PORT);
-    //facade.setup("127.0.0.1", FACADE_RECV_PORT);
+    //facade.setup("192.168.5.57", FACADE_RECV_PORT);
+    facade.setup(config.sendingIp, FACADE_RECV_PORT);
     facade.print();
-
-    // load the xml file
-    if(Config::instance().file != "")
+	
+	// load the xml file into the scene manager
+    if(config.getXmlFilename() != "")
     {
-    	sceneManager.loadXmlFile(Config::instance().file);
+		//config.loadXml();
+    	sceneManager.loadXmlFile(config.getXmlFilename());
     }
     
     return true;
@@ -117,7 +121,6 @@ void App::update()
         
         facadeImage.load(facade.getFrameBuffer(), facade.getWidth(), facade.getHeight());
     }
-    
 }
 
 void App::draw()

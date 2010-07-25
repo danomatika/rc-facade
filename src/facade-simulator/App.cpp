@@ -32,8 +32,7 @@
 using namespace visual;
 using namespace facade;
 
-App::App() : bRunning(true),
-    facade(Config::instance().getFacade())
+App::App() : facade(Config::instance().getFacade())
 {}
 
 App::~App()
@@ -46,6 +45,9 @@ bool App::init()
         
     // setup the facade
     LOG << endl;
+    //facade.setSidePos(SIDE_MAIN_WEST, 35, 0);
+    //facade.moveSides(-9, 0);
+    //facade.recomputeSize();
     facadeMask.load(facade.getMask(), facade.getWidth(), facade.getHeight());
     facade.print();
 
@@ -59,25 +61,20 @@ void App::setup()
 }
 
 void App::update()
-{
-    if(bRunning)
-    {
-//        facade.clear();
-    }
-    
+{    
     // handle new packet?
     if(receiver.receivePacket())
     {
-    	LOG_DEBUG << "received packet" << endl;
     	if(receiver.getDataLen() == facade.getPacketLen())
     		facade.setPacket(receiver.getData());
         else
         {
         	LOG_WARN << "Bad Packet: Received length " << receiver.getDataLen()
-                     << " is not Facade packet len " << facade.getPacketLen() << endl;
+                     << " is not Facade packet len of " << facade.getPacketLen() << endl;
         }
     }
     
+	// laod icon preview
     facadeImage.load(facade.getFrameBuffer(), facade.getWidth(), facade.getHeight());
 }
 
@@ -87,14 +84,10 @@ void App::draw()
 
 	if(bDebug)
     {
+		// draw preview icons
     	facadeImage.draw(Graphics::getWidth()-facadeImage.width(), 0);
     	facadeMask.draw(Graphics::getWidth()-facadeMask.width(), facadeImage.height());
 	}
-    
-    if(bRunning)
-	{
-        //facade.send();
-    }
     
     // fps display
     stringstream stream;
@@ -110,16 +103,29 @@ void App::keyPressed(SDLKey key, SDLMod mod)
 {
     switch(key)
     {
-        case 'p':
-            bRunning = !bRunning;
-            break;
-
         case 'd':
             bDebug = !bDebug;
             facade.showSides(bDebug);
             facade.drawOutlines(bDebug);
             break;
+			
+		case 'r':
+			if(facade.getXmlFilename() != "")
+			{
+				facade.loadXmlFile();
+				if(facade.getDrawWidth() != Graphics::getWidth() ||
+				   facade.getDrawHeight() != Graphics::getHeight())
+				{
+				   Graphics::changeResolution(facade.getDrawWidth(), facade.getDrawHeight());
+				}
+			}
+			else
+			{
+				LOG_WARN << "No file to reload" << endl;
+			}
 
+			break;
+			
         default:
             break;
     }

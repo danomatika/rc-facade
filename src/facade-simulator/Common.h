@@ -28,6 +28,7 @@
 #include "../config.h"
 
 #include <visualframework/visualframework.h>
+#include <xmlframework/xmlframework.h>
 
 using namespace std;
 

@@ -24,9 +24,6 @@
 
 #include <tclap/tclap.h>
 
-//Facade      Config::_facade;
-//OscReceiver Config::_oscReceiver;
-
 Config& Config::instance()
 {
     static Config * pointerToTheSingletonInstance = new Config;
@@ -40,15 +37,23 @@ bool Config::parseCommandLine(int argc, char **argv)
         // the commandline parser
         TCLAP::CommandLine cmd("simple aec facade rendering engine", VERSION);
         
-        
         // options to parse
         // short id, long id, description, required?, default value, short usage type description
+        TCLAP::ValueArg<string> ipOpt("i", "ip", (string) "IP address to send to; default is '"+sendingIp+"'", false, sendingIp, "string");
+		TCLAP::ValueArg<string> mappingOpt("m", "mapping", (string) "facade mapping xml file", false, "", "string");
 
+		stringstream itoa;
+        itoa << listeningPort;
+		TCLAP::ValueArg<int> 	portOpt("p","port", (string) "Port to listen on; default is '"+itoa.str()+"'", false, listeningPort, "int");
+     
         // commands to parse
         // name, description, required?, default value, short usage type description
         TCLAP::UnlabeledValueArg<string> fileCmd("xml", "facade xml file to load", false, "", "file");
 
         // add args to parser (in reverse order)
+		cmd.add(mappingOpt);
+        cmd.add(portOpt);
+        cmd.add(ipOpt);
         
         // add commands
         cmd.add(fileCmd);
@@ -56,11 +61,27 @@ bool Config::parseCommandLine(int argc, char **argv)
         // parse the commandline
         cmd.parse(argc, argv);
 
-        // set variables
+        // load the config file (if one exists)
         if(fileCmd.getValue() != "")
         {
-            file = fileCmd.getValue();
+            setXmlFilename(fileCmd.getValue());
+            LOG << "Config: loading \"" << getXmlFilename() << "\"" << endl;
+    		loadXmlFile();
+    		closeXmlFile();
         }
+		
+		// load the mapping file (if one exists)
+		if(mappingOpt.isSet())
+		{
+			_facade.setXmlFilename(mappingOpt.getValue());
+			LOG << "Config: loading mapping \"" << _facade.getXmlFilename() << "\"" << endl;
+			_facade.loadXmlFile();
+			_facade.closeXmlFile();
+		}
+        
+        // set the variables
+        if(ipOpt.isSet())		 sendingIp = ipOpt.getValue();
+        if(portOpt.isSet()) 	 listeningPort = portOpt.getValue();
     }
     catch(TCLAP::ArgException &e)  // catch any exceptions
 	{
@@ -71,47 +92,23 @@ bool Config::parseCommandLine(int argc, char **argv)
 	return true;
 }
 
+void Config::print()
+{        
+    LOG << "sending ip: " << sendingIp << endl
+		<< "listening port:	" << listeningPort << endl
+        << "listening address: " << _oscReceiver.getOscRootAddress() << endl;
+}
+
 /* ***** PROTECTED ***** */
 
 bool Config::readXml(TiXmlElement* e)
 {
 	return false;
-/*
-    string name;
-
-    TiXmlElement* child = e->FirstChildElement();
-    while(child != NULL)
-    {
-        if(child->ValueStr() == "setup")
-        {
-            if((name = Xml::getAttrString(child, "name")) != "")
-            {
-                LOG_DEBUG << "SceneManager: Loading scene \"" << name << "\"" << std::endl;
-
-                Scene* s = new Scene(name);
-                s->loadXml(child);
-                addObject(s);
-            }
-            else
-            {
-
-                LOG_WARN << "SceneManager: Cannot load scene without name, line "
-                         << child->Row() << endl;
-            }
-        }
-
-        child = child->NextSiblingElement();
-    }
-
-    // try to load the first scene
-    if(_currentScene < 0)
-    	gotoScene(0);
-
-    return true;
-    */
 }
 
 /* ***** PRIVATE ***** */
 
-Config::Config() : XmlObject("facade"), file("")
-{}
+Config::Config() : XmlObject("facade"), listeningPort(7000), sendingIp("127.0.0.1")
+{
+	addXmlObject(&_facade);
+}

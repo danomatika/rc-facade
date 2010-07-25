@@ -53,6 +53,14 @@ void Side::move(int rowAmount, int colAmount)
 	setPos(startRow+rowAmount, startCol+colAmount);
 }
 
+void Side::reset()
+{
+	bEnabled = true;
+	bFlipX = false;
+	bFlipY = false;
+	setPos(c_startRow, c_startCol);
+}
+
 int Side::getAddress(int row, int col, bool global)
 {
     if(global)  // grab address in relation to building's overall grid
@@ -170,12 +178,15 @@ void Side::draw(uint32_t* pixels, Building& building, uint32_t color, bool drawE
     for(int r = 0; r < nrRows; ++r)
     {
         for(int c = 0; c < nrCols; ++c)
-        {            
-            if(getAddress(r, c) != -1)
-            	pixels[yPos*building.getNrCols()+xPos] = color;
-                
-            else if(drawEmpty)	// set the empty color?
-                pixels[yPos*building.getNrCols()+xPos] = 0x00000000;
+        {
+			if(xPos >= 0 && yPos >= 0)
+			{
+				if(getAddress(r, c) != -1)
+					pixels[yPos*building.getNrCols()+xPos] = color;
+					
+				else if(drawEmpty)	// set the empty color?
+					pixels[yPos*building.getNrCols()+xPos] = 0x00000000;
+			}
 			
             ++xPos;
         }

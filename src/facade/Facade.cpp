@@ -164,6 +164,11 @@ void Facade::recomputeSize()
 	setup();
 }
 
+void Facade::reset()
+{
+	_building.reset();
+}
+
 /* ***** PIXEL FRAME BUFFER ***** */
         
 const uint32_t* Facade::getFrameBuffer() const
@@ -394,6 +399,11 @@ unsigned int Facade::getSidePosX(FacadeSide side)
     
 unsigned int Facade::getSidePosY(FacadeSide side)
 	{return _building.getSides().at((int) side)->getStartRow();}
+
+std::string Facade::getSideName(FacadeSide side)
+{
+	return _building.getSides().at((int) side)->getName();
+}
 
 /* ***** PRIVATE ***** */
 

@@ -91,6 +91,7 @@ AC_CONFIG_SUBDIRS()
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
+	data/Makefile
 	externals/Makefile
 	externals/tclap/Makefile
 	externals/oscframework/Makefile
@@ -99,6 +100,7 @@ AC_CONFIG_FILES([
 	externals/visualframework/vmmlib/Makefile
 	src/Makefile
 	src/facade/Makefile
+	src/common/Makefile
 	src/rc-facade/Makefile
 	src/facade-simulator/Makefile
 ])

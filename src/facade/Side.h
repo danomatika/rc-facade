@@ -70,6 +70,9 @@ class Side
         
         /// set the position relative to the current position
         void move(int rowAmount, int colAmount);
+		
+		/// reset the position and orientation
+		void reset();
 
         /**
             \brief retrieve the address of the window at a certain position
@@ -137,6 +140,9 @@ class Side
 
         bool bFlipX, bFlipY;  ///< flip the side?
         bool bEnabled;        ///< is this side enabled?
+		
+		int c_startRow;		///< the default start row
+		int c_startCol;		///< the default start col
 };
 
 } // namespace

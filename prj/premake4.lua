@@ -31,15 +31,16 @@ project "rc-facade"
 	kind "ConsoleApp"
 	language "C++"
 	targetdir "../src/rc-facade"
-	files { "../src/rc-facade/**.h", "../src/rc-facade/**.cpp" }
+	files { "../src/common/*",
+			"../src/rc-facade/**.h",
+			"../src/rc-facade/**.cpp" }
 	
 	includedirs { "../src",
 				  "../externals/",
 				  "../externals/visualframework",
 			 	  "../externals/xmlframework",
 			  	  "../externals/oscframework" }
-	libdirs { "../src/facade",
-			  "../externals/visualframework",
+	libdirs { "../externals/visualframework",
 			  "../externals/xmlframework",
       		  "../externals/oscframework" }
 	links { "facade", "oscframework", "xmlframework", "visualframework",
@@ -77,15 +78,17 @@ project "facade-simulator"
 	kind "ConsoleApp"
 	language "C++"
 	targetdir "../src/facade-simulator"
-	files { "../src/facade-simulator/**.h", "../src/facade-simulator/**.cpp" }
+	files { "../src/common/*",
+			"../src/facade-simulator/**.h",
+			"../src/facade-simulator/**.cpp" }
 	
 	includedirs { "../src",
 				  "../externals/",
 				  "../externals/visualframework",
-			 	  "../externals/xmlframework",
-			  	  "../externals/oscframework" }
-	libdirs { "../externals/visualframework" }
-	links { "facade", "visualframework", "SDL_net", "SDL_ttf" }
+			 	  "../externals/xmlframework" }
+	libdirs { "../externals/xmlframework",
+			  "../externals/visualframework" }
+	links { "facade", "xmlframework", "visualframework", "SDL_net", "SDL_ttf" }
 
 	configuration "linux"
 		buildoptions { "`pkg-config --cflags sdl`",

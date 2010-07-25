@@ -1,8 +1,5 @@
 # facade
 
-# load externals variables
-include $(top_srcdir)/externals/externals.mk
-
 # the library to build, dont install just link to execs
 noinst_LIBRARIES = libfacade.a
 
@@ -22,8 +19,8 @@ dist_libfacade_a_SOURCES = \
         SideMainBuildingWest.h
 
 # include paths
-AM_CPPFLAGS =  $(CXXFLAGS) $(SDL_CFLAGS) $(EXTERNALS_CFLAGS)
-
+AM_CPPFLAGS =  $(CXXFLAGS)
 
 # libs to link
-AM_LDFLAGS = $(SDL_LIBS) $(SDL_GFX_LIBS) $(SDL_NET_LIBS) $(SDL_image_LIBS) $(EXTERNALS_LIBS)
+AM_LDFLAGS =
+

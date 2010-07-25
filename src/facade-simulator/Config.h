@@ -25,7 +25,7 @@
 
 #include "Common.h"
 
-#include "Facade.h"
+#include "../common/Facade.h"
 
 /**
     \class  Config
@@ -53,17 +53,11 @@ class Config
         	\brief	parse the commandline options
         */
         bool parseCommandLine(int argc, char **argv);
-        
-        /* ***** VARIABLES ***** */
-        
-        std::string file;	///< facade xml file to load
 
 		/* **** OBJECTS ***** */
 
 		/// get the facade object
         Facade& getFacade() {return _facade;}
-
-	protected:
 
     private:
 

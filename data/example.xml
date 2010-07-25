@@ -1,6 +1,16 @@
 <?xml version="1.0" standalone=no>
 
 <facade>
+	<!--
+	<mapping>
+		<sides>
+			<MainEast/>
+			<MainWest>
+				<pos x="35" y="0"/>
+			</MainWest>
+		</sides>
+		<move x="-9" y="0"/>
+	</mapping>-->
 
 	<scene name="scene1">
 		<background R="0" G="0" B="200" A="20"/>

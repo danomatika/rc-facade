@@ -25,7 +25,7 @@
 
 #include "Common.h"
 
-#include "facade.h"
+#include "../common/Facade.h"
 
 using namespace std;
 
@@ -50,8 +50,6 @@ class App : public visual::Application, public visual::UdpReceiver
         void keyPressed(SDLKey key, SDLMod mod);
 
     private:
-
-        bool bRunning;  // running or paused?
 
         Facade& facade;
 

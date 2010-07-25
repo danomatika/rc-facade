@@ -93,11 +93,21 @@ class Building
                 }
             }
         }
+		
+		/// reset all side positions and orientations
+		void reset()
+		{
+			for(unsigned int i = 0; i < sides.size(); ++i)
+            {
+                sides.at(i)->reset();
+			}
+		}
 
         inline unsigned int getNrRows()  {return nrRows;}
         inline unsigned int getNrCols()  {return nrCols;}
         inline std::vector<Side*>& getSides() {return sides;}
 
+		/// print the building grid size and side addresses to STDOUT
         void print()
         {
             std::cout << "Building: " << nrCols << "x" << nrRows << std::endl << std::endl;

@@ -25,7 +25,7 @@
 
 #include "Common.h"
 
-#include "Facade.h"
+#include "../common/Facade.h"
 
 /**
     \class  Config
@@ -55,30 +55,21 @@ class Config : public xml::XmlObject
         bool parseCommandLine(int argc, char **argv);
         
         /* ***** VARIABLES ***** */
-        
-        std::string file;	///< facade xml file to load
+		
+		unsigned int listeningPort;		///< the listening port
+        string sendingIp;				///< ip to send to
 
-		/* **** OBJECTS ***** */
-
-		/// setup the facade object
-        /*
-        inline void setupFacade(string ip, unsigned int port=8080)
-        {
-            _facade.setup(ip, port);
-        }
-		*/
-        
-		/// setup the osc receiver
-        inline void setupReceiver(unsigned int port)
-        {
-            _oscReceiver.setup(port);
-        }
+		/* ***** OBJECTS ***** */
 
 		/// get the facade object
         Facade& getFacade() {return _facade;}
         
         /// get the osc reciever
         OscReceiver& getReceiver() {return _oscReceiver;}
+		
+		/* ***** UTIL ***** */
+		
+		void print();
 
 	protected:
     

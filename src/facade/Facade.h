@@ -92,6 +92,9 @@ class Facade
         /// call this after changing any if the side attributes to recompute the overall all building grid size,
         /// (possibley) changes the width and height; reallocates the pixel framebuffer, not the facade packet
         void recomputeSize();
+		
+		/// reset all side positions and orientations
+		void reset();
     
     	/* ***** PIXEL FRAME BUFFER ***** */
         
@@ -187,6 +190,9 @@ class Facade
         /// get the pos of a specific window in the building grid (upper left corner)
         unsigned int getSidePosX(FacadeSide side);
         unsigned int getSidePosY(FacadeSide side);
+		
+		/// get the side name as a string
+		std::string getSideName(FacadeSide side);
 
     private:
     
