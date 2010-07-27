@@ -60,28 +60,15 @@ bool Config::parseCommandLine(int argc, char **argv)
 
         // parse the commandline
         cmd.parse(argc, argv);
-
-        // load the config file (if one exists)
-        if(fileCmd.getValue() != "")
-        {
-            setXmlFilename(fileCmd.getValue());
-            LOG << "Config: loading \"" << getXmlFilename() << "\"" << endl;
-    		loadXmlFile();
-    		closeXmlFile();
-        }
-		
-		// load the mapping file (if one exists)
-		if(mappingOpt.isSet())
-		{
-			_facade.setXmlFilename(mappingOpt.getValue());
-			LOG << "Config: loading mapping \"" << _facade.getXmlFilename() << "\"" << endl;
-			_facade.loadXmlFile();
-			_facade.closeXmlFile();
-		}
         
         // set the variables
         if(ipOpt.isSet())		 sendingIp = ipOpt.getValue();
         if(portOpt.isSet()) 	 listeningPort = portOpt.getValue();
+		if(fileCmd.getValue() != "")	setXmlFilename(fileCmd.getValue());
+		if(mappingOpt.isSet())	_facade.setXmlFilename(mappingOpt.getValue());
+		
+		// laod files
+		reloadFiles();
     }
     catch(TCLAP::ArgException &e)  // catch any exceptions
 	{
@@ -90,6 +77,23 @@ bool Config::parseCommandLine(int argc, char **argv)
     }
 
 	return true;
+}
+
+void Config::reloadFiles()
+{	
+	_facade.reset();
+	
+	// load the mapping file (if one exists)
+	if(_facade.getXmlFilename() != "")
+	{
+		LOG << "Config: loading mapping \"" << _facade.getXmlFilename() << "\"" << endl;
+		_facade.loadXmlFile();
+		_facade.closeXmlFile();
+	}
+	
+	LOG << "Config: loading \"" << getXmlFilename() << "\"" << endl;
+	loadXmlFile();
+	closeXmlFile();
 }
 
 void Config::print()

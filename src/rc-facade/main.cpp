@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
 	
     // initialize SDL context
     // set window size based on facade grid size
-    Graphics::init(config.getFacade().getDrawWidth(),
-                   config.getFacade().getDrawHeight(),
+    Graphics::init(config.getFacade().getDrawWidth()+1,
+                   config.getFacade().getDrawHeight()+1,
                    32, HARDWARE);
 
     // initialize app

@@ -53,6 +53,9 @@ class Config : public xml::XmlObject
         	\brief	parse the commandline options
         */
         bool parseCommandLine(int argc, char **argv);
+		
+		/// (re)load the config file and facade mapping file, if set
+		void reloadFiles();
         
         /* ***** VARIABLES ***** */
 		

@@ -44,13 +44,16 @@ class Facade : public facade::Facade, public xml::XmlObject
         /// draw the individual sides with different colors for debugging placement,
         /// ignores background (off by default)
         inline void showSides(bool yesno) 		{_bShowSides = yesno;}
+		inline void showSidesToggle() 			{_bShowSides = !_bShowSides;}
         
         /// should the sides draw outlines around the windows?
         inline void drawOutlines(bool yesno)	{_bDrawOutlines = yesno;}
+		inline void drawOutlinesToggle()		{_bDrawOutlines = !_bDrawOutlines;}
         
-        /// set the draw size of a window in pixels
+        /// set/get the draw size of a window in pixels
         /// note: aspect ration is 3:1
         inline void setWindowSize(unsigned int size) {_windowSize = size;}
+		inline unsigned int getWindowSize() 		 {return _windowSize;}
         
         /// get the draw width and height, based on windowSize
         unsigned int getDrawWidth();

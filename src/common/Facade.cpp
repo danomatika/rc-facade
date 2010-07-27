@@ -68,7 +68,7 @@ void Facade::draw(int x, int y)
                 color.setWithAlpha(getMask()[y*getWidth()+x]);
                 if(color.argb != 0)
                 {
-                	//color.A = 200;
+                	//color.A = 100;
             		Graphics::fill(color);
             		Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
 				}

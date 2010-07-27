@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone=no>
+
+<mapping>
+	<sides>
+		<MainEast>
+			<move x="-11" y="-2"/>
+		</MainEast>
+		<MainWest>
+			<pos x="9" y="0"/>
+		</MainWest>
+		<MainNorth>
+			<move x="-20" y="0"/>
+		</MainNorth>
+		<LabEast>
+			<pos x="9" y="18"/>
+		</LabEast>
+		<LabNorth>
+			<pos x="14" y="17"/>
+		</LabNorth>
+	</sides>
+	<move x="-9" y="0"/>
+</mapping>
+	
