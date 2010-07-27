@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		106E42982FBD001279962429 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D11A4818AD001279962429 /* Config.cpp */; };
+		167455516042001279962429 /* Facade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA5E0E1C9F001279962429 /* Facade.cpp */; };
+		58487D516F5D001279962429 /* libfacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A72CB95073001279962429 /* libfacade.a */; };
+		792A431349CF001279962429 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FC6C3D49ED001279962429 /* App.cpp */; };
+		7DDE39010786001279962429 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C540493738E001279962429 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		44270EC55333001279962429 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 533743105B30001279962429 /* facade.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3AB3689347F2001279962429;
+			remoteInfo = libfacade.a;
+		};
+		5B8726F0023C001279962429 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 533743105B30001279962429 /* facade.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 757E25147DFF001279962429;
+			remoteInfo = libfacade.a;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C540493738E001279962429 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1FA9333E60D5001279962429 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		2FC9763C653B001279962429 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		39FC6C3D49ED001279962429 /* App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
+		44D11A4818AD001279962429 /* Config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		48D867BA1E1C001279962429 /* Facade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Facade.h; sourceTree = "<group>"; };
+		4FFA5E0E1C9F001279962429 /* Facade.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Facade.cpp; sourceTree = "<group>"; };
+		533743105B30001279962429 /* facade.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = facade.xcodeproj; sourceTree = SOURCE_ROOT; };
+		58B0229A5B64001279962429 /* App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		6993487F1FFC001279962429 /* facade-simulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "facade-simulator"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		39CA2CEA38F6001279962429 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58487D516F5D001279962429 /* libfacade.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15CD76953334001279962429 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				533743105B30001279962429 /* facade.xcodeproj */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+		5DCD559E0EB3001279962429 /* facade-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				39FC6C3D49ED001279962429 /* App.cpp */,
+				58B0229A5B64001279962429 /* App.h */,
+				1FA9333E60D5001279962429 /* Common.h */,
+				44D11A4818AD001279962429 /* Config.cpp */,
+				2FC9763C653B001279962429 /* Config.h */,
+				1C540493738E001279962429 /* main.cpp */,
+			);
+			path = "facade-simulator";
+			sourceTree = "<group>";
+		};
+		68167FCB01C6001279962429 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				728F415817EB001279962429 /* common */,
+				5DCD559E0EB3001279962429 /* facade-simulator */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
+		70CE7A2736E8001279962429 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				64A72CB95073001279962429 /* libfacade.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		716F4F5F7CDC001279962429 /* facade-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				68167FCB01C6001279962429 /* src */,
+				7D4345BB38C7001279962429 /* Products */,
+				15CD76953334001279962429 /* Projects */,
+			);
+			name = "facade-simulator";
+			sourceTree = "<group>";
+		};
+		728F415817EB001279962429 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				4FFA5E0E1C9F001279962429 /* Facade.cpp */,
+				48D867BA1E1C001279962429 /* Facade.h */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		7D4345BB38C7001279962429 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6993487F1FFC001279962429 /* facade-simulator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0D306EC40F94001279962429 /* facade-simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FD46B701314001279962429 /* Build configuration list for PBXNativeTarget "facade-simulator" */;
+			buildPhases = (
+				0AC10CA275D0001279962429 /* Resources */,
+				333E42E5659F001279962429 /* Sources */,
+				39CA2CEA38F6001279962429 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60A36EE317C4001279962429 /* PBXTargetDependency */,
+			);
+			name = "facade-simulator";
+			productInstallPath = "$(HOME)/bin";
+			productName = "facade-simulator";
+			productReference = 6993487F1FFC001279962429 /* facade-simulator */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "facade-simulator" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 716F4F5F7CDC001279962429 /* facade-simulator */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 70CE7A2736E8001279962429 /* Products */;
+					ProjectRef = 533743105B30001279962429 /* facade.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				0D306EC40F94001279962429 /* facade-simulator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		64A72CB95073001279962429 /* libfacade.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfacade.a;
+			remoteRef = 44270EC55333001279962429 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0AC10CA275D0001279962429 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		333E42E5659F001279962429 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				167455516042001279962429 /* Facade.cpp in Sources */,
+				792A431349CF001279962429 /* App.cpp in Sources */,
+				106E42982FBD001279962429 /* Config.cpp in Sources */,
+				7DDE39010786001279962429 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60A36EE317C4001279962429 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libfacade.a;
+			targetProxy = 5B8726F0023C001279962429 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		298D1AD26B83001279962429 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../src,
+					../externals,
+					../externals/visualframework,
+					../externals/xmlframework,
+					../../../../../opt/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					../externals/xmlframework,
+					../externals/visualframework,
+					../../../../../opt/local/lib,
+				);
+				OBJROOT = "../obj/Release/facade-simulator";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-lxmlframework",
+					"-lvisualframework",
+					"-lSDL_net",
+					"-lSDL_ttf",
+					"-llo",
+					"-lpthread",
+					"-lSDLmain",
+					"-lSDL",
+					"-lSDL_gfx",
+					"-lSDL_image",
+					"-Wl,-framework,Cocoa",
+					"-Wl,-framework,OpenGL",
+					"-Wl,-framework,ApplicationServices",
+					"-Wl,-framework,Carbon",
+					"-Wl,-framework,AudioToolbox",
+					"-Wl,-framework,AudioUnit",
+					"-Wl,-framework,IOKit",
+				);
+				PREBINDING = NO;
+				SYMROOT = "../src/facade-simulator";
+			};
+			name = Release;
+		};
+		469C59751247001279962429 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../src/facade-simulator";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "facade-simulator";
+			};
+			name = Debug;
+		};
+		6E95792E3D3D001279962429 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../src/facade-simulator";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "facade-simulator";
+			};
+			name = Release;
+		};
+		73E80A244697001279962429 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../src,
+					../externals,
+					../externals/visualframework,
+					../externals/xmlframework,
+					../../../../../opt/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					../externals/xmlframework,
+					../externals/visualframework,
+					../../../../../opt/local/lib,
+				);
+				OBJROOT = "../obj/Debug/facade-simulator";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-lxmlframework",
+					"-lvisualframework",
+					"-lSDL_net",
+					"-lSDL_ttf",
+					"-llo",
+					"-lpthread",
+					"-lSDLmain",
+					"-lSDL",
+					"-lSDL_gfx",
+					"-lSDL_image",
+					"-Wl,-framework,Cocoa",
+					"-Wl,-framework,OpenGL",
+					"-Wl,-framework,ApplicationServices",
+					"-Wl,-framework,Carbon",
+					"-Wl,-framework,AudioToolbox",
+					"-Wl,-framework,AudioUnit",
+					"-Wl,-framework,IOKit",
+				);
+				PREBINDING = NO;
+				SYMROOT = "../src/facade-simulator";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "facade-simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73E80A244697001279962429 /* Debug */,
+				298D1AD26B83001279962429 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7FD46B701314001279962429 /* Build configuration list for PBXNativeTarget "facade-simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				469C59751247001279962429 /* Debug */,
+				6E95792E3D3D001279962429 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
