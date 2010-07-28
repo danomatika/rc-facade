@@ -70,7 +70,7 @@ bool App::init()
 	// load the xml file into the scene manager
     if(config.getXmlFilename() != "")
     {
-    	sceneManager.loadXmlFile(config.getXmlFilename());
+    	//sceneManager.loadXmlFile(config.getXmlFilename());
     }
     
     return true;
@@ -89,7 +89,9 @@ void App::update()
     if(bRunning)
     {
         facade.clear();
-        sceneManager.draw();
+        //sceneManager.draw();
+		config.updateLua();
+		config.drawLua();
         facade.swap();
         
         facadeImage.load(facade.getFrameBuffer(), facade.getWidth(), facade.getHeight());
@@ -122,6 +124,7 @@ void App::draw()
 void App::cleanup()
 {
     receiver.stop();
+	config.closeLuaFile();
 }
 
 void App::keyPressed(SDLKey key, SDLMod mod)
@@ -150,9 +153,9 @@ void App::keyPressed(SDLKey key, SDLMod mod)
         case 'r':	// reload xml
             if(Graphics::getMillis() - reloadTimestamp > 5000)
             {
-                sceneManager.closeXmlFile();
-                sceneManager.clear(true);
-                sceneManager.loadXmlFile();
+                //sceneManager.closeXmlFile();
+                //sceneManager.clear(true);
+                //sceneManager.loadXmlFile();
 				
 				config.reloadFiles();
             }

@@ -55,13 +55,7 @@ void Facade::draw(int x, int y)
     {
         for(unsigned int x = 0; x < getWidth(); ++x)
         {
-        	// draw framebufer
-            Graphics::fill(Color(getFrameBuffer()[y*getWidth()+x]));
-            if(_bDrawOutlines)
-            	visual::Graphics::stroke(0x666666);
-            Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
-            
-            // draw mask overlay
+			// draw mask overlay
             if(_bShowSides)
             {
             	Color color;
@@ -73,6 +67,17 @@ void Facade::draw(int x, int y)
             		Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
 				}
             }
+			
+        	// draw framebufer
+            Graphics::fill(Color(getFrameBuffer()[y*getWidth()+x]));
+            if(_bDrawOutlines)
+            	visual::Graphics::stroke(0x666666);
+			if(_bShowSides)
+			{
+				//if(getCl
+			}
+			else
+            	Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
             
             xPos += _windowSize*FACADE_WIN_ASPECT_WIDTH;
         }

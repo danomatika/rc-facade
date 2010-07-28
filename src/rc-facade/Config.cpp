@@ -64,10 +64,10 @@ bool Config::parseCommandLine(int argc, char **argv)
         // set the variables
         if(ipOpt.isSet())		 sendingIp = ipOpt.getValue();
         if(portOpt.isSet()) 	 listeningPort = portOpt.getValue();
-		if(fileCmd.getValue() != "")	setXmlFilename(fileCmd.getValue());
+		if(fileCmd.getValue() != "")	setLuaFilename(fileCmd.getValue());
 		if(mappingOpt.isSet())	_facade.setXmlFilename(mappingOpt.getValue());
 		
-		// laod files
+		// load files
 		reloadFiles();
     }
     catch(TCLAP::ArgException &e)  // catch any exceptions
@@ -91,9 +91,15 @@ void Config::reloadFiles()
 		_facade.closeXmlFile();
 	}
 	
-	LOG << "Config: loading \"" << getXmlFilename() << "\"" << endl;
-	loadXmlFile();
-	closeXmlFile();
+	//LOG << "Config: loading \"" << getXmlFilename() << "\"" << endl;
+	//loadXmlFile();
+	//closeXmlFile();
+	
+	if(getLuaFilename() != "")
+	{
+		LOG << "Config: loading \"" << getLuaFilename() << "\"" << endl;
+		loadLuaFile();
+	}
 }
 
 void Config::print()

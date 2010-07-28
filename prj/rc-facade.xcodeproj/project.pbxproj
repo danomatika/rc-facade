@@ -7,184 +7,189 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E49649F20DE001279962429 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D65623B8D001279962429 /* Sprite.cpp */; };
-		3A1A0B28251E001279962429 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 653A575A1102001279962429 /* main.cpp */; };
-		3F41516E3269001279962429 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 763A618D1E4E001279962429 /* Config.cpp */; };
-		40A92E5B0C44001279962429 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 159C69B0231E001279962429 /* Bitmap.cpp */; };
-		418708AC11D5001279962429 /* Facade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186139982D2A001279962429 /* Facade.cpp */; };
-		4331560F2A43001279962429 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6306456D2EB4001279962429 /* SceneManager.cpp */; };
-		447F03F37B5F001279962429 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C47764E4F001279962429 /* Scene.cpp */; };
-		4F9175005BBE001279962429 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7C07367B21001279962429 /* App.cpp */; };
-		6FF40DF178EA001279962429 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 253779A43886001279962429 /* Image.cpp */; };
-		7DB863FE4357001279962429 /* libfacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B87C7B2C7D001279962429 /* libfacade.a */; };
+		0C532E563463001280203858 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03E544C92347001280203858 /* Sprite.cpp */; };
+		23D70D0F0E0E001280203858 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07044D931DC3001280203858 /* Config.cpp */; };
+		47D105F459C5001280203858 /* LuaWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DFA160C1020001280203858 /* LuaWrapper.cpp */; };
+		4E433A101957001280203858 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24A417CA647F001280203858 /* App.cpp */; };
+		51C034533982001280203858 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F1DDD48C2001280203858 /* main.cpp */; };
+		61026B27745C001280203858 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 252E1AF62F16001280203858 /* Bitmap.cpp */; };
+		6BA010FC4498001280203858 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 570E6829682F001280203858 /* Scene.cpp */; };
+		6F1C2EA966A0001280203858 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DE34BFD74DD001280203858 /* SceneManager.cpp */; };
+		706919D645BF001280203858 /* Facade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B4520C637DA001280203858 /* Facade.cpp */; };
+		7479570B525D001280203858 /* libfacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A265D516A6001280203858 /* libfacade.a */; };
+		7761195730D7001280203858 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6522923B7001280203858 /* Image.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3CFD36B46CB6001279962429 /* PBXContainerItemProxy */ = {
+		02A4170422B2001280203858 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B44098B11AB001279962429 /* facade.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 757E25147DFF001279962429;
+			containerPortal = 71160B7C10EC001280203858 /* facade.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C8F6D444CB9001280203858;
 			remoteInfo = libfacade.a;
 		};
-		4E623B5E1E48001279962429 /* PBXContainerItemProxy */ = {
+		0AB26D312F10001280203858 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B44098B11AB001279962429 /* facade.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3AB3689347F2001279962429;
+			containerPortal = 71160B7C10EC001280203858 /* facade.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E2860220A77001280203858;
 			remoteInfo = libfacade.a;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02241C4A7BC8001279962429 /* Line.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
-		0CB002B07338001279962429 /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
-		0D7C07367B21001279962429 /* App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
-		11FF24CB4663001279962429 /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
-		159C69B0231E001279962429 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
-		186139982D2A001279962429 /* Facade.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Facade.cpp; sourceTree = "<group>"; };
-		1BCB3C6A0A30001279962429 /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
-		1EE17B8A5013001279962429 /* rc-facade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rc-facade"; sourceTree = BUILT_PRODUCTS_DIR; };
-		253779A43886001279962429 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
-		275D0B510AFF001279962429 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		2C7D65623B8D001279962429 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
-		2D7423BD4D8E001279962429 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		3B0C47764E4F001279962429 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
-		3C4D7B957440001279962429 /* App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
-		3D445BCB142D001279962429 /* Facade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Facade.h; sourceTree = "<group>"; };
-		40D71EE22DA5001279962429 /* Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objects.h; sourceTree = "<group>"; };
-		49EF7E864FD2001279962429 /* DrawableObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawableObject.h; sourceTree = "<group>"; };
-		4EA15EFE7726001279962429 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
-		4F4F68183CDC001279962429 /* Pixel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pixel.h; sourceTree = "<group>"; };
-		551F679503CE001279962429 /* Bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
-		5B44098B11AB001279962429 /* facade.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = facade.xcodeproj; sourceTree = SOURCE_ROOT; };
-		62893B6726C5001279962429 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
-		6306456D2EB4001279962429 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
-		653A575A1102001279962429 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		763A618D1E4E001279962429 /* Config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		03E544C92347001280203858 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		04CF4C2C676A001280203858 /* DrawableObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawableObject.h; sourceTree = "<group>"; };
+		04E44E8656BA001280203858 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		07044D931DC3001280203858 /* Config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		09533C043EB2001280203858 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		126211422D08001280203858 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		16844C253D20001280203858 /* rc-facade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rc-facade"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DE34BFD74DD001280203858 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		1DFA160C1020001280203858 /* LuaWrapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LuaWrapper.cpp; sourceTree = "<group>"; };
+		24A417CA647F001280203858 /* App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
+		252E1AF62F16001280203858 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		26072B3006B7001280203858 /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+		2B130EF45696001280203858 /* Line.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		337C2BF25E4E001280203858 /* Facade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Facade.h; sourceTree = "<group>"; };
+		380905260385001280203858 /* Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objects.h; sourceTree = "<group>"; };
+		431352F41E7F001280203858 /* LuaWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaWrapper.h; sourceTree = "<group>"; };
+		472155500522001280203858 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		4A6C13A02E55001280203858 /* App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		4B4520C637DA001280203858 /* Facade.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Facade.cpp; sourceTree = "<group>"; };
+		4E03630F18C9001280203858 /* Pixel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pixel.h; sourceTree = "<group>"; };
+		570E6829682F001280203858 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		62EC7B2B60EB001280203858 /* Bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
+		6636652923E2001280203858 /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
+		6AE6522923B7001280203858 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		6B7F1DDD48C2001280203858 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		71160B7C10EC001280203858 /* facade.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = facade.xcodeproj; sourceTree = SOURCE_ROOT; };
+		79CC573B0EE0001280203858 /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		12295A823398001279962429 /* Frameworks */ = {
+		0A493FE23A29001280203858 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DB863FE4357001279962429 /* libfacade.a in Frameworks */,
+				7479570B525D001280203858 /* libfacade.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		019E60EC27CB001279962429 /* rc-facade */ = {
+		02220E151018001280203858 /* rc-facade */ = {
 			isa = PBXGroup;
 			children = (
-				250668032309001279962429 /* src */,
-				03CB460B7E41001279962429 /* Products */,
-				11AD2A7570D1001279962429 /* Projects */,
+				24A417CA647F001280203858 /* App.cpp */,
+				4A6C13A02E55001280203858 /* App.h */,
+				04E44E8656BA001280203858 /* Common.h */,
+				07044D931DC3001280203858 /* Config.cpp */,
+				472155500522001280203858 /* Config.h */,
+				1DFA160C1020001280203858 /* LuaWrapper.cpp */,
+				431352F41E7F001280203858 /* LuaWrapper.h */,
+				570E6829682F001280203858 /* Scene.cpp */,
+				126211422D08001280203858 /* Scene.h */,
+				1DE34BFD74DD001280203858 /* SceneManager.cpp */,
+				26072B3006B7001280203858 /* SceneManager.h */,
+				6B7F1DDD48C2001280203858 /* main.cpp */,
+				251E5BF53CF5001280203858 /* objects */,
 			);
-			name = "rc-facade";
+			path = "rc-facade";
 			sourceTree = "<group>";
 		};
-		03CB460B7E41001279962429 /* Products */ = {
+		034211BC5BA6001280203858 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1EE17B8A5013001279962429 /* rc-facade */,
+				22A265D516A6001280203858 /* libfacade.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		11AD2A7570D1001279962429 /* Projects */ = {
+		20BC3F0115A1001280203858 /* rc-facade */ = {
 			isa = PBXGroup;
 			children = (
-				5B44098B11AB001279962429 /* facade.xcodeproj */,
+				370065290274001280203858 /* src */,
+				5118273C5B2C001280203858 /* Products */,
+				60E91DA823EA001280203858 /* Projects */,
 			);
-			name = Projects;
+			name = "rc-facade";
 			sourceTree = "<group>";
 		};
-		250668032309001279962429 /* src */ = {
+		251E5BF53CF5001280203858 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				3C6E7ECF6F96001279962429 /* common */,
-				4B8A6F86512F001279962429 /* rc-facade */,
+				252E1AF62F16001280203858 /* Bitmap.cpp */,
+				62EC7B2B60EB001280203858 /* Bitmap.h */,
+				04CF4C2C676A001280203858 /* DrawableObject.h */,
+				6AE6522923B7001280203858 /* Image.cpp */,
+				09533C043EB2001280203858 /* Image.h */,
+				2B130EF45696001280203858 /* Line.h */,
+				380905260385001280203858 /* Objects.h */,
+				4E03630F18C9001280203858 /* Pixel.h */,
+				6636652923E2001280203858 /* Rect.h */,
+				03E544C92347001280203858 /* Sprite.cpp */,
+				79CC573B0EE0001280203858 /* Sprite.h */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+		2CF93D011A09001280203858 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				4B4520C637DA001280203858 /* Facade.cpp */,
+				337C2BF25E4E001280203858 /* Facade.h */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		370065290274001280203858 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2CF93D011A09001280203858 /* common */,
+				02220E151018001280203858 /* rc-facade */,
 			);
 			name = src;
 			path = ../src;
 			sourceTree = "<group>";
 		};
-		28E44C5E433E001279962429 /* Products */ = {
+		5118273C5B2C001280203858 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11B87C7B2C7D001279962429 /* libfacade.a */,
+				16844C253D20001280203858 /* rc-facade */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3C6E7ECF6F96001279962429 /* common */ = {
+		60E91DA823EA001280203858 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
-				186139982D2A001279962429 /* Facade.cpp */,
-				3D445BCB142D001279962429 /* Facade.h */,
+				71160B7C10EC001280203858 /* facade.xcodeproj */,
 			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		4B8A6F86512F001279962429 /* rc-facade */ = {
-			isa = PBXGroup;
-			children = (
-				0D7C07367B21001279962429 /* App.cpp */,
-				3C4D7B957440001279962429 /* App.h */,
-				275D0B510AFF001279962429 /* Common.h */,
-				763A618D1E4E001279962429 /* Config.cpp */,
-				2D7423BD4D8E001279962429 /* Config.h */,
-				3B0C47764E4F001279962429 /* Scene.cpp */,
-				4EA15EFE7726001279962429 /* Scene.h */,
-				6306456D2EB4001279962429 /* SceneManager.cpp */,
-				1BCB3C6A0A30001279962429 /* SceneManager.h */,
-				653A575A1102001279962429 /* main.cpp */,
-				6BE662617F2D001279962429 /* objects */,
-			);
-			path = "rc-facade";
-			sourceTree = "<group>";
-		};
-		6BE662617F2D001279962429 /* objects */ = {
-			isa = PBXGroup;
-			children = (
-				159C69B0231E001279962429 /* Bitmap.cpp */,
-				551F679503CE001279962429 /* Bitmap.h */,
-				49EF7E864FD2001279962429 /* DrawableObject.h */,
-				253779A43886001279962429 /* Image.cpp */,
-				62893B6726C5001279962429 /* Image.h */,
-				02241C4A7BC8001279962429 /* Line.h */,
-				40D71EE22DA5001279962429 /* Objects.h */,
-				4F4F68183CDC001279962429 /* Pixel.h */,
-				11FF24CB4663001279962429 /* Rect.h */,
-				2C7D65623B8D001279962429 /* Sprite.cpp */,
-				0CB002B07338001279962429 /* Sprite.h */,
-			);
-			path = objects;
+			name = Projects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A8E50B32092001279962429 /* rc-facade */ = {
+		36DD13A63702001280203858 /* rc-facade */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28551E880720001279962429 /* Build configuration list for PBXNativeTarget "rc-facade" */;
+			buildConfigurationList = 5A4A5539216E001280203858 /* Build configuration list for PBXNativeTarget "rc-facade" */;
 			buildPhases = (
-				6A1670E03FBC001279962429 /* Resources */,
-				0DB30269667A001279962429 /* Sources */,
-				12295A823398001279962429 /* Frameworks */,
+				64875E8A3ACA001280203858 /* Resources */,
+				2D2E57780C3B001280203858 /* Sources */,
+				0A493FE23A29001280203858 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3F7935D54559001279962429 /* PBXTargetDependency */,
+				5FD45835358A001280203858 /* PBXTargetDependency */,
 			);
 			name = "rc-facade";
 			productInstallPath = "$(HOME)/bin";
 			productName = "rc-facade";
-			productReference = 1EE17B8A5013001279962429 /* rc-facade */;
+			productReference = 16844C253D20001280203858 /* rc-facade */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -195,33 +200,33 @@
 			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "rc-facade" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 019E60EC27CB001279962429 /* rc-facade */;
+			mainGroup = 20BC3F0115A1001280203858 /* rc-facade */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 28E44C5E433E001279962429 /* Products */;
-					ProjectRef = 5B44098B11AB001279962429 /* facade.xcodeproj */;
+					ProductGroup = 034211BC5BA6001280203858 /* Products */;
+					ProjectRef = 71160B7C10EC001280203858 /* facade.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				3A8E50B32092001279962429 /* rc-facade */,
+				36DD13A63702001280203858 /* rc-facade */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		11B87C7B2C7D001279962429 /* libfacade.a */ = {
+		22A265D516A6001280203858 /* libfacade.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libfacade.a;
-			remoteRef = 4E623B5E1E48001279962429 /* PBXContainerItemProxy */;
+			remoteRef = 02A4170422B2001280203858 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6A1670E03FBC001279962429 /* Resources */ = {
+		64875E8A3ACA001280203858 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -231,34 +236,113 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0DB30269667A001279962429 /* Sources */ = {
+		2D2E57780C3B001280203858 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				418708AC11D5001279962429 /* Facade.cpp in Sources */,
-				4F9175005BBE001279962429 /* App.cpp in Sources */,
-				3F41516E3269001279962429 /* Config.cpp in Sources */,
-				447F03F37B5F001279962429 /* Scene.cpp in Sources */,
-				4331560F2A43001279962429 /* SceneManager.cpp in Sources */,
-				3A1A0B28251E001279962429 /* main.cpp in Sources */,
-				40A92E5B0C44001279962429 /* Bitmap.cpp in Sources */,
-				6FF40DF178EA001279962429 /* Image.cpp in Sources */,
-				2E49649F20DE001279962429 /* Sprite.cpp in Sources */,
+				706919D645BF001280203858 /* Facade.cpp in Sources */,
+				4E433A101957001280203858 /* App.cpp in Sources */,
+				23D70D0F0E0E001280203858 /* Config.cpp in Sources */,
+				47D105F459C5001280203858 /* LuaWrapper.cpp in Sources */,
+				6BA010FC4498001280203858 /* Scene.cpp in Sources */,
+				6F1C2EA966A0001280203858 /* SceneManager.cpp in Sources */,
+				51C034533982001280203858 /* main.cpp in Sources */,
+				61026B27745C001280203858 /* Bitmap.cpp in Sources */,
+				7761195730D7001280203858 /* Image.cpp in Sources */,
+				0C532E563463001280203858 /* Sprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F7935D54559001279962429 /* PBXTargetDependency */ = {
+		5FD45835358A001280203858 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libfacade.a;
-			targetProxy = 3CFD36B46CB6001279962429 /* PBXContainerItemProxy */;
+			targetProxy = 0AB26D312F10001280203858 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07EC3E331FCF001279962429 /* Debug */ = {
+		0C7901526BA6001280203858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../src,
+					../externals,
+					../externals/visualframework,
+					../externals/xmlframework,
+					../externals/oscframework,
+					../../../../../../../opt/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					../externals/visualframework,
+					../externals/xmlframework,
+					../externals/oscframework,
+					../../../../../../../opt/local/lib,
+				);
+				OBJROOT = "../obj/Release/rc-facade";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-loscframework",
+					"-lxmlframework",
+					"-lvisualframework",
+					"-lSDL_net",
+					"-lSDL_ttf",
+					"-llua",
+					"-llo",
+					"-lpthread",
+					"-lSDLmain",
+					"-lSDL",
+					"-lSDL_gfx",
+					"-lSDL_image",
+					"-Wl,-framework,Cocoa",
+					"-Wl,-framework,OpenGL",
+					"-Wl,-framework,ApplicationServices",
+					"-Wl,-framework,Carbon",
+					"-Wl,-framework,AudioToolbox",
+					"-Wl,-framework,AudioUnit",
+					"-Wl,-framework,IOKit",
+				);
+				PREBINDING = NO;
+				SYMROOT = "../src/rc-facade";
+			};
+			name = Release;
+		};
+		392D43BD605F001280203858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../src/rc-facade";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "rc-facade";
+			};
+			name = Release;
+		};
+		453D448A5767001280203858 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../src/rc-facade";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "rc-facade";
+			};
+			name = Debug;
+		};
+		4DDD0E0F0DCF001280203858 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -277,13 +361,13 @@
 					../externals/visualframework,
 					../externals/xmlframework,
 					../externals/oscframework,
-					../../../../../opt/local/include,
+					../../../../../../../opt/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					../externals/visualframework,
 					../externals/xmlframework,
 					../externals/oscframework,
-					../../../../../opt/local/lib,
+					../../../../../../../opt/local/lib,
 				);
 				OBJROOT = "../obj/Debug/rc-facade";
 				ONLY_ACTIVE_ARCH = NO;
@@ -293,6 +377,7 @@
 					"-lvisualframework",
 					"-lSDL_net",
 					"-lSDL_ttf",
+					"-llua",
 					"-llo",
 					"-lpthread",
 					"-lSDLmain",
@@ -309,83 +394,6 @@
 				);
 				PREBINDING = NO;
 				SYMROOT = "../src/rc-facade";
-			};
-			name = Debug;
-		};
-		5A835FB11EAE001279962429 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CONFIGURATION_BUILD_DIR = "../src/rc-facade";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
-				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = "rc-facade";
-			};
-			name = Release;
-		};
-		5B2226167574001279962429 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
-				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../src,
-					../externals,
-					../externals/visualframework,
-					../externals/xmlframework,
-					../externals/oscframework,
-					../../../../../opt/local/include,
-				);
-				LIBRARY_SEARCH_PATHS = (
-					../externals/visualframework,
-					../externals/xmlframework,
-					../externals/oscframework,
-					../../../../../opt/local/lib,
-				);
-				OBJROOT = "../obj/Release/rc-facade";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-loscframework",
-					"-lxmlframework",
-					"-lvisualframework",
-					"-lSDL_net",
-					"-lSDL_ttf",
-					"-llo",
-					"-lpthread",
-					"-lSDLmain",
-					"-lSDL",
-					"-lSDL_gfx",
-					"-lSDL_image",
-					"-Wl,-framework,Cocoa",
-					"-Wl,-framework,OpenGL",
-					"-Wl,-framework,ApplicationServices",
-					"-Wl,-framework,Carbon",
-					"-Wl,-framework,AudioToolbox",
-					"-Wl,-framework,AudioUnit",
-					"-Wl,-framework,IOKit",
-				);
-				PREBINDING = NO;
-				SYMROOT = "../src/rc-facade";
-			};
-			name = Release;
-		};
-		6CD47D4971E9001279962429 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CONFIGURATION_BUILD_DIR = "../src/rc-facade";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
-				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = "rc-facade";
 			};
 			name = Debug;
 		};
@@ -395,17 +403,17 @@
 		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "rc-facade" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07EC3E331FCF001279962429 /* Debug */,
-				5B2226167574001279962429 /* Release */,
+				4DDD0E0F0DCF001280203858 /* Debug */,
+				0C7901526BA6001280203858 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		28551E880720001279962429 /* Build configuration list for PBXNativeTarget "rc-facade" */ = {
+		5A4A5539216E001280203858 /* Build configuration list for PBXNativeTarget "rc-facade" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CD47D4971E9001279962429 /* Debug */,
-				5A835FB11EAE001279962429 /* Release */,
+				453D448A5767001280203858 /* Debug */,
+				392D43BD605F001280203858 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

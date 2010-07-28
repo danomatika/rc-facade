@@ -31,7 +31,8 @@ project "rc-facade"
 	kind "ConsoleApp"
 	language "C++"
 	targetdir "../src/rc-facade"
-	files { "../src/common/*",
+	files { "../src/common/**.h",
+			"../src/common/**.cpp",
 			"../src/rc-facade/**.h",
 			"../src/rc-facade/**.cpp" }
 	
@@ -44,7 +45,7 @@ project "rc-facade"
 			  "../externals/xmlframework",
       		  "../externals/oscframework" }
 	links { "facade", "oscframework", "xmlframework", "visualframework",
-		    "SDL_net", "SDL_ttf" }
+		    "SDL_net", "SDL_ttf", "lua" }
 
 	configuration "linux"
 		buildoptions { "`pkg-config --cflags sdl`",
@@ -78,7 +79,8 @@ project "facade-simulator"
 	kind "ConsoleApp"
 	language "C++"
 	targetdir "../src/facade-simulator"
-	files { "../src/common/*",
+	files { "../src/common/**.h",
+			"../src/common/**.cpp",
 			"../src/facade-simulator/**.h",
 			"../src/facade-simulator/**.cpp" }
 	

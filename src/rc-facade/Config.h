@@ -26,6 +26,7 @@
 #include "Common.h"
 
 #include "../common/Facade.h"
+#include "LuaWrapper.h"
 
 /**
     \class  Config
@@ -37,7 +38,7 @@
     no initialization is needed, just use equt::Config::instance() to access
     member functions, data
 **/
-class Config : public xml::XmlObject
+class Config : public xml::XmlObject, public LuaWrapper
 {
     public:
 
