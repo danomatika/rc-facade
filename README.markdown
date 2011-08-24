@@ -22,7 +22,7 @@ The rc-facade package contains the following parts:
 
 This group of tools allows any OSC ([Open Sound Control](http://en.wikipedia.org/wiki/Open_Sound_Control)) capable program to control simple 2d visuals which are specified in xml scene descriptions. The library presents the facade as a 2d drawing surface and builds UDP packets with the correct window addresses. These tools have been tested with the official simulator from the  [Ars Electronica Futurelab](http://new.aec.at/futurelab/en) but are not affiliated with or supported by the Futurelab.
 
-These tools are developed for the robotcowboy project. See http://robotcowboy.com
+These tools were developed as part of the [robotcowboy project](http://robotcowboy.com) for the ["Close Encounters of the Bit Kind"](http://vimeo.com/7741821) performance during the Ars Electronica Festival 2009.
 
 BUILD REQUIREMENTS
 ------------------
