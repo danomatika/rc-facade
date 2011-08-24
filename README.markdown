@@ -71,7 +71,7 @@ As this is an GNU autotools project, simply run:
 ./configure
 make
 sudo make install
-</pre<
+</pre>
 
 By default, the configure script installs to `/usr/local`.  To change this behavior, specify a new dir before building the project:
 
