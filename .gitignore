@@ -1,0 +1,29 @@
+
+# folders
+bin
+lib
+obj
+
+# autotools files
+autom4te.cache
+.deps
+Makefile
+config.log
+config.status
+src/config.h
+src/stamp-h1
+.dirstamp
+
+# build
+*.o
+*.a
+src/rc-facade/rc-facade
+src/facade-simulator/facade-simulator
+
+# OSX
+.DS_Store
+*xcuserdata
+*.xcworkspace
+
+# temp files
+*~
