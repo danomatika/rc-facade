@@ -28,6 +28,8 @@
 #ifndef FACADE_SIDE_MAIN_SOUTH_STREET_H
 #define FACADE_SIDE_MAIN_SOUTH_STREET_H
 
+#include <string.h>
+
 namespace facade {
 
 class SideMainBuildingSouthStreetLevel : public Side

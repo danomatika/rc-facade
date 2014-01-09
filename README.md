@@ -92,7 +92,7 @@ All applications have a full help usage printout, use -h or --help.
 
 ![image][1]
 
-% rc-facade scene_file.xml
+    % rc-facade scene_file.xml
 
 Starts rc-visual using the given xml scene description. The file sets connection information (if not using defaults) and lists visual scenes and scene elements. Look at the example.xml file install to the doc folder for details.
 
@@ -102,7 +102,7 @@ Note: Values set on the commandline override those in the scene file.
 
 ----
 
-% facade-simulator
+    % facade-simulator
 
 A test destination for facade UDP packets. Displays framebuffer at the 25 fps refresh rate of the actual AEC hardware.
 

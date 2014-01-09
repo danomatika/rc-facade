@@ -3,23 +3,23 @@
 	Image.h
 
 	visualframework: a simple 2d graphics framework
-    
-    Image resizing from David Olsen <jolynsbass@gmail.com> (no license given)
+	
+	Image resizing from David Olsen <jolynsbass@gmail.com> (no license given)
   
 	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #ifndef VISUAL_IMAGE_H
@@ -29,47 +29,40 @@
 
 #include <string>
 
+#include "Texture.h"
+
 namespace visual {
 
-class Image
+/// a texture that can load from an image file
+class Image : public Texture
 {
 	public:
 	
-    	Image();
-        Image(std::string filename);
-    	virtual ~Image();
-        
-        /// laod an image
-        bool load(std::string filename);
-        
-        /// load from ARGB pixels
-        bool load(const uint32_t* pixels, unsigned int w, unsigned int h);
-        
-        void clear();
-        
-        bool isLoaded();
-        
-        void draw(int x, int y);
-        
-        void resize(int w, int h);
-        void scale(float scaleX, float scaleY);
-        
-        const int width();
-        const int height();
-        
-        Color getPixel(unsigned int x, unsigned int y);
-        void setPixel(unsigned int x, unsigned int y, Color& color);
-        void pixelate(unsigned int pixelWidth, unsigned int pixelHeight);
-        
-        /// get the raw surface structure of the image (contains pixels)
-        SDL_Surface* getSurface() {return _image;}
-        
-        inline std::string getFilename() {return _filename;}
+		Image();
+		Image(std::string filename);
+		
+		/// load an image
+		bool load(std::string filename);
+		
+		/// load from ARGB pixels
+		bool load(const uint32_t* pixels, unsigned int w, unsigned int h);
+		
+		void clear();
+		
+		inline std::string getFilename() {return _filename;}
+		
+		/// print this images's info via ostream
+		friend std::ostream& operator<<(std::ostream& os, const Image& from)
+		{
+			os << "loaded: " << from.isLoaded()
+			   << " w: " << (int) from.width() << " h: " << (int) from.height()
+			   << " filename: " << from._filename;
+			return os;
+		}
 
-    protected:
-    	
-        SDL_Surface* _image;
-    	std::string	_filename;
+	protected:
+
+		std::string	_filename;
 };
 
 } // namespace

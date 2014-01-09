@@ -1,5 +1,7 @@
 # rc-facade
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 # load externals variables
 include $(top_srcdir)/externals/externals.mk
 

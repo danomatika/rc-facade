@@ -29,6 +29,7 @@
 #define FACADE_SIDE_H
 
 #include <string>
+#include <string.h>
 
 #include "FrameBuffer.h"
 

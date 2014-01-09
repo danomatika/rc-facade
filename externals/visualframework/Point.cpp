@@ -6,18 +6,18 @@
   
 	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #include "Point.h"
@@ -48,31 +48,31 @@ void Point::translate(const PointList& points, const float dx, const float dy)
 {
 	SPG_TranslatePoints(points.size(), (SPG_Point*) &points[0], dx, dy);
 }
-    
+	
 
 PointList Point::rotateClone(const PointList& points, const float angle)
 {
 	PointList newPoints = points;
-    SPG_RotatePoints(newPoints.size(), (SPG_Point*) &newPoints[0], angle);
-    return newPoints;
+	SPG_RotatePoints(newPoints.size(), (SPG_Point*) &newPoints[0], angle);
+	return newPoints;
 }
 PointList Point::scaleClone(const PointList& points, const float xscale, const float yscale)
 {
 	PointList newPoints = points;
-    SPG_ScalePoints(newPoints.size(), (SPG_Point*) &newPoints[0], xscale, yscale);
-    return newPoints;
+	SPG_ScalePoints(newPoints.size(), (SPG_Point*) &newPoints[0], xscale, yscale);
+	return newPoints;
 }
 PointList Point::skewClone(const PointList& points, const float xskew, const float yskew)
 {
 	PointList newPoints = points;
-    SPG_SkewPoints(newPoints.size(), (SPG_Point*) &newPoints[0], xskew, yskew);
-    return newPoints;
+	SPG_SkewPoints(newPoints.size(), (SPG_Point*) &newPoints[0], xskew, yskew);
+	return newPoints;
 }
 PointList Point::translateClone(const PointList& points, const float dx, const float dy)
 {
 	PointList newPoints = points;
-    SPG_TranslatePoints(newPoints.size(), (SPG_Point*) &newPoints[0], dx, dy);
-    return newPoints;
+	SPG_TranslatePoints(newPoints.size(), (SPG_Point*) &newPoints[0], dx, dy);
+	return newPoints;
 }
 
 } // namespace

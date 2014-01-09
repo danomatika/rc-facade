@@ -28,6 +28,7 @@
 #include "FrameBuffer.h"
 
 #include <cassert>
+#include <string.h>
 
 namespace facade {
 
@@ -93,7 +94,7 @@ void FrameBuffer::setFramebuffer(const uint8_t* frame)
      
     try
     {
-    	std::memcpy(_framebuffer, frame, FACADE_PKG_SIZE*FACADE_NUM_ADDR);
+    	memcpy(_framebuffer, frame, FACADE_PKG_SIZE*FACADE_NUM_ADDR);
     }
     catch(std::exception& e)
     {

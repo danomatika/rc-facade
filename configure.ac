@@ -23,6 +23,9 @@ AC_PROG_CC # needed for visualframework
 # using c++ compiler and linker
 AC_LANG_CPLUSPLUS
 
+# allow loading non-POSIX libs
+AM_PROG_AR
+
 # check for headers
 AC_HEADER_STDC
 AC_CHECK_HEADERS(sstream) # needed for tclap

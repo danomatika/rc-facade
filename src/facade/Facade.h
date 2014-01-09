@@ -29,6 +29,8 @@
 #define FACADE_FACADE_H
 
 #include <string>
+#include <string.h>
+#include <stdint.h>
 
 namespace facade {
 

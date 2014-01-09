@@ -28,6 +28,8 @@
 #ifndef FACADE_SIDE_MAIN_SOUTH_H
 #define FACADE_SIDE_MAIN_SOUTH_H
 
+#include <string.h>
+
 namespace facade {
 
 class SideMainBuildingSouth : public Side

@@ -1,5 +1,7 @@
 # visualframework
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 # dirs to delve into
 SUBDIRS = vmmlib
 
@@ -8,40 +10,42 @@ noinst_LIBRARIES = libvisualframework.a
 
 # libs sources, headers here because we dont want to install them
 libvisualframework_a_SOURCES = \
-        visualframework.h \
-        Application.h \
-        Application.cpp \
-            graphics/Color.h \
-            graphics/Font.h \
-            graphics/Font.cpp \
-            graphics/Graphics.h \
-            graphics/Graphics.cpp \
-            graphics/Image.h \
-            graphics/Image.cpp \
-            graphics/resize/resize++.h \
-            graphics/resize/resize++.cpp \
-            graphics/sprig/sprig.h \
-            graphics/sprig/sprig_inline.h \
-            graphics/sprig/sprig_common.h \
-            graphics/sprig/SPG_misc.c \
-            graphics/sprig/SPG_polygon.c \
-            graphics/sprig/SPG_primitives.c \
-            graphics/sprig/SPG_rotation.c \
-            graphics/sprig/SPG_surface.c \
-        Common.h \
-        Exception.h \
-        Log.h \
-            net/Net.h \
-            net/Net.cpp \
-            net/UdpReceiver.h \
-            net/UdpReceiver.cpp \
-            net/UdpSender.h \
-            net/UdpSender.cpp \
-        Point.h \
-        Point.cpp \
-        Thread.h \
-        Thread.cpp \
-        Timer.h
+		visualframework.h \
+		Application.h \
+		Application.cpp \
+			graphics/Color.h \
+			graphics/Font.h \
+			graphics/Font.cpp \
+			graphics/Graphics.h \
+			graphics/Graphics.cpp \
+			graphics/Image.h \
+			graphics/Image.cpp \
+			graphics/Texture.h \
+			graphics/Texture.cpp \
+			graphics/sprig/sprig.h \
+			graphics/sprig/sprig_inline.h \
+			graphics/sprig/sprig_common.h \
+			graphics/sprig/SPG_misc.c \
+			graphics/sprig/SPG_polygon.c \
+			graphics/sprig/SPG_primitives.c \
+			graphics/sprig/SPG_rotation.c \
+			graphics/sprig/SPG_surface.c \
+		Common.h \
+		Exception.h \
+		Log.h \
+			net/Net.h \
+			net/Net.cpp \
+			net/UdpReceiver.h \
+			net/UdpReceiver.cpp \
+			net/UdpSender.h \
+			net/UdpSender.cpp \
+		Point.h \
+		Point.cpp \
+		Thread.h \
+		Thread.cpp \
+		Timer.h \
+		Util.h\
+		Util.cpp
 
 # include paths
 AM_CPPFLAGS = $(CXXFLAGS) -I./ -I../ \
