@@ -12,6 +12,8 @@ The rc-facade & facade-simulator tools are licensed under the [GNU GPL v3](http:
 DESCRIPTION
 -----------
 
+![rc-facade simulator](rc-facade/doc/rc-facade_screenshot.png)
+
 rc-facade is an unofficial set of tools for graphics on the led facade of the [Ars Electronica](http://www.aec.at/center_about_en.php).
 
 The rc-facade package contains the following parts:
@@ -21,8 +23,6 @@ The rc-facade package contains the following parts:
 3. facade-simulator - osc command tool
 
 This group of tools allows any OSC ([Open Sound Control](http://en.wikipedia.org/wiki/Open_Sound_Control)) capable program to control simple 2d visuals which are specified in xml scene descriptions. The library presents the facade as a 2d drawing surface and builds UDP packets with the correct window addresses. These tools have been tested with the official simulator from the  [Ars Electronica Futurelab](http://new.aec.at/futurelab/en) but are not affiliated with or supported by the Futurelab.
-
-<iframe src="//player.vimeo.com/video/7741821?title=0&amp;byline=0" width="500" height="331" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 These tools were developed as part of the [robotcowboy project](http://robotcowboy.com) for the ["Close Encounters of the Bit Kind"](http://vimeo.com/7741821) performance during the Ars Electronica Festival 2009.
 
@@ -46,7 +46,7 @@ Not tested as of yet. Should be possible if you install the libraries.
 
 ### MAC OS OX
 
-On Mac OS X, they can be installed using macports: http://macports.org
+On Mac OS X, they can be installed using macports (http://macports.org) or homebrew (http://brew.sh)
 
 * install the macport binary and setup the macports environment
 * goto the Terminal and install the libs:
