@@ -1,23 +1,23 @@
 /*==============================================================================
 
-	Scene.h
+Scene.h
 
-	rc-facade: a simple 2d graphics engine for the AEC facade
-  
-	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+rc-facade: a simple 2d graphics engine for the AEC facade
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #ifndef SCENE_H
@@ -29,43 +29,43 @@
 
 class Scene : public XmlObject, public OscObject
 {
-    public:
+	public:
 
-        Scene(string name);
-        virtual ~Scene();
+		Scene(string name);
+		virtual ~Scene();
 
-        /// add an object
-        void addObject(DrawableObject* object);
+		/// add an object
+		void addObject(DrawableObject* object);
 
-        /// remove an object
-        void removeObject(DrawableObject* object);
+		/// remove an object
+		void removeObject(DrawableObject* object);
 
-        /// clears (deletes) all the objects in the list
-        void clear();
-        
-        /// setup resources
-        void setup();
+		/// clears (deletes) all the objects in the list
+		void clear();
+		
+		/// setup resources
+		void setup();
 
-        /// draw all the objects in the list
-        void draw();
+		/// draw all the objects in the list
+		void draw();
 
-        /* ***** UTIL ***** */
+		/* ***** UTIL ***** */
 
-        inline string getName() {return _name;}
+		inline string getName() {return _name;}
 
-        inline visual::Color getBackground() {return _background;}
+		inline visual::Color getBackground() {return _background;}
 
-    protected:
+	protected:
 
-        /* ***** XML CALLBACKS ***** */
+		/* ***** XML CALLBACKS ***** */
 
-        bool readXml(TiXmlElement* e);
+		bool readXml(TiXmlElement* e);
 
-    private:
+	private:
 
-        string _name;
-        vector<DrawableObject*> _objectList;
-        visual::Color _background;
+		string _name;
+		vector<DrawableObject*> _objectList;
+		visual::Color _background;
 };
 
 #endif // SCENE_H

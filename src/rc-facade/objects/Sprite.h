@@ -1,23 +1,23 @@
 /*==============================================================================
 
-	Sprite.h
+Sprite.h
 
-	rc-facade: a simple 2d graphics engine for the AEC facade
-  
-	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+rc-facade: a simple 2d graphics engine for the AEC facade
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #ifndef SPRITE_H
@@ -30,48 +30,48 @@
 
 class Sprite : public DrawableObject
 {
-    public:
+	public:
 
-        Sprite(string name);
-        ~Sprite();
+		Sprite(string name);
+		~Sprite();
 
-        void addBitmap(Bitmap* bitmap);
-        void removeBitmap(Bitmap* bitmap);
-        void clear();
+		void addBitmap(Bitmap* bitmap);
+		void removeBitmap(Bitmap* bitmap);
+		void clear();
 
-        void nextFrame();
-        void prevFrame();
-        void gotoFrame(unsigned int num);
-        void gotoFrame(string name);
+		void nextFrame();
+		void prevFrame();
+		void gotoFrame(unsigned int num);
+		void gotoFrame(string name);
 
-        void draw();
+		void draw();
 
-        void setDrawFromCenter(bool yesno);
-        void setDrawAllLayers(bool yesno) {bDrawAllLayers = yesno;}
+		void setDrawFromCenter(bool yesno);
+		void setDrawAllLayers(bool yesno) {bDrawAllLayers = yesno;}
 
-    protected:
+	protected:
 
-        /* ***** XML CALLBACKS ***** */
+		/* ***** XML CALLBACKS ***** */
 
-        bool readXml(TiXmlElement* e);
+		bool readXml(TiXmlElement* e);
 
-        /* ***** OSC CALLBACKS ***** */
+		/* ***** OSC CALLBACKS ***** */
 
-        bool processOscMessage(const osc::ReceivedMessage& message,
-        					   const osc::MessageSource& source);
+		bool processOscMessage(const osc::ReceivedMessage& message,
+		                       const osc::MessageSource& source);
 
-        std::vector<Bitmap*> bitmapList;
+		std::vector<Bitmap*> bitmapList;
 
-        vmml::Vector2i pos;
-        bool bAnimate;
-        bool bLoop;
-        bool bPingPong;
-        bool bDrawFromCenter;
-        bool bDrawAllLayers;
+		vmml::Vector2i pos;
+		bool bAnimate;
+		bool bLoop;
+		bool bPingPong;
+		bool bDrawFromCenter;
+		bool bDrawAllLayers;
 
-        int currentFrame;
-        unsigned int timestamp;
-        bool bForward;  /// advance frames?
+		int currentFrame;
+		unsigned int timestamp;
+		bool bForward; /// advance frames?
 };
 
 #endif // SPRITE_H

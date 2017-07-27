@@ -1,21 +1,21 @@
 /*==============================================================================
 
-	Facade.cpp
-  
-	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
+Facade.cpp
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #include "Facade.h"
@@ -29,9 +29,9 @@ using namespace xml;
 Facade::Facade() : XmlObject("mapping"), _packet(NULL),
 	_bDrawOutlines(false), _bShowSides(false), _windowSize(6)
 {
-    // allocate packet
-    _packet = SDLNet_AllocPacket(getPacketLen());
-    _packet->len = getPacketLen();
+	// allocate packet
+	_packet = SDLNet_AllocPacket(getPacketLen());
+	_packet->len = getPacketLen();
 }
 
 Facade::~Facade()
@@ -46,53 +46,53 @@ void Facade::setup(string addr, unsigned int port)
 
 void Facade::draw(int x, int y)
 {
-    int xPos = x, yPos = y, xStart = xPos;
-    
-    if(!_bDrawOutlines)
-        Graphics::noStroke();
-    
-    for(unsigned int y = 0; y < getHeight(); ++y)
-    {
-        for(unsigned int x = 0; x < getWidth(); ++x)
-        {
-        	// draw framebufer
-            Graphics::fill(Color(getFrameBuffer()[y*getWidth()+x]));
-            if(_bDrawOutlines)
-            	visual::Graphics::stroke(0x666666);
-            Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
-            
-            // draw mask overlay
-            if(_bShowSides)
-            {
-            	Color color;
-                color.setWithAlpha(getMask()[y*getWidth()+x]);
-                if(color.argb != 0)
-                {
-                	//color.A = 100;
-            		Graphics::fill(color);
-            		Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
+	int xPos = x, yPos = y, xStart = xPos;
+	
+	if(!_bDrawOutlines)
+		Graphics::noStroke();
+	
+	for(unsigned int y = 0; y < getHeight(); ++y)
+	{
+		for(unsigned int x = 0; x < getWidth(); ++x)
+		{
+			// draw framebufer
+			Graphics::fill(Color(getFrameBuffer()[y*getWidth()+x]));
+			if(_bDrawOutlines)
+				visual::Graphics::stroke(0x666666);
+			Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
+			
+			// draw mask overlay
+			if(_bShowSides)
+			{
+				Color color;
+				color.setWithAlpha(getMask()[y*getWidth()+x]);
+				if(color.argb != 0)
+				{
+					//color.A = 100;
+					Graphics::fill(color);
+					Graphics::rectangle(xPos, yPos, _windowSize*FACADE_WIN_ASPECT_WIDTH, _windowSize);
 				}
-            }
-            
-            xPos += _windowSize*FACADE_WIN_ASPECT_WIDTH;
-        }
-        xPos = xStart;
-        yPos += _windowSize;
-    }
+			}
+			
+			xPos += _windowSize*FACADE_WIN_ASPECT_WIDTH;
+		}
+		xPos = xStart;
+		yPos += _windowSize;
+	}
 }
-        
+		
 void Facade::send()
 {
 	// send the facade frame packet
-    try
-    {
-        memcpy(_packet->data, getPacket(), getPacketLen());
-        _sender.send(_packet);
-    }
-    catch(std::exception& e)
-    {
-        LOG_ERROR << "Facade: Could not send packet: " << e.what() << endl;
-    }
+	try
+	{
+		memcpy(_packet->data, getPacket(), getPacketLen());
+		_sender.send(_packet);
+	}
+	catch(std::exception& e)
+	{
+		LOG_ERROR << "Facade: Could not send packet: " << e.what() << endl;
+	}
 }
 
 unsigned int Facade::getDrawWidth()
@@ -112,16 +112,16 @@ bool Facade::readXml(TiXmlElement* e)
 	// reset for reloading
 	reset();
 
-    TiXmlElement* child = e->FirstChildElement();
-    while(child != NULL)
-    {
-        if(child->ValueStr() == "move")
-        {
+	TiXmlElement* child = e->FirstChildElement();
+	while(child != NULL)
+	{
+		if(child->ValueStr() == "move")
+		{
 			int x = Xml::getAttrInt(child, "x");
 			int y = Xml::getAttrInt(child, "y"); 
-            moveSides(x, y);
+			moveSides(x, y);
 			LOG_DEBUG << "Facade: Moving sides: " << x << " " << y << endl;
-        }
+		}
 		else if(child->ValueStr() == "sides")
 		{
 			TiXmlElement* child2 = child->FirstChildElement();
@@ -145,18 +145,18 @@ bool Facade::readXml(TiXmlElement* e)
 					parseSideXml(child2, facade::SIDE_LAB_SOUTH);
 				else
 					LOG_WARN << "Facade: Unknown element \""
-							 << child->ValueStr() << "\"" << endl;
+					         << child->ValueStr() << "\"" << endl;
 					
 				 child2 = child2->NextSiblingElement();
 			}
 		}
 
-        child = child->NextSiblingElement();
-    }
+		child = child->NextSiblingElement();
+	}
 
-    recomputeSize();
+	recomputeSize();
 
-    return true;
+	return true;
 }
 
 void Facade::parseSideXml(TiXmlElement* e, facade::FacadeSide side)
@@ -164,15 +164,15 @@ void Facade::parseSideXml(TiXmlElement* e, facade::FacadeSide side)
 	enableSide(side, Xml::getAttrBool(e, "enabled", true));
 	
 	TiXmlElement* child = e->FirstChildElement();
-    while(child != NULL)
-    {
+	while(child != NULL)
+	{
 		if(child->ValueStr() == "move")
 		{
 			int x = Xml::getAttrInt(child, "x");
 			int y = Xml::getAttrInt(child, "y"); 
 			moveSide(side, x, y);
 			LOG_DEBUG << "Facade: Moving " << getSideName(side)
-					  << ": " << x << " " << y << endl;
+			          << ": " << x << " " << y << endl;
 		}
 		else if(child->ValueStr() == "pos")
 		{
@@ -180,7 +180,7 @@ void Facade::parseSideXml(TiXmlElement* e, facade::FacadeSide side)
 			int y = Xml::getAttrInt(child, "y"); 
 			setSidePos(side, x, y);
 			LOG_DEBUG << "Facade: Pos " << getSideName(side)
-					  << ": " << x << " " << y << endl;
+			          << ": " << x << " " << y << endl;
 		}
 		else if(child->ValueStr() == "flip")
 		{
@@ -188,12 +188,12 @@ void Facade::parseSideXml(TiXmlElement* e, facade::FacadeSide side)
 			bool y = Xml::getAttrBool(child, "y", false);
 			flipSide(side, x, y);
 			LOG_DEBUG << "Facade: Flip " << getSideName(side)
-					  << ": " << x << " " << y << endl;
+			          << ": " << x << " " << y << endl;
 		}
 		else
 		{
 			LOG_WARN << "Facade: Unknown element \""
-					 << child->ValueStr() << "\"" << endl;
+			         << child->ValueStr() << "\"" << endl;
 		}
 
 		child = child->NextSiblingElement();

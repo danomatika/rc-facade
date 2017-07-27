@@ -1,23 +1,23 @@
 /*==============================================================================
 
-	App.h
+App.h
 
-	facade-simulator: a simple 2d simulator for the AEC facade
-  
-	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
+facade-simulator: a simple 2d simulator for the AEC facade
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #ifndef APP_H
@@ -31,34 +31,34 @@ using namespace std;
 
 class App : public visual::Application, public visual::UdpReceiver
 {
-    public:
+	public:
 
-        App();
+		App();
 
-        virtual ~App();
+		virtual ~App();
 
-        bool init();
+		bool init();
 
-        void setup();
+		void setup();
 
-        void update();
+		void update();
 
-        void draw();
+		void draw();
 
-        void cleanup();
+		void cleanup();
 
-        void keyPressed(SDLKey key, SDLMod mod);
+		void keyPressed(SDLKey key, SDLMod mod);
 
-    private:
+	private:
 
-        Facade& facade;
+		Facade& facade;
 
-        visual::Image facadeImage;
-        visual::Image facadeMask;
-        
-        visual::UdpReceiver receiver;
+		visual::Image facadeImage;
+		visual::Image facadeMask;
+		
+		visual::UdpReceiver receiver;
 
-        unsigned int reloadTimestamp;
+		unsigned int reloadTimestamp;
 };
 
 #endif // APP_H

@@ -1,23 +1,23 @@
 /*==============================================================================
 
-	Config.cpp
+Config.cpp
 
-	rc-facade: a simple 2d graphics engine for the AEC facade
-  
-	Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
+rc-facade: a simple 2d graphics engine for the AEC facade
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2009, 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #include "Config.h"
@@ -26,55 +26,55 @@
 
 Config& Config::instance()
 {
-    static Config * pointerToTheSingletonInstance = new Config;
-    return *pointerToTheSingletonInstance;
+	static Config * pointerToTheSingletonInstance = new Config;
+	return *pointerToTheSingletonInstance;
 }
 
 bool Config::parseCommandLine(int argc, char **argv)
 {
 	try
-    {
-        // the commandline parser
-        TCLAP::CommandLine cmd("simple aec facade rendering engine", VERSION);
-        
-        // options to parse
-        // short id, long id, description, required?, default value, short usage type description
-        TCLAP::ValueArg<string> ipOpt("i", "ip", (string) "IP address to send to; default is '"+sendingIp+"'", false, sendingIp, "string");
+	{
+		// the commandline parser
+		TCLAP::CommandLine cmd("simple aec facade rendering engine", VERSION);
+		
+		// options to parse
+		// short id, long id, description, required?, default value, short usage type description
+		TCLAP::ValueArg<string> ipOpt("i", "ip", (string) "IP address to send to; default is '"+sendingIp+"'", false, sendingIp, "string");
 		TCLAP::ValueArg<string> mappingOpt("m", "mapping", (string) "facade mapping xml file", false, "", "string");
 
 		stringstream itoa;
-        itoa << listeningPort;
+		itoa << listeningPort;
 		TCLAP::ValueArg<int> 	portOpt("p","port", (string) "Port to listen on; default is '"+itoa.str()+"'", false, listeningPort, "int");
-     
-        // commands to parse
-        // name, description, required?, default value, short usage type description
-        TCLAP::UnlabeledValueArg<string> fileCmd("xml", "facade xml file to load", false, "", "file");
+	 
+		// commands to parse
+		// name, description, required?, default value, short usage type description
+		TCLAP::UnlabeledValueArg<string> fileCmd("xml", "facade xml file to load", false, "", "file");
 
-        // add args to parser (in reverse order)
+		// add args to parser (in reverse order)
 		cmd.add(mappingOpt);
-        cmd.add(portOpt);
-        cmd.add(ipOpt);
-        
-        // add commands
-        cmd.add(fileCmd);
-
-        // parse the commandline
-        cmd.parse(argc, argv);
-        
-        // set the variables
-        if(ipOpt.isSet())		 sendingIp = ipOpt.getValue();
-        if(portOpt.isSet()) 	 listeningPort = portOpt.getValue();
-		if(fileCmd.getValue() != "")	setXmlFilename(fileCmd.getValue());
-		if(mappingOpt.isSet())	_facade.setXmlFilename(mappingOpt.getValue());
+		cmd.add(portOpt);
+		cmd.add(ipOpt);
 		
-		// laod files
+		// add commands
+		cmd.add(fileCmd);
+
+		// parse the commandline
+		cmd.parse(argc, argv);
+		
+		// set the variables
+		if(ipOpt.isSet())     sendingIp = ipOpt.getValue();
+		if(portOpt.isSet())   listeningPort = portOpt.getValue();
+		if(fileCmd.getValue() != "")   setXmlFilename(fileCmd.getValue());
+		if(mappingOpt.isSet()) _facade.setXmlFilename(mappingOpt.getValue());
+		
+		// load files
 		reloadFiles();
-    }
-    catch(TCLAP::ArgException &e)  // catch any exceptions
+	}
+	catch(TCLAP::ArgException &e) // catch any exceptions
 	{
-	    LOG_ERROR << "CommandLine: " << e.error() << " for arg " << e.argId() << endl;
-        return false;
-    }
+		LOG_ERROR << "CommandLine: " << e.error() << " for arg " << e.argId() << endl;
+		return false;
+	}
 
 	return true;
 }
@@ -97,10 +97,10 @@ void Config::reloadFiles()
 }
 
 void Config::print()
-{        
-    LOG << "sending ip: " << sendingIp << endl
-		<< "listening port:	" << listeningPort << endl
-        << "listening address: " << _oscReceiver.getOscRootAddress() << endl;
+{
+	LOG << "sending ip: " << sendingIp << endl
+	    << "listening port:	" << listeningPort << endl
+	    << "listening address: " << _oscReceiver.getOscRootAddress() << endl;
 }
 
 /* ***** PROTECTED ***** */

@@ -1,23 +1,23 @@
 /*==============================================================================
 
-	Config.h
+Config.h
 
-	facade-simulator: a simple 2d simulator for the AEC facade
-  
-	Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
+facade-simulator: a simple 2d simulator for the AEC facade
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2010  Dan Wilcox <danomatika@gmail.com>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ==============================================================================*/
 #ifndef CONFIG_H
@@ -39,35 +39,35 @@
 **/
 class Config
 {
-    public:
+	public:
 
 		/**
-            \brief singleton data access
-            \return a reference to itself
+		    \brief singleton data access
+		    \return a reference to itself
 
-            creates a new object on the first call
-        **/
-        static Config& instance();
-        
-        /**
-        	\brief	parse the commandline options
-        */
-        bool parseCommandLine(int argc, char **argv);
+		    creates a new object on the first call
+		**/
+		static Config& instance();
+		
+		/**
+		    \brief	parse the commandline options
+		*/
+		bool parseCommandLine(int argc, char **argv);
 
 		/* **** OBJECTS ***** */
 
 		/// get the facade object
-        Facade& getFacade() {return _facade;}
+		Facade& getFacade() {return _facade;}
 
-    private:
+	private:
 
-        Facade _facade;				///< the facade object
-        
-        // hide all the constructors, copy functions here
-        Config();                       // cannot create
-        //Config(const Config& from) {}	// not copyable
-        virtual ~Config() {}           	// cannot destroy
-        void operator =(Config& from) {}// not copyable
+		Facade _facade; ///< the facade object
+		
+		// hide all the constructors, copy functions here
+		Config();                       // cannot create
+		//Config(const Config& from) {}	// not copyable
+		virtual ~Config() {}            // cannot destroy
+		void operator =(Config& from) {}// not copyable
 };
 
 #endif // CONFIG_H
