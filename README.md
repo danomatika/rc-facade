@@ -12,8 +12,6 @@ The rc-facade & facade-simulator tools are licensed under the [GNU GPL v3](http:
 DESCRIPTION
 -----------
 
-![rc-facade simulator](https://github.com/danomatika/rc-facade/raw/master/doc/rc-facade_screenshot.png)
-
 rc-facade is an unofficial set of tools for graphics on the led facade of the [Ars Electronica](http://www.aec.at/center_about_en.php).
 
 The rc-facade package contains the following parts:
